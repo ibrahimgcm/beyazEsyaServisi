@@ -23,6 +23,10 @@ export default function Iletisim() {
             <label className="block text-gray-700 mb-1">Telefon</label>
             <input type="tel" className="w-full border border-gray-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="Telefon Numaranız" />
           </div>
+           <div className="mb-4">
+            <label className="block text-gray-700 mb-1">Hizmetlerimiz</label>
+            <textarea className="w-full border border-gray-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" rows="1" placeholder="Mesajınız"></textarea>
+          </div>  
           <div className="mb-4">
             <label className="block text-gray-700 mb-1">Mesajınız</label>
             <textarea className="w-full border border-gray-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" rows="4" placeholder="Mesajınız"></textarea>

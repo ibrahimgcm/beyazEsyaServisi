@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="bg-blue-50 border-t border-blue-100 mt-12">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-gray-700">
         <div>
-          <div className="text-xl font-bold text-blue-700 mb-2">ServisSite</div>
+          <div className="text-xl font-bold text-blue-700 mb-2">BeyazEsyaServisi</div>
           <div className="mb-2">{siteConfig.companyName}</div>
           <div className="mb-2">{siteConfig.address}</div>
           <div className="mb-2">Tel: <a href={`tel:${siteConfig.phone}`} className="text-blue-600 font-semibold hover:underline">{siteConfig.phone}</a></div>
