@@ -209,6 +209,11 @@ button:focus,
   font-weight: 700;
   letter-spacing: 0.5px;
 }
+.header-bar > a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 .hamburger {
   display: none;
   font-size: 2.1em;
@@ -530,10 +535,9 @@ a[href^="tel:"]:focus {
 
 .reviews-slider-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 32px;
+  width: 100%;
+  max-width: 600px; /* Veya kart genişliğinize göre ayarlayın */
+  margin: 0 auto;
 }
 .reviews-slider {
   flex: 1;
@@ -543,12 +547,12 @@ a[href^="tel:"]:focus {
 }
 .reviews-track {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 24px;
+  gap: 16px; /* Kartlar arası boşluk */
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .review-card {
-  flex: 0 0 calc(33.333% - 16px);
-  min-width: 320px;
+  flex-shrink: 0;
+  width: 100%; /* Konteyner genişliğine tam uyum */
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 20px;
   padding: 28px;
@@ -611,38 +615,52 @@ a[href^="tel:"]:focus {
   height: 22px;
 }
 .author-name {
-  font-weight: 700;
-  color: #064d1a;
-  font-size: 1.1em;
+  font-weight: 600;
 }
 
 .slider-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 2px solid transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   background: linear-gradient(135deg, #064d1a, #0a5d20);
-  color: white;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 20px rgba(6, 77, 26, 0.3);
-  flex-shrink: 0;
-  position: relative;
+  transition: all 0.3s ease;
 }
+
+.prev-btn {
+  left: -22px;
+}
+
+.next-btn {
+  right: -22px;
+}
+
 .slider-btn:hover {
-  transform: scale(1.1);
+  background: linear-gradient(135deg, #043d14, #074d18);
+  transform: translateY(-50%) scale(1.1);
   box-shadow: 0 8px 28px rgba(6, 77, 26, 0.4);
 }
+
 .slider-btn:active {
-  transform: scale(0.95);
+  transform: translateY(-50%) scale(0.95);
 }
+
 .slider-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
+
 .slider-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;

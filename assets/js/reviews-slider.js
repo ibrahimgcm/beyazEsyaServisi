@@ -9,8 +9,7 @@ class ReviewsSlider {
     this.dots = document.querySelectorAll('.dot');
     
     this.currentSlide = 0;
-    this.cardsPerView = this.getCardsPerView();
-    this.totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+    this.totalSlides = this.cards.length; // Her kart bir slayt
     
     this.init();
   }
@@ -25,8 +24,7 @@ class ReviewsSlider {
     
     // Resize event listener
     window.addEventListener('resize', () => {
-      this.cardsPerView = this.getCardsPerView();
-      this.totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+      this.totalSlides = this.cards.length; // Her zaman toplam kart sayısı
       this.currentSlide = Math.min(this.currentSlide, this.totalSlides - 1);
       this.updateSlider();
       this.updateDots();
@@ -41,10 +39,7 @@ class ReviewsSlider {
   }
   
   getCardsPerView() {
-    const width = window.innerWidth;
-    if (width <= 600) return 1;
-    if (width <= 768) return 2;
-    return 3;
+    return 1; // Her zaman 1 kart göster
   }
   
   setupEventListeners() {
@@ -172,8 +167,10 @@ class ReviewsSlider {
   }
   
   updateSlider() {
-    const translateX = -this.currentSlide * (100 / this.cardsPerView);
-    this.track.style.transform = `translateX(${translateX}%)`;
+    const cardWidth = this.cards[0].offsetWidth;
+    const gap = parseInt(window.getComputedStyle(this.track).gap) || 0;
+    const translateX = -this.currentSlide * (cardWidth + gap);
+    this.track.style.transform = `translateX(${translateX}px)`;
   }
   
   updateDots() {
