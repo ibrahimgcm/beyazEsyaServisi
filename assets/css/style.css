@@ -4,7 +4,56 @@ img {
   max-width: 100%;
   height: auto;
   will-change: transform;
+  aspect-ratio: attr(width) / attr(height);
 }
+
+/* Hero image container */
+.hero-container {
+  min-height: 220px; /* Matches the height of largest hero image */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HERO SECTION STYLES */
+.hero-section {
+  min-height: 220px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  contain: size layout;
+  margin: 0;
+  padding: 0;
+}
+.hero-section img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 900/220; /* Based on your largest hero image dimensions */
+  object-fit: cover;
+}
+.hero-text {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Main heading styles */
+h1, .main-heading {
+  min-height: 2.5em;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+/* Secondary heading styles */
+h2, .secondary-heading {
+  min-height: 2em;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
 /* Resim önbelleğe alma */
 @media (min-width: 768px) {
   img[src*="hero"] {
