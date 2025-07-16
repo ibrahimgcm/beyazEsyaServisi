@@ -12,6 +12,37 @@
   </head>
   <body>
     <div id="header"></div>
+    <noscript>
+      <header>
+        <nav class="modern-header">
+          <div class="header-bar">
+            <a href="/index.html" style="text-decoration:none;color:inherit;"><span class="site-title">Beyaz Esya Servisi</span></a>
+            <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
+          </div>
+          <div id="mobile-menu-overlay" class="menu-overlay"></div>
+          <ul id="main-menu" class="modern-menu">
+            <li><a href="/index.html">Ana Sayfa</a></li>
+            <li class="menu-item has-submenu">
+              <a href="service.html" class="submenu-toggle">Hizmetler</a>
+              <ul class="submenu">
+                <li><a href="service.html">Beyaz Eşya Servisi</a></li>
+                <li><a href="buzdolabi-servisi.html">Buzdolabı</a></li>
+                <li><a href="camasir-makinesi-servisi.html">Çamaşır Makinesi</a></li>
+                <li><a href="bulasik-makinesi-servisi.html">Bulaşık Makinesi</a></li>
+                <li><a href="firin-servisi.html">Fırın</a></li>
+                <li><a href="klima-servisi.html">Klima</a></li>
+                <li><a href="kombi-servisi.html">Kombi</a></li>
+                <li><a href="televizyon-servisi.html">Televizyon</a></li>
+              </ul>
+            </li>
+            <li><a href="/about.html">Hakkımızda</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+          </ul>
+        </nav>
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-tamiri-32x32.png">
+        <link rel="stylesheet" href="assets/css/style.css">
+      </header>
+    </noscript>
     <div class="hero-section">
       <img src="assets/img/beyaz-esya-hero.jpg" alt="Kombi Servisi" width="900" height="220" fetchpriority="high">
     </div>
@@ -501,7 +532,53 @@
     </a>
 
     <div id="footer"></div>
-    
+    <noscript>
+      <footer class="modern-footer">
+        <div class="footer-container">
+          <div class="footer-section">
+            <h3>Hizmetlerimiz</h3>
+            <ul>
+              <li><a href="/buzdolabi-servisi.html">Buzdolabı Servisi</a></li>
+              <li><a href="/camasir-makinesi-servisi.html">Çamaşır Makinesi Servisi</a></li>
+              <li><a href="/bulasik-makinesi-servisi.html">Bulaşık Makinesi Servisi</a></li>
+              <li><a href="/firin-servisi.html">Fırın Servisi</a></li>
+              <li><a href="/klima-servisi.html">Klima Servisi</a></li>
+              <li><a href="/kombi-servisi.html">Kombi Servisi</a></li>
+              <li><a href="/televizyon-servisi.html">Televizyon Servisi</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section">
+            <h3>Kurumsal</h3>
+            <ul>
+              <li><a href="/index.html">Ana Sayfa</a></li>
+              <li><a href="/about.html">Hakkımızda</a></li>
+              <li><a href="/contact.html">İletişim</a></li>
+              <li><a href="/privacy.html">Gizlilik Politikası</a></li>
+              <li><a href="/kvkk.html">KVKK</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section contact-section">
+            <h3>İletişim</h3>
+            <div class="contact-info">
+              <p class="service-title"><strong>7/24 Hizmet</strong></p>
+              <a href="tel:05551234567" class="footer-tel-btn">
+                📞 0555 123 45 67
+              </a>
+              <p class="address">İstanbul, Türkiye</p>
+              <div class="service-notice">
+                Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için tamir, bakım, arıza vb. hizmetler verilmektedir.
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="footer-bottom">
+          <p>&copy; 2024 Beyaz Eşya Servisi. Tüm hakları saklıdır.</p>
+        </div>
+      </footer>
+      </noscript>
     <script>
       window.addEventListener("DOMContentLoaded", function () {
         fetch("includes/header.html")
