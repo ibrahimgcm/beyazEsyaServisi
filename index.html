@@ -1,24 +1,4 @@
-<!DOC    <title>
-      Beyaz Eşya Servisi İstanbul | Hızlı ve Güvenilir Teknik Servis
-    </title>
-    <meta
-      name="description"
-      content="İstanbul'da buzdolabı, çamaşır ve bulaşık makinesi, fırın, klima, kombi ve televizyon için hızlı, güvenilir ve uygun fiyatlı beyaz eşya teknik servis hizmeti sunuyoruz."
-    />
-    <!-- Font preload -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet"
-        type="text/css"
-      />
-    </noscript>ml>
+<!DOCTYPE html>
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
@@ -36,27 +16,136 @@
       sizes="32x32"
       href="/assets/img/favicon-tamiri-32x32.png"
     />
-    <link
-      rel="stylesheet"
-      href="assets/css/style.min.css"
-      media="print"
-      onload="this.media='all'"
-      fetchpriority="high"
-    />
-    <link rel="preload" href="assets/css/style.min.css" as="style" />
-    <link
-      rel="preconnect"
-      href="https://servisdeneme.netlify.app"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="assets/img/beyaz-esya-hero-600x147.webp"
-    />
-    <noscript
-      ><link rel="stylesheet" href="assets/css/style.min.css"
-    /></noscript>
+    <!-- Critical CSS inline for faster loading -->
+    <style>
+      /* Critical above-the-fold styles */
+      :root { --content-width: 900px; }
+      * { box-sizing: border-box; }
+      body { 
+        min-width: 320px; 
+        min-height: 100vh; 
+        overflow-x: hidden; 
+        font-size: 14px; 
+        font-family: "Roboto", Arial, sans-serif; 
+        margin: 0; 
+        padding: 0;
+        color: #222;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+      .content-wrapper { 
+        max-width: var(--content-width); 
+        width: 100%; 
+        margin: 0 auto; 
+        min-height: 100vh; 
+        contain: layout style paint; 
+      }
+      .hero-section { 
+        min-height: 220px; 
+        aspect-ratio: 900/220; 
+        width: 100%; 
+        position: relative; 
+        overflow: hidden; 
+        contain: size layout; 
+        margin: 0; 
+        padding: 0; 
+        background: #f8f8f8;
+      }
+      .hero-section img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        display: block; 
+        transform: translateZ(0);
+        will-change: transform;
+      }
+      .text-container { 
+        contain: layout style; 
+        min-height: 2.5em; 
+      }
+      h1 { 
+        min-height: 2.5em; 
+        line-height: 1.2; 
+        margin: 0; 
+        padding: 0.5em 0; 
+        contain: layout style; 
+        color: #111;
+      }
+      h2 { 
+        min-height: 2em; 
+        line-height: 1.2; 
+        margin: 0; 
+        padding: 0.5em 0; 
+        contain: layout style; 
+        color: #111;
+      }
+      .modern-header { position: relative; z-index: 100; }
+      .header-bar { 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+        height: 56px; 
+        background: linear-gradient(135deg, #1976d2, #1565c0); 
+        padding: 0 18px; 
+        box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2);
+      }
+      .site-title { 
+        color: #fff; 
+        font-size: 1.25em; 
+        font-weight: 700; 
+        letter-spacing: 0.5px;
+      }
+      .modern-menu { 
+        list-style: none; 
+        display: flex; 
+        gap: 12px; 
+        padding: 0 18px; 
+        margin: 0; 
+        background: linear-gradient(135deg, #1976d2, #1565c0); 
+        font-size: 1.08em;
+      }
+      .modern-menu li a { 
+        color: #fff; 
+        text-decoration: none; 
+        padding: 12px 18px; 
+        display: inline-block; 
+        border-radius: 10px; 
+        font-weight: 600; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .modern-menu li a:hover { 
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+      }
+      .hamburger { 
+        display: none; 
+        font-size: 2.1em; 
+        color: #fff; 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        padding: 6px 10px; 
+        border-radius: 8px;
+      }
+      @media (max-width: 800px) {
+        .hamburger { display: block; }
+        .modern-menu { display: none; }
+        .header-bar { height: 48px; padding: 0 10px; }
+        .site-title { font-size: 1.1em; }
+      }
+    </style>
+    
+    <!-- Optimized font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.min.css"></noscript>
+    <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-600x147.webp" fetchpriority="high">
+    <link rel="preconnect" href="https://servisdeneme.netlify.app" crossorigin>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -736,9 +825,6 @@
           margin-top: 32px;
         "
       >
-        <head>
-          <link rel="stylesheet" href="assets/css/style.css" />
-        </head>
 
         <nav>
           <ul class="footer-menu">
@@ -990,8 +1076,8 @@
         });
       </script>
       <!-- Sabit Arama Butonu Bitiş -->
-      <script src="assets/js/header-menu.js"></script>
-      <script src="assets/js/reviews-slider.min.js"></script>
+      <script src="assets/js/header-menu.js" defer></script>
+      <script src="assets/js/reviews-slider.min.js" defer></script>
     </div>
   </body>
 </html>

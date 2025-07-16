@@ -1,36 +1,53 @@
-/* TEMEL STILLER */
+/* TEMEL STILLER VE PERFORMANS OPTİMİZASYONU */
 :root {
   --content-width: 900px;
+  --primary-color: #1976d2;
+  --secondary-color: #064d1a;
+  --text-color: #222;
+  --heading-color: #111;
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Font fallback stratejisi */
+/* Font optimizasyonu ve fallback */
 @font-face {
   font-family: 'Roboto';
   font-display: swap;
-  src: local('Roboto'), url(/* font path */) format('woff2');
+  src: local('Roboto Regular'), local('Roboto-Regular');
 }
 
-/* Content layout stabilization */
+/* Layout shift önleme - Critical */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Content layout stabilization - CLS düzeltmesi */
 .content-wrapper {
   max-width: var(--content-width);
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
   contain: layout style paint;
+  transform: translateZ(0); /* GPU acceleration */
 }
 
-/* Image aspect ratio correction */
+/* Image layout shift önleme */
 img {
   display: block;
   max-width: 100%;
   height: auto;
-  aspect-ratio: attr(width) / attr(height);
   contain: size layout;
+  transform: translateZ(0);
 }
 
-/* Hero section layout stability */
+/* Hero section layout stability - Ana CLS sorunu */
 .hero-section {
   min-height: 220px;
+  height: 220px; /* Sabit yükseklik */
   aspect-ratio: 900/220;
   width: 100%;
   position: relative;
@@ -38,20 +55,22 @@ img {
   contain: size layout;
   margin: 0;
   padding: 0;
+  background: #f8f8f8; /* Placeholder background */
 }
 
 .hero-section img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transform: translateZ(0);
-  will-change: transform;
+  will-change: auto; /* Sadece gerektiğinde */
 }
 
-/* Text container stability */
+/* Text container stability - Layout shift önleme */
 .text-container {
   contain: layout style;
-  min-height: 2.5em;
+  min-height: 3em; /* Sabit minimum yükseklik */
 }
 
 h1, .main-heading {
@@ -60,6 +79,7 @@ h1, .main-heading {
   margin: 0;
   padding: 0.5em 0;
   contain: layout style;
+  color: var(--heading-color);
 }
 
 h2, .secondary-heading {
@@ -68,13 +88,34 @@ h2, .secondary-heading {
   margin: 0;
   padding: 0.5em 0;
   contain: layout style;
+  color: var(--heading-color);
 }
 
-/* Resim önbelleğe alma */
+/* Hizmet ikon kutuları - Layout shift önleme */
+.hizmetler-ikon-ozet {
+  contain: layout style;
+  min-height: 200px; /* Sabit minimum yükseklik */
+}
+
+.hizmet-ikon-kutu {
+  min-height: 180px; /* Sabit minimum yükseklik */
+  contain: layout style;
+}
+
+/* Performance optimizasyonu */
 @media (min-width: 768px) {
   img[src*="hero"] {
     content-visibility: auto;
     contain: layout style paint;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 body {
