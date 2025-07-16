@@ -675,9 +675,9 @@ a[href^="tel:"]:focus {
 
 /* FOOTER STILLER */
 .modern-footer {
-  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #fff;
-  padding: 48px 0 24px;
+  padding: 60px 0 24px;
   margin-top: 48px;
   font-family: "Roboto", Arial, sans-serif;
 }
@@ -686,21 +686,22 @@ a[href^="tel:"]:focus {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 32px;
-  padding: 0 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+  padding: 0 40px;
 }
 
 .footer-section {
-  padding: 0 16px;
+  padding: 0;
 }
 
 .footer-section h3 {
   color: #fff;
-  font-size: 1.25rem;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 24px;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .footer-section h3::after {
@@ -708,10 +709,10 @@ a[href^="tel:"]:focus {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
-  height: 3px;
-  background: #64b5f6;
-  border-radius: 2px;
+  width: 50px;
+  height: 2px;
+  background: #60a5fa;
+  border-radius: 1px;
 }
 
 .footer-section ul {
@@ -721,87 +722,173 @@ a[href^="tel:"]:focus {
 }
 
 .footer-section ul li {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .footer-section ul li a {
-  color: #e3f2fd;
+  color: #e2e8f0;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-weight: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .footer-section ul li a:hover,
 .footer-section ul li a:focus {
   color: #fff;
-  padding-left: 8px;
+  padding-left: 0;
   background: transparent;
+  text-decoration: none;
 }
 
 .contact-section {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-info {
-  text-align: center;
+  text-align: left;
+}
+
+.service-title {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
 .footer-tel-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #4caf50;
+  background: #16a34a;
   color: #fff;
-  padding: 12px 28px;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 16px 0;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 16px 0 20px 0;
   transition: all 0.3s ease;
   text-decoration: none;
+  border: none;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+  gap: 8px;
 }
 
 .footer-tel-btn:hover,
 .footer-tel-btn:focus {
-  background: #43a047;
+  background: #15803d;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
   color: #fff;
   text-decoration: none;
 }
 
-.phone-icon {
-  margin-right: 8px;
-  font-size: 1.2em;
-}
-
 .address {
-  color: #e3f2fd;
-  margin: 8px 0;
+  color: #e2e8f0;
+  margin: 12px 0 20px 0;
+  font-size: 1rem;
 }
 
 .service-notice {
-  background: rgba(255, 87, 34, 0.1);
-  border-left: 4px solid #ff5722;
-  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 4px solid #ef4444;
+  padding: 16px;
   margin-top: 20px;
   border-radius: 0 8px 8px 0;
   font-size: 0.9rem;
-  color: #fff;
+  color: #fecaca;
+  line-height: 1.5;
 }
 
 .footer-bottom {
   text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .footer-bottom p {
-  color: #e3f2fd;
-  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* FOOTER RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .contact-section {
+    padding: 24px 20px;
+  }
+  
+  .footer-tel-btn {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modern-footer {
+    padding: 40px 0 20px;
+  }
+  
+  .footer-container {
+    gap: 32px;
+    padding: 0 16px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    font-size: 0.95rem;
+  }
+  
+  .contact-section {
+    padding: 20px 16px;
+  }
+  
+  .service-title {
+    font-size: 1rem;
+  }
+  
+  .footer-tel-btn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+  
+  .service-notice {
+    font-size: 0.85rem;
+    padding: 12px;
+  }
+  
+  .footer-bottom {
+    margin-top: 32px;
+    padding-top: 16px;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 800px) {

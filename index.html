@@ -16,124 +16,6 @@
       sizes="32x32"
       href="/assets/img/favicon-tamiri-32x32.png"
     />
-    <!-- Critical CSS inline for faster loading -->
-    <style>
-      /* Critical above-the-fold styles */
-      :root { --content-width: 900px; }
-      * { box-sizing: border-box; }
-      body { 
-        min-width: 320px; 
-        min-height: 100vh; 
-        overflow-x: hidden; 
-        font-size: 14px; 
-        font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; 
-        margin: 0; 
-        padding: 0;
-        color: #222;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-      }
-      .content-wrapper { 
-        max-width: var(--content-width); 
-        width: 100%; 
-        margin: 0 auto; 
-        min-height: 100vh; 
-        contain: layout style paint; 
-      }
-      .hero-section { 
-        min-height: 220px; 
-        aspect-ratio: 900/220; 
-        width: 100%; 
-        position: relative; 
-        overflow: hidden; 
-        contain: size layout; 
-        margin: 0; 
-        padding: 0; 
-        background: #f8f8f8;
-      }
-      .hero-section img { 
-        width: 100%; 
-        height: 100%; 
-        object-fit: cover; 
-        display: block; 
-        transform: translateZ(0);
-        will-change: transform;
-      }
-      .text-container { 
-        contain: layout style; 
-        min-height: 2.5em; 
-      }
-      h1 { 
-        min-height: 2.5em; 
-        line-height: 1.2; 
-        margin: 0; 
-        padding: 0.5em 0; 
-        contain: layout style; 
-        color: #111;
-      }
-      h2 { 
-        min-height: 2em; 
-        line-height: 1.2; 
-        margin: 0; 
-        padding: 0.5em 0; 
-        contain: layout style; 
-        color: #111;
-      }
-      .modern-header { position: relative; z-index: 100; }
-      .header-bar { 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between; 
-        height: 56px; 
-        background: linear-gradient(135deg, #1976d2, #1565c0); 
-        padding: 0 18px; 
-        box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2);
-      }
-      .site-title { 
-        color: #fff; 
-        font-size: 1.25em; 
-        font-weight: 700; 
-        letter-spacing: 0.5px;
-      }
-      .modern-menu { 
-        list-style: none; 
-        display: flex; 
-        gap: 12px; 
-        padding: 0 18px; 
-        margin: 0; 
-        background: linear-gradient(135deg, #1976d2, #1565c0); 
-        font-size: 1.08em;
-      }
-      .modern-menu li a { 
-        color: #fff; 
-        text-decoration: none; 
-        padding: 12px 18px; 
-        display: inline-block; 
-        border-radius: 10px; 
-        font-weight: 600; 
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .modern-menu li a:hover { 
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-1px);
-      }
-      .hamburger { 
-        display: none; 
-        font-size: 2.1em; 
-        color: #fff; 
-        background: none; 
-        border: none; 
-        cursor: pointer; 
-        padding: 6px 10px; 
-        border-radius: 8px;
-      }
-      @media (max-width: 800px) {
-        .hamburger { display: block; }
-        .modern-menu { display: none; }
-        .header-bar { height: 48px; padding: 0 10px; }
-        .site-title { font-size: 1.1em; }
-      }
-    </style>
     
     <!-- Optimized font loading with fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,8 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="assets/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/style.min.css"></noscript>
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-600x147.webp" fetchpriority="high">
     <link rel="preconnect" href="https://servisdeneme.netlify.app" crossorigin>
     <link
@@ -180,84 +61,28 @@
     />
   </head>
   <body>
-    <div class="content-wrapper" style="min-height: 100vh; max-width: 1200px; margin: 0 auto; contain: layout style paint;">
-      <header>
-        <nav class="modern-header">
-          <div class="header-bar">
-            <a href="/index.html" style="text-decoration: none; color: inherit"
-              ><span class="site-title">Beyaz Esya Servisi</span></a
-            >
-            <div
-              id="mobile-menu-toggle"
-              class="hamburger"
-              aria-label="Menüyü Aç/Kapat"
-              tabindex="0"
-            >
-              &#9776;
-            </div>
-          </div>
-          <div id="mobile-menu-overlay" class="menu-overlay"></div>
-          <ul id="main-menu" class="modern-menu">
-            <li><a href="/index.html">Ana Sayfa</a></li>
-            <li class="menu-item has-submenu">
-              <a href="hizmet.html" class="submenu-toggle">Hizmetler</a>
-              <ul class="submenu">
-                <li>
-                  <a href="hizmet.html?service=Beyaz+E%C5%9Fya+Servisi"
-                    >Beyaz Eşya Servisi</a
-                  >
-                </li>
-                <li>
-                  <a href="hizmet.html?service=Buzdolab%C4%B1">Buzdolabı</a>
-                </li>
-                <li>
-                  <a href="hizmet.html?service=%C3%87ama%C5%9F%C4%B1r+Makinesi"
-                    >Çamaşır Makinesi</a
-                  >
-                </li>
-                <li>
-                  <a href="hizmet.html?service=Bula%C5%9F%C4%B1k+Makinesi"
-                    >Bulaşık Makinesi</a
-                  >
-                </li>
-                <li><a href="hizmet.html?service=F%C4%B1r%C4%B1n">Fırın</a></li>
-                <li><a href="hizmet.html?service=Klima">Klima</a></li>
-                <li><a href="hizmet.html?service=Kombi">Kombi</a></li>
-                <li><a href="hizmet.html?service=Televizyon">Televizyon</a></li>
-              </ul>
-            </li>
-            <li><a href="/about.html">Hakkımızda</a></li>
-            <li><a href="/contact.html">İletişim</a></li>
-          </ul>
-        </nav>
-      </header>
-      <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
-      <div class="hero-section" style="min-height: 220px; contain: size layout; aspect-ratio: 900/220;">
-        <img
-          src="assets/img/beyaz-esya-hero-400x100.webp"
-          srcset="assets/img/beyaz-esya-hero-400x100.webp 400w,
-                  assets/img/beyaz-esya-hero-600x147.webp 600w,
-                  assets/img/beyaz-esya-hero-900x220.webp 900w"
-          sizes="(max-width: 400px) 400px,
-                 (max-width: 600px) 600px,
-                 900px"
-          alt="Beyaz Eşya Servisi"
-          width="900"
-          height="220"
-          loading="eager"
-          fetchpriority="high"
-          style="aspect-ratio: 900/220; content-visibility: auto;"
-        />
-      </div>
-
-      <!-- Main Content Area -->
-      <main style="padding: 20px; contain: layout style;">
-        <div class="text-container" style="min-height: 3em; contain: layout style;">
-          <h1 style="margin: 0; padding: 0.5em 0; min-height: 2.5em;">
-            Beyaz Eşya Servisi İstanbul – Hızlı ve Güvenilir Teknik Destek
-          </h1>
-        </div>
-        
+    <div id="header"></div>
+    <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
+    <div class="hero-section" style="min-height: 220px; contain: size layout; aspect-ratio: 900/220;">
+      <img
+        src="assets/img/beyaz-esya-hero-400x100.webp"
+        srcset="assets/img/beyaz-esya-hero-400x100.webp 400w,
+                assets/img/beyaz-esya-hero-600x147.webp 600w,
+                assets/img/beyaz-esya-hero-900x220.webp 900w"
+        sizes="(max-width: 400px) 400px,
+               (max-width: 600px) 600px,
+               900px"
+        alt="Beyaz Eşya Servisi"
+        width="900"
+        height="220"
+        loading="eager"
+        fetchpriority="high"
+        style="aspect-ratio: 900/220; content-visibility: auto;"
+      />
+    </div>
+    <main style="max-width: 900px; margin: 32px auto 0 auto; padding: 0 16px;">
+      <div class="text-container" style="contain: layout style;">
+        <h1>Beyaz Eşya Servisi İstanbul – Hızlı ve Güvenilir Teknik Destek</h1>
         <h2>İstanbul'un En İyi Beyaz Eşya Tamir, Bakım ve Onarım Hizmeti</h2>
         <div class="social-share" style="margin-bottom: 16px">
           <a
@@ -305,47 +130,36 @@
             >
             <br />
           </div>
-          <div
+          <a
+          href="tel:05551234567"
+          class="footer-tel-btn"
+          style="
+            display: inline-block;
+            background: #064d1a;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 16px;
+            padding: 18px 36px;
+            font-size: 20px;
+            box-shadow: 0 2px 12px #0002;
+            margin: 0;
+            text-decoration: none;
+          "
+        >
+          <img
+            src="assets/img/favicon-call-32x32.png"
+            alt="Ara"
+            width="22"
+            height="22"
             style="
-              background: #064d1a;
-              border-radius: 16px;
-              padding: 18px 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              transition: background 0.3s ease;
+              vertical-align: middle;
+              margin-right: 8px;
+              filter: brightness(0) invert(1);
             "
-          >
-            <a
-              href="tel:05551234567"
-              class="footer-tel-btn"
-              aria-label="Bizi hemen arayın"
-              role="button"
-              style="
-                display: inline-block;
-                padding: 12px 24px;
-                background: #fff;
-                color: #064d1a;
-                text-decoration: none;
-                border-radius: 8px;
-                font-weight: bold;
-                font-size: 16px;
-              "
-            >
-              <img
-                src="assets/img/favicon-call-32x32.png"
-                alt="Telefon"
-                width="32"
-                height="32"
-                style="
-                  vertical-align: middle;
-                  margin-right: 8px;
-                  filter: brightness(0) invert(1);
-                "
-              />
-              <span style="vertical-align: middle">05551234567</span>
-            </a>
-          </div>
+          />
+          <span style="vertical-align: middle; color: #fff;">Şimdi Ara: 0555 123 45 67</span>
+        </a>
         </div>
         <!-- Dahili ve harici linkler geliştirildi -->
         <p>
@@ -812,181 +626,10 @@
           </div>
         </section>
       </main>
-      <footer
-        style="
-          background: #e3f2fd;
-          padding: 28px 0 16px 0;
-          text-align: center;
-          font-size: 15px;
-          font-family: Arial, sans-serif;
-          border-radius: 16px 16px 0 0;
-          box-shadow: 0 -2px 8px #0001;
-          margin-top: 32px;
-        "
-      >
-
-        <nav>
-          <ul class="footer-menu">
-            <li><a href="/index.html">Ana Sayfa</a></li>
-            <li>
-              <a href="/service.html?service=Beyaz+Eşya+Servisi"
-                >Beyaz Eşya Servisi</a
-              >
-            </li>
-            <li><a href="/service.html?service=Buzdolabı">Buzdolabı</a></li>
-            <li>
-              <a href="/service.html?service=Çamaşır+Makinesi"
-                >Çamaşır Makinesi</a
-              >
-            </li>
-            <li>
-              <a href="/service.html?service=Bulaşık+Makinesi"
-                >Bulaşık Makinesi</a
-              >
-            </li>
-            <li><a href="/service.html?service=Fırın">Fırın</a></li>
-            <li><a href="/service.html?service=Klima">Klima</a></li>
-            <li><a href="/service.html?service=Kombi">Kombi</a></li>
-            <li><a href="/service.html?service=Televizyon">Televizyon</a></li>
-            <li><a href="/about.html">Hakkımızda</a></li>
-            <li><a href="/contact.html">İletişim</a></li>
-            <li><a href="/privacy.html">Gizlilik Politikası</a></li>
-            <li><a href="/kvkk.html">KVKK</a></li>
-          </ul>
-        </nav>
-        <div
-          style="margin: 16px 0; color: #b00; font-weight: bold; font-size: 15px"
-        >
-          Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için
-          tamir, bakım, arıza vb. hizmetler verilmektedir.
-        </div>
-        <div id="footer-company-info">
-          <div style="margin-bottom: 2px; font-weight: bold">
-            Hemen Servis Alın
-          </div>
-          <div class="footer-servis-yazi" style="margin-bottom: 4px">
-            Her marka ve model beyaz eşya için hızlı ve güvenilir ve profesyonel
-            servis hizmeti.
-          </div>
-          <a
-            href="tel:05551234567"
-            class="footer-tel-btn"
-            aria-label="Bizi hemen arayın"
-            role="button"
-            style="
-              display: inline-block;
-              padding: 12px 24px;
-              background: #fff;
-              color: #064d1a;
-              text-decoration: none;
-              border-radius: 8px;
-              font-weight: bold;
-              font-size: 16px;
-            "
-          >
-            <img
-              src="assets/img/favicon-call-32x32.png"
-              alt="Telefon"
-              width="32"
-              height="32"
-              style="
-                vertical-align: middle;
-                margin-right: 8px;
-                filter: brightness(0) invert(1);
-              "
-            />
-            <span style="vertical-align: middle">05551234567</span>
-          </a>
-          <div style="margin-top: 8px; color: #fff; font-size: 14px">
-            Beyaz Eşya Servisi | İstanbul, Türkiye
-          </div>
-        </div>
-        <div style="margin-top: 8px; font-size: 13px; color: #fff">
-          &copy; 2024 Beyaz Eşya Servisi
-        </div>
-        <style>
-          @media (max-width: 600px) {
-            .footer-menu,
-            .footer-menu * {
-              all: unset;
-              display: block !important;
-              width: 100vw !important;
-              box-sizing: border-box !important;
-            }
-            .footer-menu {
-              margin: 0 !important;
-              padding: 0 !important;
-              list-style: none !important;
-            }
-            .footer-menu li a {
-              min-width: 48px;
-              min-height: 48px;
-              padding: 12px 18px;
-              display: block !important;
-              box-sizing: border-box;
-            }
-          }
-          @media (min-width: 601px) {
-            .footer-menu {
-              display: flex !important;
-              flex-direction: row !important;
-              flex-wrap: wrap;
-              gap: 16px;
-              justify-content: center;
-              padding: 0;
-              margin: 0;
-              list-style: none;
-            }
-            .footer-menu li {
-              display: inline-block !important;
-              width: auto !important;
-              margin: 0;
-            }
-            .footer-menu li a {
-              display: inline-block !important;
-              width: auto !important;
-              min-width: 48px;
-              min-height: 48px;
-              padding: 12px 18px;
-              box-sizing: border-box;
-            }
-          }
-          footer nav ul li a:hover {
-            color: #fff;
-            background: #1976d2;
-            border-radius: 6px;
-            transition: background 0.2s;
-          }
-          .footer-tel-btn {
-            display: inline-flex;
-            align-items: center;
-            background: #064d1a;
-            color: #fff;
-            font-weight: 600;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 28px;
-            margin: 10px 0 0 0;
-            font-size: 17px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(6, 77, 26, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-          }
-          .footer-tel-btn:hover,
-          .footer-tel-btn:focus {
-            background: #043812;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(6, 77, 26, 0.4);
-            color: #fff;
-          }
-        </style>
-        <script>
-          // Şirket bilgisi configten çekilmeyecek, telefon butonu doğrudan HTML'de.
-        </script>
-      </footer>
-      <!-- Sabit Arama Butonu Başlangıç -->
-      <style>
+    <div id="footer"></div>
+    
+    <!-- Sabit Arama Butonu Başlangıç -->
+    <style>
         #floating-search-btn {
           display: none;
           position: fixed;
@@ -1044,30 +687,23 @@
         }
       </style>
 
-      <a id="floating-search-btn" href="tel:05551234567">
+      <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
         <img
           src="assets/img/favicon-call-32x32.png"
           alt="Ara"
           width="22"
           height="22"
         />
-        <span>Şimdi Ara</span>
+        <span style="color: #fff;">Şimdi Ara</span>
       </a>
 
       <script>
         window.addEventListener("scroll", function () {
-          var mainBtn = document.querySelector(".footer-tel-btn");
           var floatBtn = document.getElementById("floating-search-btn");
-          if (!mainBtn || !floatBtn) return;
+          if (!floatBtn) return;
 
-          var rect = mainBtn.getBoundingClientRect();
-          var scrollThreshold = window.innerHeight * 0.5;
-
-          if (
-            rect.bottom < 0 ||
-            rect.top > window.innerHeight ||
-            window.scrollY > scrollThreshold
-          ) {
+          // Sayfa 300px aşağı kaydırıldığında butonu göster
+          if (window.scrollY > 300) {
             floatBtn.style.display = "flex";
           } else {
             floatBtn.style.display = "none";
@@ -1075,8 +711,24 @@
         });
       </script>
       <!-- Sabit Arama Butonu Bitiş -->
-      <script src="assets/js/header-menu.js" defer></script>
-      <script src="assets/js/reviews-slider.min.js" defer></script>
-    </div>
+      <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        fetch("includes/header.html")
+          .then((r) => r.text())
+          .then((html) => {
+            document.getElementById("header").innerHTML = html;
+            var s = document.createElement("script");
+            s.src = "assets/js/header-menu.js";
+            document.body.appendChild(s);
+          });
+        fetch("includes/footer.html")
+          .then((r) => r.text())
+          .then((html) => {
+            document.getElementById("footer").innerHTML = html;
+          });
+      });
+    </script>
+    <script src="assets/js/reviews-slider.min.js"></script>
+    
   </body>
 </html>
