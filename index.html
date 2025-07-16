@@ -122,16 +122,17 @@
         <source
           srcset="
             assets/img/beyaz-esya-hero-400x100.webp 400w,
+            assets/img/beyaz-esya-hero-600x147.webp 600w,
             assets/img/beyaz-esya-hero-900x220.webp 900w
           "
-          sizes="(max-width: 600px) 400px, 900px"
+          sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, 900px"
           type="image/webp"
           fetchpriority="high"
         />
         <source
           srcset="
-            assets/img/beyaz-esya-hero-900x220.jpg 900w,
-            assets/img/beyaz-esya-hero-600x147.jpg 600w
+            assets/img/beyaz-esya-hero-600x147.jpg 600w,
+            assets/img/beyaz-esya-hero-900x220.jpg 900w
           "
           sizes="(max-width: 600px) 600px, 900px"
           type="image/jpeg"
@@ -139,9 +140,10 @@
         />
         <img
           src="assets/img/beyaz-esya-hero-900x220.jpg"
-          alt="Beyaz Eşya Servisi"
+          alt="Beyaz Eşya Servisi - Profesyonel Teknik Destek"
           width="900"
           height="220"
+          loading="eager"
           fetchpriority="high"
         />
       </picture>
@@ -185,7 +187,7 @@
         <div
           class="vurgulu-servis-yazi"
           style="
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 500;
             background: #fff;
             border-radius: 16px;
@@ -218,36 +220,31 @@
           <a
             href="tel:05551234567"
             class="footer-tel-btn"
+            aria-label="Bizi hemen arayın"
+            role="button"
             style="
-              display: inline-flex;
-              align-items: center;
-              background: #064d1a;
-              color: #fff;
-              font-weight: 600;
-              border: none;
-              border-radius: 50px;
-              padding: 12px 28px;
-              margin: 10px 0 0 0;
-              font-size: 17px;
-              cursor: pointer;
-              box-shadow: 0 4px 20px rgba(6, 77, 26, 0.3);
-              transition: all 0.3s ease;
+              display: inline-block;
+              padding: 12px 24px;
+              background: #fff;
+              color: #064d1a;
               text-decoration: none;
+              border-radius: 8px;
+              font-weight: bold;
+              font-size: 16px;
             "
           >
             <img
               src="assets/img/favicon-call-32x32.png"
-              alt="Ara"
-              width="22"
-              height="22"
+              alt="Telefon"
+              width="32"
+              height="32"
               style="
                 vertical-align: middle;
                 margin-right: 8px;
                 filter: brightness(0) invert(1);
-                transition: transform 0.3s ease;
               "
             />
-            <span style="color: #fff">Şimdi Ara: 0555 123 45 67</span>
+            <span style="vertical-align: middle">05551234567</span>
           </a>
         </div>
       </div>
@@ -775,28 +772,31 @@
         <a
           href="tel:05551234567"
           class="footer-tel-btn"
-          style="display: inline-block"
+          aria-label="Bizi hemen arayın"
+          role="button"
+          style="
+            display: inline-block;
+            padding: 12px 24px;
+            background: #fff;
+            color: #064d1a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+          "
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-            style="vertical-align: middle; margin-right: 8px"
-          >
-            <circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="2" />
-            <line
-              x1="16.5"
-              y1="16.5"
-              x2="21"
-              y2="21"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-          Şimdi Ara: 0555 123 45 67
+          <img
+            src="assets/img/favicon-call-32x32.png"
+            alt="Telefon"
+            width="32"
+            height="32"
+            style="
+              vertical-align: middle;
+              margin-right: 8px;
+              filter: brightness(0) invert(1);
+            "
+          />
+          <span style="vertical-align: middle">05551234567</span>
         </a>
         <div style="margin-top: 8px; color: #fff; font-size: 14px">
           Beyaz Eşya Servisi | İstanbul, Türkiye
