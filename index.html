@@ -23,6 +23,12 @@
       onload="this.media='all'"
       fetchpriority="high"
     />
+    <link rel="preload" href="assets/css/style.min.css" as="style" />
+    <link
+      rel="preconnect"
+      href="https://servisdeneme.netlify.app"
+      crossorigin
+    />
     <link
       rel="preload"
       as="image"
@@ -117,8 +123,8 @@
       </nav>
     </header>
     <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
-    <div class="hero-section">
-      <picture>
+    <div class="hero-section" style="min-height: 220px; contain: size layout">
+      <picture style="display: block; aspect-ratio: 900/220">
         <source
           srcset="
             assets/img/beyaz-esya-hero-400x100.webp 400w,
@@ -151,9 +157,12 @@
     <main
       style="
         max-width: 900px;
+        width: 100%;
+        min-height: 100vh;
         margin: 32px auto 0 auto;
         padding: 0 16px;
         font-family: Arial, sans-serif;
+        contain: layout style paint;
       "
     >
       <h1 itemprop="name">
@@ -286,13 +295,16 @@
       <section
         class="hizmetler-ikon-ozet"
         style="
+          width: 100%;
           max-width: 600px;
           margin: 0 auto 32px auto;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           gap: 24px 18px;
           justify-items: center;
           align-items: start;
+          contain: layout style;
+          min-height: 200px;
         "
       >
         <div class="hizmet-ikon-kutu" style="text-align: center">
