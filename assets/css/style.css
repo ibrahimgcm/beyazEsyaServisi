@@ -1,23 +1,37 @@
 /* TEMEL STILLER */
+:root {
+  --content-width: 900px;
+}
+
+/* Font fallback stratejisi */
+@font-face {
+  font-family: 'Roboto';
+  font-display: swap;
+  src: local('Roboto'), url(/* font path */) format('woff2');
+}
+
+/* Content layout stabilization */
+.content-wrapper {
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  contain: layout style paint;
+}
+
+/* Image aspect ratio correction */
 img {
   display: block;
   max-width: 100%;
   height: auto;
-  will-change: transform;
   aspect-ratio: attr(width) / attr(height);
+  contain: size layout;
 }
 
-/* Hero image container */
-.hero-container {
-  min-height: 220px; /* Matches the height of largest hero image */
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-/* HERO SECTION STYLES */
+/* Hero section layout stability */
 .hero-section {
   min-height: 220px;
+  aspect-ratio: 900/220;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -25,33 +39,35 @@ img {
   margin: 0;
   padding: 0;
 }
+
 .hero-section img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 900/220; /* Based on your largest hero image dimensions */
+  height: 100%;
   object-fit: cover;
-}
-.hero-text {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-/* Main heading styles */
+/* Text container stability */
+.text-container {
+  contain: layout style;
+  min-height: 2.5em;
+}
+
 h1, .main-heading {
   min-height: 2.5em;
   line-height: 1.2;
   margin: 0;
   padding: 0.5em 0;
+  contain: layout style;
 }
 
-/* Secondary heading styles */
 h2, .secondary-heading {
   min-height: 2em;
   line-height: 1.2;
   margin: 0;
   padding: 0.5em 0;
+  contain: layout style;
 }
 
 /* Resim önbelleğe alma */
