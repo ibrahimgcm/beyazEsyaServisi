@@ -67,6 +67,14 @@
       </picture>
     </div>
     <main style="max-width: 900px; margin: 32px auto 0 auto; padding: 0 16px;">
+      <div id="breadcrumb" aria-label="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+        </ol>
+      </div>
       <div class="text-container" style="contain: layout style;">
         <h1>Beyaz Eşya Servisi – Hızlı ve Güvenilir Teknik Destek</h1>
         <h2>En İyi Beyaz Eşya Tamir, Bakım ve Onarım Hizmeti</h2>
@@ -150,27 +158,27 @@
         <!-- Dahili ve harici linkler geliştirildi -->
         <p>
           Buzdolabı arızası için
-          <a href="buzdolabi-servisi.html">buzdolabı servisi</a>,
-          <a href="camasir-makinesi-servisi.html"
+          <a href="/hizmet.html?service=buzdolabi">buzdolabı servisi</a>,
+          <a href="/hizmet.html?service=camasir-makinesi"
             >çamaşır makinesi servisi</a
           >,
-          <a href="bulasik-makinesi-servisi.html"
+          <a href="/hizmet.html?service=bulasik-makinesi"
             >bulaşık makinesi servisi</a
-          >, <a href="klima-servisi.html">klima servisi</a> ve
-          <a href="kombi-servisi.html">kombi servisi</a> sayfalarımızı
+          >, <a href="/hizmet.html?service=klima">klima servisi</a> ve
+          <a href="/hizmet.html?service=kombi">kombi servisi</a> sayfalarımızı
           ziyaret edebilirsiniz.
         </p>
         <p>
           Fırın arızaları için
-          <a href="firin-servisi.html">fırın servisi</a> ve televizyon
+          <a href="/hizmet.html?service=firin">fırın servisi</a> ve televizyon
           sorunları için
-          <a href="televizyon-servisi.html">televizyon servisi</a>
+          <a href="/hizmet.html?service=televizyon">televizyon servisi</a>
           sayfalarımızı da inceleyebilirsiniz.
         </p>
         <p>
           Servis bölgelerimiz ve detaylı hizmetler için
-          <a href="hizmet.html">hizmetlerimiz</a> sayfasına göz atın veya
-          <a href="index.html">ana sayfa</a>ya dönün.
+          <a href="/hizmet.html">hizmetlerimiz</a> sayfasına göz atın veya
+          <a href="/index.html">ana sayfa</a>ya dönün.
         </p>
         <p>
           Daha fazla bilgi için
@@ -716,5 +724,54 @@
     </script>
     <script src="assets/js/reviews-slider.min.js"></script>
     
+    <script type="application/ld+json" id="localBusinessSchema"></script>
+    <script type="application/ld+json" id="breadcrumbSchema"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+
+        const localBusinessSchema = {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "İstanbul Teknik Servis",
+          "image": origin + "/assets/img/beyaz-esya-hero.jpg",
+          "@id": origin,
+          "url": origin,
+          "telephone": "+905551234567",
+          "priceRange": "₺₺",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Merkez Ofis",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "41.0082",
+            "longitude": "28.9784"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        };
+        document.getElementById('localBusinessSchema').textContent = JSON.stringify(localBusinessSchema, null, 2);
+
+        const breadcrumbSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": window.location.href
+          }]
+        };
+        document.getElementById('breadcrumbSchema').textContent = JSON.stringify(breadcrumbSchema, null, 2);
+      });
+    </script>
+
   </body>
 </html>

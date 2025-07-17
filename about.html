@@ -10,26 +10,7 @@
     />
     <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Ana Sayfa",
-              "item": "https://www.beyaz-esya-servisi.vercel.app/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Hakkımızda",
-              "item": "https://www.beyaz-esya-servisi.vercel.app/about.html"
-            }
-          ]
-        }
-      </script>
+    
       <link rel="canonical" href="https://www.beyaz-esya-servisi.vercel.app/about.html" />
   </head>
   <body>
@@ -45,16 +26,16 @@
           <ul id="main-menu" class="modern-menu">
             <li><a href="/index.html">Ana Sayfa</a></li>
             <li class="menu-item has-submenu">
-              <a href="service.html" class="submenu-toggle">Hizmetler</a>
+              <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
               <ul class="submenu">
-                <li><a href="service.html">Beyaz Eşya Servisi</a></li>
-                <li><a href="buzdolabi-servisi.html">Buzdolabı</a></li>
-                <li><a href="camasir-makinesi-servisi.html">Çamaşır Makinesi</a></li>
-                <li><a href="bulasik-makinesi-servisi.html">Bulaşık Makinesi</a></li>
-                <li><a href="firin-servisi.html">Fırın</a></li>
-                <li><a href="klima-servisi.html">Klima</a></li>
-                <li><a href="kombi-servisi.html">Kombi</a></li>
-                <li><a href="televizyon-servisi.html">Televizyon</a></li>
+                <li><a href="/hizmet.html?service=beyaz-esya">Beyaz Eşya Servisi</a></li>
+                <li><a href="/hizmet.html?service=buzdolabi">Buzdolabı</a></li>
+                <li><a href="/hizmet.html?service=camasir-makinesi">Çamaşır Makinesi</a></li>
+                <li><a href="/hizmet.html?service=bulasik-makinesi">Bulaşık Makinesi</a></li>
+                <li><a href="/hizmet.html?service=firin">Fırın</a></li>
+                <li><a href="/hizmet.html?service=klima">Klima</a></li>
+                <li><a href="/hizmet.html?service=kombi">Kombi</a></li>
+                <li><a href="/hizmet.html?service=televizyon">Televizyon</a></li>
               </ul>
             </li>
             <li><a href="/about.html">Hakkımızda</a></li>
@@ -232,6 +213,19 @@
         Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için
         hizmet verilmektedir.
       </div>
+      <div id="breadcrumb" aria-label="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li style="margin: 0 8px">/</li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/about.html"><span itemprop="name">Hakkımızda</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        </ol>
+      </div>
     </main>
     <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
       <img
@@ -305,6 +299,52 @@
           .then((html) => {
             document.getElementById("footer").innerHTML = html;
           });
+      });
+    </script>
+    <script type="application/ld+json" id="localBusinessSchema"></script>
+    <script type="application/ld+json" id="breadcrumbSchema"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+
+        const localBusinessSchema = {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "İstanbul Teknik Servis",
+          "image": origin + "/assets/img/beyaz-esya-hero.jpg",
+          "@id": origin,
+          "url": origin,
+          "telephone": "+905551234567",
+          "priceRange": "₺₺",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Merkez Ofis",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "41.0082",
+            "longitude": "28.9784"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        };
+        document.getElementById('localBusinessSchema').textContent = JSON.stringify(localBusinessSchema, null, 2);
+
+        const breadcrumbSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": origin + "/index.html" },
+            { "@type": "ListItem", "position": 2, "name": "Hakkımızda", "item": window.location.href }
+          ]
+        };
+        document.getElementById('breadcrumbSchema').textContent = JSON.stringify(breadcrumbSchema, null, 2);
       });
     </script>
   </body>
