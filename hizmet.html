@@ -542,8 +542,6 @@
       </section>
       <div id="breadcrumb" aria-label="breadcrumb">
         <ol
-          itemscope
-          itemtype="https://schema.org/BreadcrumbList"
           style="
             list-style: none;
             padding: 0;
@@ -554,27 +552,18 @@
             color: #555;
           "
         >
-          <li
-            itemprop="itemListElement"
-            itemscope
-            itemtype="https://schema.org/ListItem"
-          >
-            <a itemprop="item" href="/index.html">
-              <span itemprop="name">Ana Sayfa</span></a
+          <li>
+            <a href="/index.html">
+              <span>Ana Sayfa</span></a
             >
-            <meta itemprop="position" content="1" />
+            
           </li>
           <li style="margin: 0 8px">/</li>
-          <li
-            id="breadcrumb-current-page"
-            itemprop="itemListElement"
-            itemscope
-            itemtype="https://schema.org/ListItem"
-          >
-            <a itemprop="item" href="/hizmet.html">
-              <span itemprop="name">Hizmetler</span></a
+          <li id="breadcrumb-current-page">
+            <a href="/hizmet.html">
+              <span>Hizmetler</span></a
             >
-            <meta itemprop="position" content="2" />
+            
           </li>
         </ol>
       </div>
