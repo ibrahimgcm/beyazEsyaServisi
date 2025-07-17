@@ -77,12 +77,14 @@ img {
   height: 220px; /* Sabit yükseklik */
   aspect-ratio: 900/220;
   width: 100%;
+  max-width: 900px;
   position: relative;
   overflow: hidden;
-  contain: size layout;
-  margin: 0;
+  contain: size layout style;
+  margin: 0 auto;
   padding: 0;
-  background: #f8f8f8; /* Placeholder background */
+  background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%); /* Gradient placeholder */
+  transform: translateZ(0); /* GPU acceleration */
 }
 
 .hero-section img {
@@ -93,6 +95,60 @@ img {
   transform: translateZ(0);
   will-change: auto; /* Sadece gerektiğinde */
   aspect-ratio: 900/220; /* Aspect ratio korunması */
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hero-section img.loaded {
+  opacity: 1;
+}
+
+.hero-section picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Responsive hero images - Mobile first approach */
+@media (max-width: 599px) {
+  .hero-section {
+    height: 100px; /* Mobilde daha küçük */
+    min-height: 100px;
+    aspect-ratio: 400/100;
+  }
+  .hero-section img {
+    height: 100px;
+    aspect-ratio: 400/100;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero-section {
+    height: 147px; /* Tablet boyutu */
+    min-height: 147px;
+    aspect-ratio: 600/147;
+  }
+  .hero-section img {
+    height: 147px;
+    aspect-ratio: 600/147;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-section {
+    height: 220px; /* Desktop boyutu */
+    min-height: 220px;
+    aspect-ratio: 900/220;
+  }
+  .hero-section img {
+    height: 220px;
+    aspect-ratio: 900/220;
+  }
 }
 
 /* Text container stability - Layout shift önleme */

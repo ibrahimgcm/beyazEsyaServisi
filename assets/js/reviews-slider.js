@@ -76,7 +76,7 @@ class ReviewsSlider {
       startX = e.touches[0].clientX;
       isDragging = true;
       this.track.style.transition = 'none';
-    });
+    }, { passive: true });
     
     this.slider.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
@@ -86,7 +86,7 @@ class ReviewsSlider {
       const currentTransform = this.currentSlide * -100;
       
       this.track.style.transform = `translateX(${currentTransform + (diffX / this.slider.offsetWidth) * 100}%)`;
-    });
+    }, { passive: true });
     
     this.slider.addEventListener('touchend', (e) => {
       if (!isDragging) return;
@@ -106,7 +106,7 @@ class ReviewsSlider {
       } else {
         this.updateSlider();
       }
-    });
+    }, { passive: true });
   }
   
   setupAutoPlay() {
