@@ -1356,3 +1356,30 @@ textarea {
 .breadcrumb span {
   color: #fff;
 }
+
+/* LCP font optimization */
+* {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Override any custom font loading */
+body, p, h1, h2, h3, div, span {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-display: block !important;
+}
+
+/* Critical content optimization */
+#makale p:first-child {
+  font-family: Arial, Helvetica, sans-serif !important;
+  line-height: 1.4;
+  margin: 0 0 16px 0;
+  contain: none;
+  will-change: auto;
+}
+
+/* Remove expensive visual effects for LCP */
+#makale {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+}
