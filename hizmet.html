@@ -24,12 +24,34 @@
     <meta name="twitter:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
-    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://beyaz-esya-servisi.vercel.app" crossorigin>
+    <link rel="preload" href="includes/header.html" as="fetch" crossorigin>
+    <link rel="preload" href="includes/footer.html" as="fetch" crossorigin>
+    <link rel="preload" href="assets/js/reviews-slider.js" as="script">
+
+    <!-- Critical CSS - Inline for faster loading -->
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
+      .modern-header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+      main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 1200px; contain: layout; will-change: auto; }
+      .hizmetler-ikon-ozet { max-width: 600px; margin: 0 auto 32px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 18px; justify-items: center; align-items: start; min-height: 260px; }
+      .hizmet-ikon-kutu { text-align: center; min-height: 120px; max-height: 140px; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+      .hizmet-ikon-kutu div:first-child { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2.2em; }
+      /* Loading placeholder styles */
+      .loading-placeholder { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+      @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+    <!-- Non-critical CSS -->
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
    
   </head>
   <body>
-    <div id="header" style="min-height:60px"></div>
+    <div id="header" style="min-height:80px; background:#f8f9fa; display:flex; align-items:center; justify-content:center;">
+      <div style="color:#666; font-size:14px;">Yükleniyor...</div>
+    </div>
    
     <noscript>
       <header>
@@ -585,7 +607,9 @@
       <span style="color: #fff;">Şimdi Ara</span>
     </a>
 
-    <div id="footer" style="min-height:220px"></div>
+    <div id="footer" style="min-height:220px; background:#f8f9fa; display:flex; align-items:center; justify-content:center;">
+      <div style="color:#666; font-size:14px;">Yükleniyor...</div>
+    </div>
     <noscript>
       <footer class="modern-footer">
         <div class="footer-container">
@@ -634,23 +658,23 @@
       </footer>
       </noscript>
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
-        fetch("includes/header.html")
-          .then((r) => r.text())
-          .then((html) => {
-            document.getElementById("header").innerHTML = html;
-            var s = document.createElement("script");
-            s.src = "assets/js/header-menu.js";
-            document.body.appendChild(s);
-          });
-        fetch("includes/footer.html")
-          .then((r) => r.text())
-          .then((html) => {
-            document.getElementById("footer").innerHTML = html;
-          });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Promise.all ile header ve footer'ı paralel yükle
+        Promise.all([
+          fetch("includes/header.html").then(r => r.text()),
+          fetch("includes/footer.html").then(r => r.text())
+        ]).then(([headerHtml, footerHtml]) => {
+          document.getElementById("header").innerHTML = headerHtml;
+          document.getElementById("footer").innerHTML = footerHtml;
+          // Menü scriptini sonra yükle
+          const menuScript = document.createElement("script");
+          menuScript.src = "assets/js/header-menu.js";
+          menuScript.defer = true;
+          document.body.appendChild(menuScript);
+        });
       });
     </script>
-    <script src="assets/js/reviews-slider.js"></script>
+    <script src="assets/js/reviews-slider.js" defer></script>
 
     <script type="application/ld+json" id="localBusinessSchema"></script>
     <script type="application/ld+json" id="articleSchema"></script>
