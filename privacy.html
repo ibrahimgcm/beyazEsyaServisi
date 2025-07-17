@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
-<div id="header"></div>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gizlilik Politikası | Beyaz Eşya Servisi</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
   <meta name="description" content="Beyaz Eşya Servisi gizlilik politikası: Müşteri bilgileriniz gizli tutulur, üçüncü şahıslarla paylaşılmaz. İstanbul genelinde güvenilir beyaz eşya tamir, bakım ve arıza hizmeti.">
-  <link rel="canonical" href="https://www.orneksite.com/privacy.html" />
+  <link rel="canonical" href="https://www.beyaz-esya-servisi.vercel.app/privacy.html" />
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       fetch('/includes/header.html').then(r=>r.text()).then(html=>{
@@ -40,6 +40,8 @@
   }
   </script>
 </head>
+<body>
+<div id="header"></div>
 <main style="max-width:900px;margin:32px auto 0 auto;padding:0 16px;font-family:Arial,sans-serif;">
   <style>
     @media (max-width:600px) {
@@ -73,4 +75,5 @@
   </section>
 </main>
 <div id="footer"></div>
+</body>
 </html>
