@@ -566,6 +566,7 @@
           </li>
           <li style="margin: 0 8px">/</li>
           <li
+            id="breadcrumb-current-page"
             itemprop="itemListElement"
             itemscope
             itemtype="https://schema.org/ListItem"
@@ -655,37 +656,129 @@
     </script>
     <script src="assets/js/reviews-slider.js"></script>
     <script type="application/ld+json" id="breadcrumbSchema"></script>
+    <script type="application/ld+json" id="serviceSchema">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Genel Beyaz Eşya Servisi",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "İstanbul Teknik Servis",
+          "telephone": "+905551234567",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+          }
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "İstanbul"
+        },
+        "description": "İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
+      }
+    </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const currentUrl = window.location.href;
-        const origin =
-          window.location.protocol +
-          "//" +
-          window.location.hostname +
-          (window.location.port ? ":" + window.location.port : "");
+        const serviceData = {
+          'beyaz-esya': {
+            name: 'Beyaz Eşya Servisi',
+            h2: 'İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri',
+            description: 'İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.'
+          },
+          'buzdolabi': {
+            name: 'Buzdolabı Servisi',
+            h2: 'Uzman Buzdolabı Tamir ve Bakım Servisi',
+            description: 'İstanbul genelinde acil buzdolabı tamiri, bakımı ve servisi. Tüm marka ve model buzdolapları için uzman çözümler sunuyoruz. Garantili hizmet için arayın.'
+          },
+          'camasir-makinesi': {
+            name: 'Çamaşır Makinesi Servisi',
+            h2: 'Güvenilir Çamaşır Makinesi Tamir ve Bakım Hizmetleri',
+            description: 'Profesyonel çamaşır makinesi servisi. İstanbul\'da her marka çamaşır makinesi tamiri, bakımı ve montajı için hızlı ve güvenilir hizmet.'
+          },
+          'bulasik-makinesi': {
+            name: 'Bulaşık Makinesi Servisi',
+            h2: 'Hızlı ve Etkili Bulaşık Makinesi Servis Çözümleri',
+            description: 'İstanbul bulaşık makinesi servisi. Arızalı bulaşık makineniz için hızlı tamir, bakım ve parça değişimi hizmetleri. Uygun fiyatlı ve garantili çözümler.'
+          },
+          'firin': {
+            name: 'Fırın Servisi',
+            h2: 'Her Türlü Fırın İçin Profesyonel Tamir ve Bakım',
+            description: 'Fırın tamiri ve bakımı için İstanbul\'daki uzman adresiniz. Ankastre, solo ve endüstriyel fırınlar için profesyonel servis hizmetleri.'
+          },
+          'klima': {
+            name: 'Klima Servisi',
+            h2: 'Yaz Aylarında Serin Kalın: Uzman Klima Bakım ve Tamiri',
+            description: 'İstanbul klima servisi. Klima montajı, bakımı, gaz dolumu ve tamiri için 7/24 profesyonel hizmet. Hızlı ve garantili klima çözümleri.'
+          },
+          'kombi': {
+            name: 'Kombi Servisi',
+            h2: 'Kışa Hazırlık: Profesyonel Kombi Bakım ve Onarım',
+            description: 'İstanbul kombi servisi. Acil kombi tamiri, yıllık periyodik bakım ve petek temizliği hizmetleri. Yetkin ve sertifikalı teknisyenlerle güvenilir çözümler.'
+          },
+          'televizyon': {
+            name: 'Televizyon Servisi',
+            h2: 'Net Görüntü, Kesintisiz Keyif: Televizyon Tamir Hizmetleri',
+            description: 'İstanbul\'da LED, LCD, Plazma TV tamiri. Panel değişimi, anakart onarımı ve diğer tüm televizyon arızaları için uzman servis.'
+          }
+        };
 
-        const breadcrumb = {
+        const params = new URLSearchParams(window.location.search);
+        const serviceKey = params.get('service');
+        const serviceInfo = serviceKey ? serviceData[serviceKey] : null;
+        const pageName = serviceInfo ? serviceInfo.name : 'Hizmetlerimiz';
+        
+        const currentUrl = window.location.href;
+        const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+
+        if (serviceInfo) {
+          const { name, h2, description } = serviceInfo;
+
+          document.title = `${name} | İstanbul Teknik Servis`;
+          document.getElementById('metaTitle').textContent = `${name} | İstanbul Teknik Servis`;
+          document.getElementById('metaDescription').setAttribute('content', description);
+          
+          document.querySelector('meta[property="og:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
+          document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+          document.querySelector('meta[property="og:url"]').setAttribute('content', currentUrl);
+          
+          document.querySelector('meta[name="twitter:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
+          document.querySelector('meta[name="twitter:description"]').setAttribute('content', description);
+          
+          document.getElementById('mainTitle').textContent = name;
+          document.getElementById('serviceTitle').textContent = h2;
+          document.getElementById('mainDescription').textContent = description;
+          document.getElementById('serviceDescription').textContent = description;
+          
+          const serviceSchemaScript = document.getElementById('serviceSchema');
+          if(serviceSchemaScript){
+            const schema = JSON.parse(serviceSchemaScript.textContent);
+            schema.serviceType = name;
+            schema.description = description;
+            serviceSchemaScript.textContent = JSON.stringify(schema, null, 2);
+          }
+        }
+
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
+        if (breadcrumbCurrent) {
+          const link = breadcrumbCurrent.querySelector('a');
+          const span = breadcrumbCurrent.querySelector('span');
+          link.href = currentUrl;
+          span.textContent = pageName;
+        }
+
+        const breadcrumbSchema = {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Ana Sayfa",
-              "item": origin + "/index.html"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Hizmetler",
-              "item": currentUrl
-            }
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": origin + "/index.html" },
+            { "@type": "ListItem", "position": 2, "name": pageName, "item": currentUrl }
           ]
         };
-
+        
         const breadcrumbScript = document.getElementById("breadcrumbSchema");
         if (breadcrumbScript) {
-            breadcrumbScript.textContent = JSON.stringify(breadcrumb, null, 2);
+          breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema, null, 2);
         }
       });
     </script>
