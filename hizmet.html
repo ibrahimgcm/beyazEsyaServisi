@@ -35,13 +35,17 @@
     <style>
       body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
       .modern-header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-      main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 1200px; contain: layout style; transform: translateZ(0); will-change: auto; display: block; position: relative; }
+      main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 1200px; contain: layout size style; transform: translateZ(0); will-change: auto; display: block; position: relative; isolation: isolate; }
       .hizmetler-ikon-ozet { max-width: 600px; margin: 0 auto 32px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 18px; justify-items: center; align-items: start; height: 280px; grid-template-rows: repeat(2, 1fr); contain: layout; transform: translateZ(0); }
       .hizmet-ikon-kutu { text-align: center; width: 100%; height: 120px; min-height: 120px; max-height: 140px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
       .hizmet-ikon-kutu div:first-child { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2.2em; }
       /* Başlıklar yüklenmeden önce placeholder */
       #mainTitle:empty::before { content: "Hizmetlerimiz"; color: transparent; user-select: none; pointer-events: none; }
       #serviceTitle:empty::before { content: "İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık"; color: transparent; user-select: none; pointer-events: none; }
+      /* Placeholder metinlerin sabit boyutunu garanti et */
+      #mainTitle { min-height: 48px; line-height: 48px; }
+      #serviceTitle { min-height: 32px; line-height: 32px; }
+      #mainDescription { min-height: 72px; line-height: 24px; }
       /* Müşteri Memnuniyeti başlığı için sabit alan */
       .hizmet-ikon-kutu div[style*="font-weight: bold"] { height: 28px; display: flex; align-items: center; justify-content: center; line-height: 1.2; overflow: hidden; }
       /* Loading placeholder styles */
@@ -99,15 +103,16 @@
         padding: 0 16px;
         font-family: Arial, sans-serif;
         min-height: 1200px;
-        contain: layout style;
+        contain: layout size style;
         transform: translateZ(0);
         will-change: auto;
         display: block;
         position: relative;
+        isolation: isolate;
       "
     >
-      <h1 id="mainTitle">Hizmetlerimiz</h1>
-      <h2 id="serviceTitle">İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
+      <h1 id="mainTitle" style="min-height: 48px; line-height: 48px;">Hizmetlerimiz</h1>
+      <h2 id="serviceTitle" style="min-height: 32px; line-height: 32px;">İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
       <div class="social-share" style="margin-bottom: 16px">
         <a
           href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
@@ -176,7 +181,7 @@
           Şimdi Ara: 0555 123 45 67
         </a>
       </div>
-      <p id="mainDescription">
+      <p id="mainDescription" style="min-height: 72px; line-height: 24px;">
         Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima,
         kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde
         hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.
@@ -815,42 +820,52 @@
         // Update Page Content
         const { name, h2, description, faq } = serviceInfo;
 
-        document.title = `${name} | İstanbul Teknik Servis`;
-        document.getElementById('metaTitle').textContent = `${name} | İstanbul Teknik Servis`;
-        document.getElementById('metaDescription').setAttribute('content', description);
-        
-        document.querySelector('meta[property="og:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
-        document.querySelector('meta[property="og:description"]').setAttribute('content', description);
-        document.querySelector('meta[property="og:url"]').setAttribute('content', currentUrl);
-        
-        document.querySelector('meta[name="twitter:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
-        document.querySelector('meta[name="twitter:description"]').setAttribute('content', description);
-        
-        document.getElementById('mainTitle').textContent = name;
-        document.getElementById('serviceTitle').textContent = h2;
-        document.getElementById('mainDescription').textContent = description;
-        document.getElementById('serviceDescription').textContent = description;
+        // Batch updates - single reflow
+        requestAnimationFrame(() => {
+          const main = document.querySelector('main');
+          main.style.visibility = 'hidden'; // Geçici gizle
+          
+          // Tüm içerik değişikliklerini yap
+          document.title = `${name} | İstanbul Teknik Servis`;
+          document.getElementById('metaTitle').textContent = `${name} | İstanbul Teknik Servis`;
+          document.getElementById('metaDescription').setAttribute('content', description);
+          
+          document.querySelector('meta[property="og:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
+          document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+          document.querySelector('meta[property="og:url"]').setAttribute('content', currentUrl);
+          
+          document.querySelector('meta[name="twitter:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
+          document.querySelector('meta[name="twitter:description"]').setAttribute('content', description);
+          
+          document.getElementById('mainTitle').textContent = name;
+          document.getElementById('serviceTitle').textContent = h2;
+          document.getElementById('mainDescription').textContent = description;
+          document.getElementById('serviceDescription').textContent = description;
 
-        // Populate FAQ Section
-        const faqContainer = document.getElementById('faq-container');
-        faq.forEach(item => {
-          const faqItem = document.createElement('div');
-          faqItem.className = 'faq-item';
-          faqItem.innerHTML = `
-            <h3 style="font-size: 1.1em; color: #1976d2; margin-bottom: 8px;">${item.q}</h3>
-            <p style="margin-top: 0; margin-bottom: 16px; line-height: 1.6;">${item.a}</p>
-          `;
-          faqContainer.appendChild(faqItem);
+          // Populate FAQ Section
+          const faqContainer = document.getElementById('faq-container');
+          faq.forEach(item => {
+            const faqItem = document.createElement('div');
+            faqItem.className = 'faq-item';
+            faqItem.innerHTML = `
+              <h3 style="font-size: 1.1em; color: #1976d2; margin-bottom: 8px;">${item.q}</h3>
+              <p style="margin-top: 0; margin-bottom: 16px; line-height: 1.6;">${item.a}</p>
+            `;
+            faqContainer.appendChild(faqItem);
+          });
+
+          // Update Breadcrumb
+          const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
+          if (breadcrumbCurrent) {
+            const link = breadcrumbCurrent.querySelector('a');
+            const span = breadcrumbCurrent.querySelector('span');
+            link.href = currentUrl;
+            span.textContent = pageName;
+          }
+
+          // Tek seferde göster
+          main.style.visibility = 'visible';
         });
-
-        // Update Breadcrumb
-        const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
-        if (breadcrumbCurrent) {
-          const link = breadcrumbCurrent.querySelector('a');
-          const span = breadcrumbCurrent.querySelector('span');
-          link.href = currentUrl;
-          span.textContent = pageName;
-        }
 
         // --- SCHEMA.ORG STRUCTURED DATA ---
 
