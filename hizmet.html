@@ -3,11 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hizmetlerimiz | İstanbul Teknik Servis</title>
+    <title id="metaTitle">Hizmetlerimiz | İstanbul Teknik Servis</title>
     <meta
+      id="metaDescription"
       name="description"
       content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
     />
+    <link rel="canonical" href="" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Hizmetlerimiz | İstanbul Teknik Servis" />
+    <meta property="og:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="https://www.beyaz-esya-servisi.vercel.app/assets/img/beyaz-esya-hero.jpg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hizmetlerimiz | İstanbul Teknik Servis" />
+    <meta name="twitter:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
+    <meta name="twitter:image" content="https://www.beyaz-esya-servisi.vercel.app/assets/img/beyaz-esya-hero.jpg" />
+
     <link rel="stylesheet" href="assets/css/style.css" />
    
   </head>
@@ -56,11 +72,11 @@
         font-family: Arial, sans-serif;
       "
     >
-      <h1>Hizmetlerimiz</h1>
-      <h2>İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
+      <h1 id="mainTitle">Hizmetlerimiz</h1>
+      <h2 id="serviceTitle">İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
       <div class="social-share" style="margin-bottom: 16px">
         <a
-          href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app.app/hizmet.html"
+          href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
           target="_blank"
           rel="noopener"
           >Facebook'ta Paylaş</a
@@ -126,7 +142,7 @@
           Şimdi Ara: 0555 123 45 67
         </a>
       </div>
-      <p>
+      <p id="mainDescription">
         Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima,
         kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde
         hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.
@@ -193,7 +209,7 @@
       >
         <h2>Hizmetlerimiz Hakkında</h2>
         <h3>Servis Seçiminde Dikkat Edilmesi Gerekenler</h3>
-        <p>
+        <p id="serviceDescription">
           Hizmetlerimiz kapsamında, beyaz eşya, buzdolabı, çamaşır makinesi,
           bulaşık makinesi, fırın, klima, kombi ve televizyon için uzman teknik
           servis desteği sunuyoruz. İstanbul genelinde hızlı, güvenilir ve uygun
@@ -523,6 +539,52 @@
           <button class="dot" data-slide="3"></button>
         </div>
       </section>
+      <div id="breadcrumb" aria-label="breadcrumb">
+        <ol
+          itemscope
+          itemtype="https://schema.org/BreadcrumbList"
+          style="
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+            color: #555;
+          "
+        >
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+          >
+            <a itemprop="item" href="/index.html">
+              <span itemprop="name">Ana Sayfa</span></a
+            >
+            <meta itemprop="position" content="1" />
+          </li>
+          <li style="margin: 0 8px">/</li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+          >
+            <a itemprop="item" href="/hizmet.html">
+              <span itemprop="name">Hizmetler</span></a
+            >
+            <meta itemprop="position" content="2" />
+          </li>
+          <li style="margin: 0 8px">/</li>
+          <li
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+          >
+            <span itemprop="name" id="breadcrumbService">Beyaz Eşya</span>
+            <meta itemprop="position" content="3" />
+          </li>
+        </ol>
+      </div>
     </main>
     <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
       <img
@@ -690,6 +752,6 @@
         }
       });
     </script>
-    <script src="js/service.js"></script>
+     <script src="assets/js/service.js"></script>
   </body>
 </html>
