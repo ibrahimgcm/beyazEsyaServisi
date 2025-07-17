@@ -11,9 +11,7 @@ class ReviewsSlider {
     this.currentSlide = 0;
     this.totalSlides = this.cards.length; // Her kart bir slayt
 
-    // Önceden hesaplanmış boyutlar (layout thrash'i azaltmak için)
-    this.cardWidth = 0;
-    this.gap = 0;
+    // Önceden hesaplanmış ve kullanılmayan boyutlar kaldırıldı
     
     this.init();
   }
@@ -179,8 +177,8 @@ class ReviewsSlider {
   // Tek noktadan boyut hesaplama (offsetWidth / getComputedStyle sadece burada çağrılır)
   computeDimensions() {
     if (this.cards.length === 0) return;
-    this.cardWidth = this.cards[0].offsetWidth;
-    this.gap = parseInt(window.getComputedStyle(this.track).gap) || 0;
+    // this.cardWidth = this.cards[0].offsetWidth; // Kullanılmıyor ve yeniden düzenlemeye neden oluyor
+    // this.gap = parseInt(window.getComputedStyle(this.track).gap) || 0; // Kullanılmıyor ve yeniden düzenlemeye neden oluyor
   }
   
   updateSlider() {
