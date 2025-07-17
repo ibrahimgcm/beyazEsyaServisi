@@ -9,133 +9,29 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Font optimizasyonu ve fallback */
+/* Optimized font loading - only critical fonts */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('../fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 400;
-  font-display: optional;
-  src: url('../fonts/Roboto-Italic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  font-display: optional;
+  font-display: swap;
   src: url('../fonts/Roboto-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 500;
-  font-display: optional;
-  src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  font-display: optional;
+  font-display: swap;
   src: url('../fonts/Roboto-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  font-display: optional;
-  src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 900;
-  font-display: optional;
-  src: url('../fonts/Roboto-Black.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 900;
-  font-display: optional;
-  src: url('../fonts/Roboto-BlackItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 300;
-  font-display: optional;
-  src: url('../fonts/Roboto-Light.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 300;
-  font-display: optional;
-  src: url('../fonts/Roboto-LightItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 100;
-  font-display: optional;
-  src: url('../fonts/Roboto-Thin.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 100;
-  font-display: optional;
-  src: url('../fonts/Roboto-ThinItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url('../fonts/Roboto-Condensed.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: italic;
-  font-weight: 400;
-  font-display: optional;
-  src: url('../fonts/Roboto-CondensedItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: normal;
-  font-weight: 700;
-  font-display: optional;
-  src: url('../fonts/Roboto-BoldCondensed.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style: italic;
-  font-weight: 700;
-  font-display: optional;
-  src: url('../fonts/Roboto-BoldCondensedItalic.ttf') format('truetype');
 }
 
 /* Font fallback stack optimization */
