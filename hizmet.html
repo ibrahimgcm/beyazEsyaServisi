@@ -7,207 +7,644 @@
     <meta
       id="metaDescription"
       name="description"
-      content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
+      content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
     />
     <link rel="canonical" href="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
 
+    <!-- Critical CSS - Inline for faster loading -->
+    <style>
+      /* Reset and base styles */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+        line-height: 1.6; 
+        color: #333;
+        background: #f8f9fa;
+      }
+
+      /* Header - Fixed dimensions to prevent layout shift */
+      .modern-header {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 60px; /* Fixed height */
+      }
+
+      .header-bar {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .site-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1976d2;
+        text-decoration: none;
+      }
+
+      .modern-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .modern-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .modern-menu a:hover {
+        color: #1976d2;
+      }
+
+      /* Hero section - Reserve space */
+      .hero-section {
+        height: 220px; /* Fixed height to prevent shift */
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+
+      /* Main content */
+      main {
+        max-width: 900px;
+        margin: 32px auto 0 auto;
+        padding: 0 16px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #1976d2;
+        margin: 32px 0 16px 0;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        color: #333;
+        margin: 24px 0 16px 0;
+        text-align: center;
+      }
+
+      /* Call button - Fixed dimensions */
+      .call-button-container {
+        text-align: center;
+        margin: 24px 0;
+        height: 120px; /* Fixed height to prevent shift */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .vurgulu-servis-yazi {
+        font-size: 11px;
+        font-weight: 500;
+        background: #fff;
+        border-radius: 16px;
+        padding: 16px 14px 14px 14px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        letter-spacing: 0.01em;
+        line-height: 1.6;
+        color: #1976d2;
+        font-family: 'Montserrat', Arial, sans-serif;
+        max-width: 600px;
+      }
+
+      .footer-tel-btn {
+        display: inline-flex;
+        align-items: center;
+        background: #064d1a;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 36px;
+        font-size: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-tel-btn:hover {
+        background: #0a5f24;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+      }
+
+      .footer-tel-btn img {
+        width: 22px;
+        height: 22px;
+        margin-right: 8px;
+        filter: brightness(0) invert(1);
+      }
+
+      /* Services grid - Fixed dimensions */
+      .hizmetler-ikon-ozet {
+        max-width: 600px;
+        margin: 32px auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 18px;
+        min-height: 300px; /* Reserve space */
+      }
+
+      .hizmet-ikon-kutu {
+        text-align: center;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .hizmet-ikon-kutu:hover {
+        transform: translateY(-5px);
+      }
+
+      .hizmet-ikon-kutu > div:first-child {
+        font-size: 2.2em;
+        margin-bottom: 12px;
+      }
+
+      .hizmet-ikon-kutu > div:nth-child(2) {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 8px;
+        color: #1976d2;
+      }
+
+      .hizmet-ikon-kutu > div:last-child {
+        font-size: 0.98em;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      /* Article section */
+      #makale {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        padding: 24px;
+        margin: 24px 0;
+      }
+
+      #makale h2, #makale h3 {
+        color: #1976d2;
+        margin-top: 24px;
+        margin-bottom: 12px;
+      }
+
+      #makale h2:first-child {
+        margin-top: 0;
+      }
+
+      /* Reviews section - Fixed container height */
+      #yorumlar {
+        margin: 40px 0;
+        padding: 24px;
+        background: #f8f9fa;
+        border-radius: 12px;
+      }
+
+      .reviews-slider-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        height: 200px; /* Fixed height to prevent shift */
+        overflow: hidden;
+      }
+
+      .reviews-slider {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .reviews-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 100%;
+      }
+
+      .review-card {
+        min-width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .review-content {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        max-width: 500px;
+      }
+
+      .quote-icon {
+        width: 30px;
+        height: 30px;
+        color: #1976d2;
+        margin: 0 auto 16px;
+      }
+
+      .review-content p {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+
+      .review-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .author-avatar {
+        width: 40px;
+        height: 40px;
+        background: #1976d2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .author-avatar svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .author-name {
+        font-weight: 600;
+        color: #1976d2;
+      }
+
+      /* Slider controls */
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .slider-btn:hover {
+        background: #1565c0;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .prev-btn {
+        left: -25px;
+      }
+
+      .next-btn {
+        right: -25px;
+      }
+
+      .slider-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        background: #ccc;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .dot.active {
+        background: #1976d2;
+      }
+
+      /* FAQ Section */
+      #faq-section {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 16px;
+      }
+
+      .faq-item {
+        background: #fff;
+        margin-bottom: 16px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .faq-item h3 {
+        font-size: 1.1em;
+        color: #1976d2;
+        margin-bottom: 8px;
+      }
+
+      .faq-item p {
+        margin: 0;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      /* Floating call button */
+      #floating-search-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #064d1a;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      #floating-search-btn:hover {
+        background: #0a5f24;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+      }
+
+      #floating-search-btn img {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Breadcrumb */
+      #breadcrumb {
+        margin: 20px 0;
+        padding: 0 16px;
+      }
+
+      #breadcrumb ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        font-size: 0.9em;
+        color: #666;
+      }
+
+      #breadcrumb a {
+        color: #1976d2;
+        text-decoration: none;
+      }
+
+      #breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .modern-footer {
+        background: #333;
+        color: #fff;
+        padding: 40px 20px 20px;
+        margin-top: 60px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+      }
+
+      .footer-section h3 {
+        color: #1976d2;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #1976d2;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #555;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        color: #999;
+      }
+
+      /* Social sharing */
+      .social-share {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .social-share a {
+        color: #1976d2;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+
+      .social-share a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .modern-menu {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        .hizmetler-ikon-ozet {
+          grid-template-columns: 1fr;
+        }
+
+        .slider-btn {
+          display: none;
+        }
+
+        main {
+          margin: 16px;
+          padding: 20px;
+        }
+      }
+
+      /* Loading animation */
+      .loading {
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 16-4 16 0'/%3E%3C/svg%3E" as="image" type="image/svg+xml">
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Hizmetlerimiz | İstanbul Teknik Servis" />
-    <meta property="og:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
+    <meta property="og:description" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta property="og:url" content="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
-    <meta property="og:image" content="" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hizmetlerimiz | İstanbul Teknik Servis" />
-    <meta name="twitter:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
-    <meta name="twitter:image" content="" />
-
-    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
-   
+    <meta name="twitter:description" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
   </head>
-  <body>
-    <div id="header"></div>
-   
-    <noscript>
-      <header>
-        <nav class="modern-header">
-          <div class="header-bar">
-            <a href="/index.html" style="text-decoration:none;color:inherit;"><span class="site-title">Beyaz Esya Servisi</span></a>
-            <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
-          </div>
-          <div id="mobile-menu-overlay" class="menu-overlay"></div>
-          <ul id="main-menu" class="modern-menu">
+  <body class="loading">
+    <!-- Header with fixed dimensions -->
+    <header class="modern-header">
+      <nav>
+        <div class="header-bar">
+          <a href="/index.html" class="site-title">Beyaz Eşya Servisi</a>
+          <div class="hamburger" style="display: none;">☰</div>
+          <ul class="modern-menu">
             <li><a href="/index.html">Ana Sayfa</a></li>
-            <li class="menu-item has-submenu">
-              <a href="service.html" class="submenu-toggle">Hizmetler</a>
-              <ul class="submenu">
-                <li><a href="service.html">Beyaz Eşya Servisi</a></li>
-                <li><a href="buzdolabi-servisi.html">Buzdolabı</a></li>
-                <li><a href="camasir-makinesi-servisi.html">Çamaşır Makinesi</a></li>
-                <li><a href="bulasik-makinesi-servisi.html">Bulaşık Makinesi</a></li>
-                <li><a href="firin-servisi.html">Fırın</a></li>
-                <li><a href="klima-servisi.html">Klima</a></li>
-                <li><a href="kombi-servisi.html">Kombi</a></li>
-                <li><a href="televizyon-servisi.html">Televizyon</a></li>
-              </ul>
-            </li>
+            <li><a href="/service.html">Hizmetler</a></li>
             <li><a href="/about.html">Hakkımızda</a></li>
             <li><a href="/contact.html">İletişim</a></li>
           </ul>
-        </nav>
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-tamiri-32x32.png">
-        <link rel="stylesheet" href="assets/css/style.css">
-      </header>
-    </noscript>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero section with reserved space -->
     <div class="hero-section">
-      <!-- <img src="assets/img/beyaz-esya-hero.jpg" alt="Hizmetlerimiz" width="900" height="220" fetchpriority="high"> -->
+      <div>
+        <h1 style="color: white; margin: 0; font-size: 2.5rem;">Profesyonel Teknik Servis</h1>
+        <p style="margin: 10px 0 0 0; font-size: 1.2rem;">İstanbul genelinde güvenilir hizmet</p>
+      </div>
     </div>
-    <main
-      style="
-        max-width: 900px;
-        margin: 32px auto 0 auto;
-        padding: 0 16px;
-        font-family: Arial, sans-serif;
-      "
-    >
+
+    <main>
       <h1 id="mainTitle">Hizmetlerimiz</h1>
       <h2 id="serviceTitle">İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
-      <div class="social-share" style="margin-bottom: 16px">
-        <a
-          href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
-          target="_blank"
-          rel="noopener"
-          >Facebook'ta Paylaş</a
-        >
+      
+      <div class="social-share">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html" target="_blank" rel="noopener">Facebook'ta Paylaş</a>
         |
-        <a
-          href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
-          target="_blank"
-          rel="noopener"
-          >Twitter'da Paylaş</a
-        >
+        <a href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz" target="_blank" rel="noopener">Twitter'da Paylaş</a>
       </div>
-      <div style="text-align: center; margin: 18px 0 24px 0">
-        <div
-          class="vurgulu-servis-yazi"
-          style="
-            font-size: 11px;
-            font-weight: 500;
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px 14px 14px 14px;
-            box-shadow: 0 2px 12px #0001;
-            letter-spacing: 0.01em;
-            line-height: 1.6;
-            color: #1976d2;
-            margin-bottom: 12px;
-            font-family: 'Montserrat', Arial, sans-serif;
-          "
-        >
-          <span style="font-weight: bold; text-transform: uppercase"
-            >HER MARKA VE MODEL BEYAZ EŞYA İÇİN HIZLI ve GÜVENİLİR PROFESYONEL
-            SERVİS HİZMETİ</span
-          >
-          <br />
+
+      <div class="call-button-container">
+        <div class="vurgulu-servis-yazi">
+          <span style="font-weight: bold; text-transform: uppercase">
+            HER MARKA VE MODEL BEYAZ EŞYA İÇİN HIZLI ve GÜVENİLİR PROFESYONEL SERVİS HİZMETİ
+          </span>
         </div>
-        <a
-          href="tel:05551234567"
-          class="footer-tel-btn"
-          style="
-            display: inline-block;
-            background: #064d1a;
-            color: #fff;
-            font-weight: bold;
-            border: none;
-            border-radius: 16px;
-            padding: 18px 36px;
-            font-size: 20px;
-            box-shadow: 0 2px 12px #0002;
-            margin: 0;
-          "
-        >
-          <img
-            src="assets/img/favicon-call-32x32.png"
-            alt="Ara"
-            width="22"
-            height="22"
-            style="
-              vertical-align: middle;
-              margin-right: 8px;
-              filter: brightness(0) invert(1);
-            "
-          />
+        <a href="tel:05551234567" class="footer-tel-btn">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E" alt="Ara" />
           Şimdi Ara: 0555 123 45 67
         </a>
       </div>
+
       <p id="mainDescription">
         Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima,
         kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde
         hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.
       </p>
-      <section
-        class="hizmetler-ikon-ozet"
-        style="
-          max-width: 600px;
-          margin: 0 auto 32px auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 24px 18px;
-          justify-items: center;
-          align-items: start;
-        "
-      >
-        <div class="hizmet-ikon-kutu" style="text-align: center">
-          <div style="font-size: 2.2em">❤️</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
-            Müşteri Memnuniyeti
-          </div>
-          <div style="font-size: 0.98em; color: #444; margin-top: 4px">
-            Her zaman müşteri odaklı, güler yüzlü ve çözüm odaklı hizmet
-            sunuyoruz.
-          </div>
+
+      <section class="hizmetler-ikon-ozet">
+        <div class="hizmet-ikon-kutu">
+          <div>❤️</div>
+          <div>Müşteri Memnuniyeti</div>
+          <div>Her zaman müşteri odaklı, güler yüzlü ve çözüm odaklı hizmet sunuyoruz.</div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center">
-          <div style="font-size: 2.2em">📞</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
-            7/24 İletişim
-          </div>
-          <div style="font-size: 0.98em; color: #444; margin-top: 4px">
-            Günün her saati bize ulaşabilir, hızlıca destek alabilirsiniz.
-          </div>
+        <div class="hizmet-ikon-kutu">
+          <div>📞</div>
+          <div>7/24 İletişim</div>
+          <div>Günün her saati bize ulaşabilir, hızlıca destek alabilirsiniz.</div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center">
-          <div style="font-size: 2.2em">🔧</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
-            Uzman Teknik Ekip
-          </div>
-          <div style="font-size: 0.98em; color: #444; margin-top: 4px">
-            Deneyimli ve eğitimli teknik ekibimizle güvenilir servis hizmeti.
-          </div>
+        <div class="hizmet-ikon-kutu">
+          <div>🔧</div>
+          <div>Uzman Teknik Ekip</div>
+          <div>Deneyimli ve eğitimli teknik ekibimizle güvenilir servis hizmeti.</div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center">
-          <div style="font-size: 2.2em">⏱</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
-            Hızlı Servis
-          </div>
-          <div style="font-size: 0.98em; color: #444; margin-top: 4px">
-            Arızalara en kısa sürede müdahale, hızlı ve etkili çözüm.
-          </div>
+        <div class="hizmet-ikon-kutu">
+          <div>⏱</div>
+          <div>Hızlı Servis</div>
+          <div>Arızalara en kısa sürede müdahale, hızlı ve etkili çözüm.</div>
         </div>
       </section>
-      <section
-        id="makale"
-        style="
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 2px 12px #0001;
-          padding: 24px 18px;
-          margin: 24px 0;
-        "
-      >
+
+      <section id="makale">
         <h2>Hizmetlerimiz Hakkında</h2>
         <h3>Servis Seçiminde Dikkat Edilmesi Gerekenler</h3>
         <p id="serviceDescription">
@@ -231,33 +668,25 @@
           zaman yanınızdayız.
         </p>
       </section>
+
       <section id="yorumlar">
         <h2>Müşteri Yorumları</h2>
         <div class="reviews-slider-container">
           <button class="slider-btn prev-btn" aria-label="Önceki yorumlar">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="15,18 9,12 15,6"></polyline>
             </svg>
           </button>
           <div class="reviews-slider">
-            <div class="reviews-track">
+            <div class="reviews-track" id="reviewsTrack">
               <div class="review-card">
                 <div class="review-content">
                   <div class="quote-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
+                      <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
                     </svg>
                   </div>
-                  <p>
-                    Çok hızlı ve güvenilir bir servis, teşekkürler!
-                  </p>
+                  <p>Çok hızlı ve güvenilir bir servis, teşekkürler!</p>
                   <div class="review-author">
                     <div class="author-avatar">
                       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -273,9 +702,7 @@
                 <div class="review-content">
                   <div class="quote-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
+                      <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
                     </svg>
                   </div>
                   <p>Uygun fiyat ve kaliteli hizmet.</p>
@@ -294,14 +721,10 @@
                 <div class="review-content">
                   <div class="quote-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
+                      <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
                     </svg>
                   </div>
-                  <p>
-                    Usta çok ilgiliydi, sorunum hemen çözüldü.
-                  </p>
+                  <p>Usta çok ilgiliydi, sorunum hemen çözüldü.</p>
                   <div class="review-author">
                     <div class="author-avatar">
                       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -317,14 +740,10 @@
                 <div class="review-content">
                   <div class="quote-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
+                      <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
                     </svg>
                   </div>
-                  <p>
-                    Çalışanlar çok nazik ve profesyonel.
-                  </p>
+                  <p>Çalışanlar çok nazik ve profesyonel.</p>
                   <div class="review-author">
                     <div class="author-avatar">
                       <svg viewBox="0 0 24 24" fill="currentColor">
@@ -336,659 +755,279 @@
                   </div>
                 </div>
               </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Servis çok hızlı geldi, sorunum hemen çözüldü.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Burak Y.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Fiyatlar çok makul, hizmet kalitesi yüksek.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Elif D.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Teknisyenler çok bilgili ve güler yüzlüydü.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Gizem U.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Beyaz eşyam ilk günkü gibi çalışıyor, teşekkürler!
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Serkan A.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Telefonla aradım, hemen randevu verdiler.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Melis E.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Yedek parça hemen temin edildi, çok memnun kaldım.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Onur K.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    İşçilik çok kaliteli, tekrar tercih edeceğim.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Deniz S.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-card">
-                <div class="review-content">
-                  <div class="quote-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"
-                      />
-                    </svg>
-                  </div>
-                  <p>
-                    Tavsiye üzerine aradım, çok memnun kaldım.
-                  </p>
-                  <div class="review-author">
-                    <div class="author-avatar">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 16-4 16 0" />
-                      </svg>
-                    </div>
-                    <span class="author-name">Ayhan B.</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <button class="slider-btn next-btn" aria-label="Sonraki yorumlar">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9,18 15,12 9,6"></polyline>
             </svg>
           </button>
         </div>
-        <div class="slider-dots">
+        <div class="slider-dots" id="sliderDots">
           <button class="dot active" data-slide="0"></button>
           <button class="dot" data-slide="1"></button>
           <button class="dot" data-slide="2"></button>
           <button class="dot" data-slide="3"></button>
         </div>
       </section>
-      <div id="breadcrumb" aria-label="breadcrumb">
-        <ol
-          style="
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            font-size: 0.9em;
-            color: #555;
-          "
-        >
-          <li>
-            <a href="/index.html">
-              <span>Ana Sayfa</span></a
-            >
-            
-          </li>
-          <li style="margin: 0 8px">/</li>
-          <li id="breadcrumb-current-page">
-            <a href="/hizmet.html">
-              <span>Hizmetler</span></a
-            >
-            
-          </li>
+
+      <div id="breadcrumb">
+        <ol>
+          <li><a href="/index.html"><span>Ana Sayfa</span></a></li>
+          <li>/</li>
+          <li><a href="/hizmet.html"><span>Hizmetler</span></a></li>
         </ol>
       </div>
     </main>
-    <section id="faq-section" style="max-width: 900px; margin: 32px auto; padding: 0 16px;">
-      <h2 style="margin-bottom: 24px;">Sıkça Sorulan Sorular</h2>
+
+    <section id="faq-section">
+      <h2>Sıkça Sorulan Sorular</h2>
       <div id="faq-container">
+        <div class="faq-item">
+          <h3>Beyaz eşya servisi ne kadar sürede gelir?</h3>
+          <p>İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Tamir edilen parçalar garantili mi?</h3>
+          <p>Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Hangi bölgelerde hizmet veriyorsunuz?</h3>
+          <p>İstanbul'un tüm ilçelerinde 7/24 hizmet vermekteyiz. Acil durumlar için öncelikli randevu sistemi mevcuttur.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Servis ücreti nasıl belirleniyor?</h3>
+          <p>Servis ücretimiz arızanın türüne ve gereken parçalara göre belirlenir. Şeffaf fiyatlandırma ile hiç bir gizli ücret yoktur.</p>
+        </div>
       </div>
     </section>
-    <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
-      <img
-        src="assets/img/favicon-call-32x32.png"
-        alt="Ara"
-        width="22"
-        height="22"
-      />
-      <span style="color: #fff;">Şimdi Ara</span>
+
+    <!-- Floating call button -->
+    <a id="floating-search-btn" href="tel:05551234567">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E" alt="Ara" />
+      <span>Şimdi Ara</span>
     </a>
 
-    <div id="footer"></div>
-    <noscript>
-      <footer class="modern-footer">
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>Hizmetlerimiz</h3>
-            <ul>
-              <li><a href="/buzdolabi-servisi.html">Buzdolabı Servisi</a></li>
-              <li><a href="/camasir-makinesi-servisi.html">Çamaşır Makinesi Servisi</a></li>
-              <li><a href="/bulasik-makinesi-servisi.html">Bulaşık Makinesi Servisi</a></li>
-              <li><a href="/firin-servisi.html">Fırın Servisi</a></li>
-              <li><a href="/klima-servisi.html">Klima Servisi</a></li>
-              <li><a href="/kombi-servisi.html">Kombi Servisi</a></li>
-              <li><a href="/televizyon-servisi.html">Televizyon Servisi</a></li>
-            </ul>
-          </div>
-      
-          <div class="footer-section">
-            <h3>Kurumsal</h3>
-            <ul>
-              <li><a href="/index.html">Ana Sayfa</a></li>
-              <li><a href="/about.html">Hakkımızda</a></li>
-              <li><a href="/contact.html">İletişim</a></li>
-              <li><a href="/privacy.html">Gizlilik Politikası</a></li>
-              <li><a href="/kvkk.html">KVKK</a></li>
-            </ul>
-          </div>
-      
-          <div class="footer-section contact-section">
-            <h3>İletişim</h3>
-            <div class="contact-info">
-              <p class="service-title"><strong>7/24 Hizmet</strong></p>
-              <a href="tel:05551234567" class="footer-tel-btn">
-                📞 0555 123 45 67
-              </a>
-              <p class="address">İstanbul, Türkiye</p>
-              <div class="service-notice">
-                Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için tamir, bakım, arıza vb. hizmetler verilmektedir.
-              </div>
+    <!-- Footer -->
+    <footer class="modern-footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Hizmetlerimiz</h3>
+          <ul>
+            <li><a href="/buzdolabi-servisi.html">Buzdolabı Servisi</a></li>
+            <li><a href="/camasir-makinesi-servisi.html">Çamaşır Makinesi Servisi</a></li>
+            <li><a href="/bulasik-makinesi-servisi.html">Bulaşık Makinesi Servisi</a></li>
+            <li><a href="/firin-servisi.html">Fırın Servisi</a></li>
+            <li><a href="/klima-servisi.html">Klima Servisi</a></li>
+            <li><a href="/kombi-servisi.html">Kombi Servisi</a></li>
+            <li><a href="/televizyon-servisi.html">Televizyon Servisi</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Kurumsal</h3>
+          <ul>
+            <li><a href="/index.html">Ana Sayfa</a></li>
+            <li><a href="/about.html">Hakkımızda</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+            <li><a href="/privacy.html">Gizlilik Politikası</a></li>
+            <li><a href="/kvkk.html">KVKK</a></li>
+          </ul>
+        </div>
+        <div class="footer-section contact-section">
+          <h3>İletişim</h3>
+          <div class="contact-info">
+            <p class="service-title"><strong>7/24 Hizmet</strong></p>
+            <a href="tel:05551234567" class="footer-tel-btn">
+              📞 0555 123 45 67
+            </a>
+            <p class="address">İstanbul, Türkiye</p>
+            <div class="service-notice">
+              Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için tamir, bakım, arıza vb. hizmetler verilmektedir.
             </div>
           </div>
         </div>
-      
-        <div class="footer-bottom">
-          <p>&copy; 2024 Beyaz Eşya Servisi. Tüm hakları saklıdır.</p>
-        </div>
-      </footer>
-      </noscript>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Beyaz Eşya Servisi. Tüm hakları saklıdır.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for functionality -->
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
-        fetch("includes/header.html")
-          .then((r) => r.text())
-          .then((html) => {
-            document.getElementById("header").innerHTML = html;
-            var s = document.createElement("script");
-            s.src = "assets/js/header-menu.js";
-            document.body.appendChild(s);
+      // Reviews slider functionality
+      class ReviewsSlider {
+        constructor() {
+          this.track = document.getElementById('reviewsTrack');
+          this.dots = document.querySelectorAll('.dot');
+          this.prevBtn = document.querySelector('.prev-btn');
+          this.nextBtn = document.querySelector('.next-btn');
+          this.currentSlide = 0;
+          this.totalSlides = document.querySelectorAll('.review-card').length;
+          
+          this.init();
+        }
+
+        init() {
+          this.prevBtn.addEventListener('click', () => this.prevSlide());
+          this.nextBtn.addEventListener('click', () => this.nextSlide());
+          
+          this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
           });
-        fetch("includes/footer.html")
-          .then((r) => r.text())
-          .then((html) => {
-            document.getElementById("footer").innerHTML = html;
+
+          // Auto-play
+          setInterval(() => this.nextSlide(), 5000);
+        }
+
+        goToSlide(slideIndex) {
+          this.currentSlide = slideIndex;
+          const translateX = -slideIndex * 100;
+          this.track.style.transform = `translateX(${translateX}%)`;
+          
+          this.dots.forEach(dot => dot.classList.remove('active'));
+          this.dots[slideIndex].classList.add('active');
+        }
+
+        nextSlide() {
+          this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+          this.goToSlide(this.currentSlide);
+        }
+
+        prevSlide() {
+          this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+          this.goToSlide(this.currentSlide);
+        }
+      }
+
+      // Initialize slider when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new ReviewsSlider();
+        
+        // Remove loading class to trigger fade-in animation
+        document.body.classList.remove('loading');
+        
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const menu = document.querySelector('.modern-menu');
+        
+        if (hamburger && menu) {
+          hamburger.addEventListener('click', () => {
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
           });
+        }
+      });
+
+      // Service data and dynamic content
+      const serviceData = {
+        'beyaz-esya': {
+          name: 'Beyaz Eşya Servisi',
+          h2: 'İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri',
+          description: 'İstanbul\'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.',
+          faq: [
+            { q: 'Beyaz eşya servisi ne kadar sürede gelir?', a: 'İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.' },
+            { q: 'Tamir edilen parçalar garantili mi?', a: 'Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.' }
+          ]
+        }
+      };
+
+      // Dynamic content loading based on URL parameters
+      const params = new URLSearchParams(window.location.search);
+      const serviceKey = params.get('service') || 'beyaz-esya';
+      const serviceInfo = serviceData[serviceKey] || serviceData['beyaz-esya'];
+
+      // Update page content
+      if (serviceInfo) {
+        document.title = `${serviceInfo.name} | İstanbul Teknik Servis`;
+        document.getElementById('metaTitle').textContent = `${serviceInfo.name} | İstanbul Teknik Servis`;
+        document.getElementById('metaDescription').setAttribute('content', serviceInfo.description);
+        
+        document.getElementById('mainTitle').textContent = serviceInfo.name;
+        document.getElementById('serviceTitle').textContent = serviceInfo.h2;
+        document.getElementById('mainDescription').textContent = serviceInfo.description;
+        document.getElementById('serviceDescription').textContent = serviceInfo.description;
+      }
+
+      // Schema.org structured data
+      const currentUrl = window.location.href;
+      const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+
+      const localBusinessSchema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "İstanbul Teknik Servis",
+        "url": origin,
+        "telephone": "+905551234567",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "İstanbul",
+          "addressCountry": "TR"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      };
+
+      // Add structured data to page
+      const schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.textContent = JSON.stringify(localBusinessSchema, null, 2);
+      document.head.appendChild(schemaScript);
+
+      // Lazy loading for images and performance optimization
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      // Performance monitoring
+      window.addEventListener('load', () => {
+        // Report loading performance
+        if ('performance' in window) {
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          console.log(`Page loaded in ${loadTime}ms`);
+        }
       });
     </script>
-    <script src="assets/js/reviews-slider.js"></script>
 
-    <script type="application/ld+json" id="localBusinessSchema"></script>
-    <script type="application/ld+json" id="articleSchema"></script>
-    <script type="application/ld+json" id="faqSchema"></script>
-    <script type="application/ld+json" id="breadcrumbSchema"></script>
-    <script type="application/ld+json" id="serviceSchema"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const serviceData = {
-          'beyaz-esya': {
-            name: 'Beyaz Eşya Servisi',
-            h2: 'İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri',
-            description: 'İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.',
-            faq: [
-              { q: 'Beyaz eşya servisi ne kadar sürede gelir?', a: 'İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.' },
-              { q: 'Tamir edilen parçalar garantili mi?', a: 'Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.' }
-            ]
-          },
-          'buzdolabi': {
-            name: 'Buzdolabı Servisi',
-            h2: 'Uzman Buzdolabı Tamir ve Bakım Servisi',
-            description: 'İstanbul genelinde acil buzdolabı tamiri, bakımı ve servisi. Tüm marka ve model buzdolapları için uzman çözümler sunuyoruz. Garantili hizmet için arayın.',
-            faq: [
-              { q: 'Buzdolabım yeterince soğutmuyor, ne yapmalıyım?', a: 'Öncelikle termostat ayarlarını kontrol edin ve kapı contalarının tam kapandığından emin olun. Sorun devam ederse, gaz kaçağı veya motor arızası olabilir. Profesyonel yardım için bizi arayın.' },
-              { q: 'Buzdolabından neden su akıyor?', a: 'Su akıntısı genellikle tıkalı bir defrost drenajından kaynaklanır. Bu drenaj hattının temizlenmesi gerekir. Bu işlemi kendiniz yapamıyorsanız, teknisyenlerimiz güvenle yardımcı olabilir.' }
-            ]
-          },
-          'camasir-makinesi': {
-            name: 'Çamaşır Makinesi Servisi',
-            h2: 'Güvenilir Çamaşır Makinesi Tamir ve Bakım Hizmetleri',
-            description: 'Profesyonel çamaşır makinesi servisi. İstanbul\'da her marka çamaşır makinesi tamiri, bakımı ve montajı için hızlı ve güvenilir hizmet.',
-             faq: [
-              { q: 'Çamaşır makinesi çok sesli çalışıyor, sebebi ne olabilir?', a: 'Aşırı ses, genellikle kazan rulmanlarının veya amortisörlerin aşınmasından kaynaklanır. Ayrıca, makinenin dengesiz yerleştirilmesi de sese neden olabilir. Kontrol için uzman ekibimizi çağırabilirsiniz.' },
-              { q: 'Çamaşır makinem suyu boşaltmıyor, ne yapmalıyım?', a: 'Bu sorun genellikle pompa filtresinin tıkanmasından kaynaklanır. Makinenin alt kısmında bulunan filtreyi temizlemeyi deneyin. Sorun çözülmezse pompa motorunda bir arıza olabilir.' }
-            ]
-          },
-          'bulasik-makinesi': {
-            name: 'Bulaşık Makinesi Servisi',
-            h2: 'Hızlı ve Etkili Bulaşık Makinesi Servis Çözümleri',
-            description: 'İstanbul bulaşık makinesi servisi. Arızalı bulaşık makineniz için hızlı tamir, bakım ve parça değişimi hizmetleri. Uygun fiyatlı ve garantili çözümler.',
-            faq: [
-              { q: 'Bulaşık makinesi temiz yıkamıyor, neden?', a: 'Bulaşıkların kirli kalması, genellikle tıkalı fıskiyeler, yanlış deterjan kullanımı veya su ısıtma sorunlarından kaynaklanır. Fıskiyeleri ve filtreyi kontrol edip temizleyebilirsiniz. Sorun devam ederse teknik servisimizle iletişime geçin.' },
-              { q: 'Bulaşık makinesi programı bitirmiyor, neden?', a: 'Programın takılı kalması, su alma, ısıtma veya boşaltma aşamalarındaki bir sorundan kaynaklanabilir. Elektronik kart arızası da olası bir nedendir. Detaylı bir teşhis için uzman teknisyenlerimizden destek alabilirsiniz.' }
-            ]
-          },
-          'firin': {
-            name: 'Fırın Servisi',
-            h2: 'Her Türlü Fırın İçin Profesyonel Tamir ve Bakım',
-            description: 'Fırın tamiri ve bakımı için İstanbul\'daki uzman adresiniz. Ankastre, solo ve endüstriyel fırınlar için profesyonel servis hizmetleri.',
-            faq: [
-              { q: 'Fırınım yeterince ısınmıyor, sorun ne olabilir?', a: 'Yetersiz ısınma genellikle fırının ısıtma elemanlarından (rezistans) veya termostatından kaynaklanır. Bu parçaların kontrol edilip gerekiyorsa değiştirilmesi gerekir.' },
-              { q: 'Fırının kapağı tam kapanmıyor, ne yapabilirim?', a: 'Kapak menteşelerinin gevşemesi veya kırılması bu soruna yol açabilir. Menteşelerin onarımı veya değişimi ile sorun genellikle çözülür.' }
-            ]
-          },
-          'klima': {
-            name: 'Klima Servisi',
-            h2: 'Yaz Aylarında Serin Kalın: Uzman Klima Bakım ve Tamiri',
-            description: 'İstanbul klima servisi. Klima montajı, bakımı, gaz dolumu ve tamiri için 7/24 profesyonel hizmet. Hızlı ve garantili klima çözümleri.',
-            faq: [
-              { q: 'Klimam soğutmuyor, ne yapmalıyım?', a: 'Klimanın soğutmaması genellikle gaz eksikliği, kirli filtreler veya dış ünite fanının çalışmamasından kaynaklanır. Filtreleri temizlemeyi deneyin, sorun devam ederse gaz seviyesi ve diğer bileşenler için servis çağırmanız gerekir.' },
-              { q: 'Klima bakımı ne sıklıkla yapılmalı?', a: 'Ev tipi klimalar için yılda en az bir kez, iş yeri gibi yoğun kullanılan alanlarda ise altı ayda bir profesyonel bakım yapılması önerilir. Bu, hem performansı artırır hem de enerji tasarrufu sağlar.' }
-            ]
-          },
-          'kombi': {
-            name: 'Kombi Servisi',
-            h2: 'Kışa Hazırlık: Profesyonel Kombi Bakım ve Onarım',
-            description: 'İstanbul kombi servisi. Acil kombi tamiri, yıllık periyodik bakım ve petek temizliği hizmetleri. Yetkin ve sertifikalı teknisyenlerle güvenilir çözümler.',
-            faq: [
-              { q: 'Kombi çalışıyor ama petekler ısınmıyor, neden?', a: 'Bu durum genellikle kombi basıncının düşük olmasından, peteklerde hava olmasından veya üç yollu vana arızasından kaynaklanır. Kombi basıncını kontrol edip, peteklerin havasını almayı deneyebilirsiniz.' },
-              { q: 'Kombi bakımında neler yapılır?', a: 'Yıllık periyodik kombi bakımında cihazın tozları temizlenir, yanma odası kontrol edilir, filtreler temizlenir, gaz ayarları yapılır ve genel güvenlik kontrolleri gerçekleştirilir.' }
-            ]
-          },
-          'televizyon': {
-            name: 'Televizyon Servisi',
-            h2: 'Net Görüntü, Kesintisiz Keyif: Televizyon Tamir Hizmetleri',
-            description: 'İstanbul\'da LED, LCD, Plazma TV tamiri. Panel değişimi, anakart onarımı ve diğer tüm televizyon arızaları için uzman servis.',
-            faq: [
-              { q: 'Televizyonda ses var ama görüntü yok, ne yapmalıyım?', a: 'Bu sorun genellikle LED aydınlatmaların arızalanmasından kaynaklanır. Bu, uzman bir teknisyen tarafından onarılması gereken bir durumdur.' },
-              { q: 'Televizyonum kanalları bulmuyor, sorun ne olabilir?', a: 'Sinyal zayıflığı, anten veya uydu alıcısı sorunları veya televizyonun dahili tuner arızası bu duruma neden olabilir. Öncelikle kablo bağlantılarınızı kontrol etmenizi öneririz.' }
-            ]
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Beyaz eşya servisi ne kadar sürede gelir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz."
           }
-        };
-
-        const params = new URLSearchParams(window.location.search);
-        const serviceKey = params.get('service');
-        let serviceInfo;
-
-        function formatServiceName(key) {
-          if (!key) return 'Beyaz Eşya Servisi';
-          // Converts "some-service-name" or "some+service+name" to "Some Service Name"
-          const decodedKey = decodeURIComponent(key.replace(/\+/g, ' '));
-          return decodedKey
-            .replace(/-/g, ' ')
-            .replace(/\b\w/g, l => l.toUpperCase());
+        },
+        {
+          "@type": "Question",
+          "name": "Tamir edilen parçalar garantili mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir."
+          }
         }
-
-        if (serviceKey) {
-          if (serviceData.hasOwnProperty(serviceKey)) {
-            // Case 1: It's a predefined service, use the existing detailed data.
-            serviceInfo = serviceData[serviceKey];
-          } else {
-            // Case 2: It's a custom service query. Generate info dynamically.
-            const customServiceName = formatServiceName(serviceKey);
-            serviceInfo = {
-                name: customServiceName,
-                h2: `İstanbul Profesyonel ${customServiceName} Tamir ve Bakım Hizmetleri`,
-                description: `İstanbul’da ${customServiceName} için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.`,
-                faq: [
-                  { q: `${customServiceName} servisi ne kadar sürede gelir?`, a: 'İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.' },
-                  { q: 'Tamir edilen parçalar garantili mi?', a: 'Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.' }
-                ]
-            };
-          }
-        } else {
-          // Case 3: No service parameter, use the default "beyaz-esya".
-          serviceInfo = serviceData['beyaz-esya'];
-        }
-        
-        const pageName = serviceInfo.name;
-        
-        const currentUrl = window.location.href;
-        const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
-        const today = new Date().toISOString().split('T')[0];
-
-        // Update Page Content
-        const { name, h2, description, faq } = serviceInfo;
-
-        document.title = `${name} | İstanbul Teknik Servis`;
-        document.getElementById('metaTitle').textContent = `${name} | İstanbul Teknik Servis`;
-        document.getElementById('metaDescription').setAttribute('content', description);
-        
-        document.querySelector('meta[property="og:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
-        document.querySelector('meta[property="og:description"]').setAttribute('content', description);
-        document.querySelector('meta[property="og:url"]').setAttribute('content', currentUrl);
-        
-        document.querySelector('meta[name="twitter:title"]').setAttribute('content', `${name} | İstanbul Teknik Servis`);
-        document.querySelector('meta[name="twitter:description"]').setAttribute('content', description);
-        
-        document.getElementById('mainTitle').textContent = name;
-        document.getElementById('serviceTitle').textContent = h2;
-        document.getElementById('mainDescription').textContent = description;
-        document.getElementById('serviceDescription').textContent = description;
-
-        // Populate FAQ Section
-        const faqContainer = document.getElementById('faq-container');
-        faq.forEach(item => {
-          const faqItem = document.createElement('div');
-          faqItem.className = 'faq-item';
-          faqItem.innerHTML = `
-            <h3 style="font-size: 1.1em; color: #1976d2; margin-bottom: 8px;">${item.q}</h3>
-            <p style="margin-top: 0; margin-bottom: 16px; line-height: 1.6;">${item.a}</p>
-          `;
-          faqContainer.appendChild(faqItem);
-        });
-
-        // Update Breadcrumb
-        const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
-        if (breadcrumbCurrent) {
-          const link = breadcrumbCurrent.querySelector('a');
-          const span = breadcrumbCurrent.querySelector('span');
-          link.href = currentUrl;
-          span.textContent = pageName;
-        }
-
-        // --- SCHEMA.ORG STRUCTURED DATA ---
-
-        // Individual Review Schemas - Google'ın önerdiği yapı
-        const reviewElements = document.querySelectorAll('.review-card');
-        const reviewSchemas = Array.from(reviewElements).map((reviewEl, index) => {
-          const reviewBodyEl = reviewEl.querySelector('.review-content p');
-          const authorNameEl = reviewEl.querySelector('.author-name');
-          if (reviewBodyEl && authorNameEl) {
-            return {
-              "@context": "https://schema.org/",
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis",
-                "image": origin + "/assets/img/beyaz-esya-hero.jpg",
-                "telephone": "+905551234567",
-                "priceRange": "₺₺",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "Merkez Ofis",
-                  "addressLocality": "İstanbul",
-                  "addressRegion": "İstanbul",
-                  "addressCountry": "TR"
-                },
-                "servesCuisine": name // Hizmet türü
-              },
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5",
-                "bestRating": "5"
-              },
-              "reviewBody": reviewBodyEl.textContent.trim(),
-              "author": {
-                "@type": "Person",
-                "name": authorNameEl.textContent.trim()
-              },
-              "datePublished": "2024-01-15",
-              "publisher": {
-                "@type": "Organization",
-                "name": "İstanbul Teknik Servis"
-              }
-            };
-          }
-          return null;
-        }).filter(review => review !== null);
-
-        // LocalBusiness Schema
-        const localBusinessSchema = {
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "İstanbul Teknik Servis",
-          "@id": origin,
-          "url": origin,
-          "telephone": "+905551234567",
-          "priceRange": "₺₺",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Merkez Ofis",
-            "addressLocality": "İstanbul",
-            "addressCountry": "TR"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "41.0082",
-            "longitude": "28.9784"
-          },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-          },
-          "sameAs": [
-            "https://www.facebook.com/your-profile",
-            "https://twitter.com/your-profile"
-          ] 
-        };
-        
-        document.getElementById('localBusinessSchema').textContent = JSON.stringify(localBusinessSchema, null, 2);
-
-        // Service Schema - Review'ları buradan çıkardık
-        const serviceSchema = {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "serviceType": name,
-          "name": name,
-          "description": description,
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "İstanbul Teknik Servis",
-            "telephone": "+905551234567",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "İstanbul",
-              "addressCountry": "TR"
-            }
-          },
-          "areaServed": {
-            "@type": "City",
-            "name": "İstanbul"
-          }
-        };
-        
-        document.getElementById('serviceSchema').textContent = JSON.stringify(serviceSchema, null, 2);
-
-        // Her review için ayrı script tag'i oluştur
-        reviewSchemas.forEach((reviewSchema, index) => {
-          const reviewScriptTag = document.createElement('script');
-          reviewScriptTag.type = 'application/ld+json';
-          reviewScriptTag.textContent = JSON.stringify(reviewSchema, null, 2);
-          reviewScriptTag.id = `reviewSchema${index}`;
-          document.head.appendChild(reviewScriptTag);
-        });
-        
-
-        // Article Schema
-        const articleSchema = {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": currentUrl
-            },
-            "headline": name,
-            "description": description,
-            "author": {
-                "@type": "Organization",
-                "name": "İstanbul Teknik Servis"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "İstanbul Teknik Servis",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": origin + "/assets/img/favicon.png"
-                }
-            },
-            "datePublished": "2024-01-01",
-            "dateModified": today
-        };
-        document.getElementById('articleSchema').textContent = JSON.stringify(articleSchema, null, 2);
-
-        // FAQ Schema
-        const faqSchema = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faq.map(item => ({
-                "@type": "Question",
-                "name": item.q,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": item.a
-                }
-            }))
-        };
-        document.getElementById('faqSchema').textContent = JSON.stringify(faqSchema, null, 2);
-
-        // Breadcrumb Schema
-        const breadcrumbSchema = {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": origin + "/index.html" },
-            { "@type": "ListItem", "position": 2, "name": pageName, "item": currentUrl }
-          ]
-        };
-        document.getElementById("breadcrumbSchema").textContent = JSON.stringify(breadcrumbSchema, null, 2);
-      });
+      ]
+    }
     </script>
   </body>
 </html>
