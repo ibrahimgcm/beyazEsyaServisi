@@ -9,9 +9,11 @@
       content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+   
   </head>
   <body>
     <div id="header"></div>
+   
     <noscript>
       <header>
         <nav class="modern-header">
@@ -58,14 +60,14 @@
       <h2>İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık</h2>
       <div class="social-share" style="margin-bottom: 16px">
         <a
-          href="https://www.facebook.com/sharer/sharer.php?u=https://www.servisdeneme.netlify.app/hizmet.html"
+          href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app.app/hizmet.html"
           target="_blank"
           rel="noopener"
           >Facebook'ta Paylaş</a
         >
         |
         <a
-          href="https://twitter.com/intent/tweet?url=https://www.servisdeneme.netlify.app/hizmet.html&text=Hizmetlerimiz"
+          href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
           target="_blank"
           rel="noopener"
           >Twitter'da Paylaş</a
@@ -598,5 +600,95 @@
       });
     </script>
     <script src="assets/js/reviews-slider.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const service = params.get("service");
+        const currentUrl = window.location.href;
+        const origin =
+          window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+
+        const breadcrumb = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Ana Sayfa",
+              item: origin + "/index.html",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Hizmetler",
+              item: origin + "/service.html",
+            },
+          ],
+        };
+
+        if (service) {
+          const serviceName = decodeURIComponent(service.replace(/\+/g, " "));
+
+          breadcrumb.itemListElement.push({
+            "@type": "ListItem",
+            position: 3,
+            name: serviceName,
+            item: currentUrl,
+          });
+
+          document.title = serviceName + " | İstanbul Teknik Servis";
+
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) {
+            metaDesc.setAttribute(
+              "content",
+              "İstanbul’da " +
+                serviceName +
+                " için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
+            );
+          }
+
+          const h1 = document.querySelector("h1");
+          if (h1) {
+            h1.textContent = serviceName;
+          }
+
+          const h2 = document.querySelector("h2");
+          if (h2) {
+            h2.textContent = "İstanbul " + serviceName + " Servislerinde Uzmanlık";
+          }
+
+          const facebookLink = document.getElementById("facebook-share");
+          if (facebookLink) {
+            facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              currentUrl
+            )}`;
+          }
+
+          const twitterLink = document.getElementById("twitter-share");
+          if (twitterLink) {
+            twitterLink.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+              currentUrl
+            )}&text=${encodeURIComponent(serviceName)}`;
+          }
+        } else {
+            const h1 = document.querySelector("h1");
+            if (h1) {
+                breadcrumb.itemListElement.push({
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": h1.textContent,
+                    "item": currentUrl,
+                });
+            }
+        }
+        
+        const breadcrumbScript = document.getElementById("breadcrumbSchema");
+        if (breadcrumbScript) {
+            breadcrumbScript.textContent = JSON.stringify(breadcrumb, null, 2);
+        }
+      });
+    </script>
   </body>
 </html>

@@ -9,9 +9,36 @@
       content="İstanbul’da buzdolabı için hızlı, güvenilir ve uygun fiyatlı teknik servis hizmeti. Buzdolabı arızası, bakımı ve onarımı için uzman ekibimizle yanınızdayız."
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+   
   </head>
   <body>
     <div id="header"></div>
+    <script type="application/ld+json" id="breadcrumbSchema">
+      {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+              {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Ana Sayfa",
+                  "item": "https://beyaz-esya-servisi.vercel.app/"
+              },
+              {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Hizmetler",
+                  "item": "https://beyaz-esya-servisi.vercel.app//hizmetler"
+              },
+              {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Beyaz Eşya Servisi",
+                  "item": "https://beyaz-esya-servisi.vercel.app/hizmet?service=Beyaz+Eşya+Servisi"
+              }
+          ]
+      }
+      </script>
     <noscript>
       <header>
         <nav class="modern-header">
