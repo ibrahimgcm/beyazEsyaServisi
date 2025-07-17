@@ -31,13 +31,11 @@
     <!-- Preload critical resources - Optimized for smaller sizes -->
     
     <!-- Preload critical fonts -->
-    <link rel="preload" as="font" href="assets/fonts/Roboto-Regular.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="assets/fonts/Roboto-Medium.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="assets/fonts/Roboto-Bold.ttf" type="font/ttf" crossorigin>
+    <!-- Roboto font preload satırları kaldırıldı -->
     
     <!-- Critical CSS inlined -->
     <style>
-      /* Critical above-the-fold styles */
+      /* Roboto ve diğer custom fontlarla ilgili @font-face tanımları kaldırıldı */
       :root {
         --content-width: 900px;
         --primary-color: #1976d2;
@@ -46,28 +44,6 @@
         --heading-color: #111;
         --border-radius: 12px;
         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      @font-face {
-        font-family: 'Roboto';
-        src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'Roboto';
-        src: url('assets/fonts/Roboto-Medium.ttf') format('truetype');
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'Roboto';
-        src: url('assets/fonts/Roboto-Bold.ttf') format('truetype');
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
       }
       
       /* Critical layout styles */
@@ -249,7 +225,7 @@
     <script src="assets/js/header-menu.js" defer></script>
     <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
     <div class="hero-section" style="display: flex; align-items: center; justify-content: center; min-height: 120px; background: #f8f8f8;">
-      <h1 style="font-size: 2em; color: #1976d2; margin: 0;">Beyaz Eşya Servisi İstanbul</h1>
+      <h2 style="font-size: 2em; color: #1976d2; margin: 0;">Beyaz Eşya Servisi İstanbul</h2>
     </div>
     <main style="max-width: 900px; margin: 32px auto 0 auto; padding: 0 16px;">
       <div id="breadcrumb" aria-label="breadcrumb">
