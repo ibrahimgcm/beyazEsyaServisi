@@ -184,8 +184,9 @@ class ReviewsSlider {
   }
   
   updateSlider() {
-    const translateX = -this.currentSlide * (this.cardWidth + this.gap);
-    this.track.style.transform = `translateX(${translateX}px)`;
+    // Use percentage-based transforms to avoid layout calculations
+    const translateX = -this.currentSlide * 100;
+    this.track.style.transform = `translateX(${translateX}%)`;
   }
   
   updateDots() {
@@ -225,14 +226,25 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe review cards for scroll animations
+// Observe review cards for scroll animations - Optimized to prevent layout shift
 document.addEventListener('DOMContentLoaded', () => {
-  const reviewCards = document.querySelectorAll('.review-card');
-  reviewCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
+  // Use requestAnimationFrame to batch DOM operations
+  requestAnimationFrame(() => {
+    const reviewCards = document.querySelectorAll('.review-card');
+    reviewCards.forEach((card, index) => {
+      // Batch style changes to prevent layout thrashing
+      card.style.cssText += `
+        opacity: 0;
+        transform: translateY(20px) translateZ(0);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        will-change: opacity, transform;
+      `;
+      
+      // Stagger the observation to prevent simultaneous animations
+      setTimeout(() => {
+        observer.observe(card);
+      }, index * 50);
+    });
   });
 });
 

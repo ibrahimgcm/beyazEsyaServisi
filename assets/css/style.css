@@ -614,31 +614,37 @@ a[href^="tel:"]:focus {
 .reviews-slider-container {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Veya kart genişliğinize göre ayarlayın */
+  max-width: 600px;
   margin: 0 auto;
+  contain: layout style;
+  min-height: 200px; /* Prevent layout shift */
 }
 .reviews-slider {
-  flex: 1;
   overflow: hidden;
   border-radius: 20px;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 .reviews-track {
   display: flex;
-  gap: 16px; /* Kartlar arası boşluk */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  contain: layout style;
 }
 .review-card {
   flex-shrink: 0;
-  width: 100%; /* Konteyner genişliğine tam uyum */
+  width: 100%;
+  min-width: 100%;
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
   border-radius: 20px;
   padding: 28px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(25, 118, 210, 0.1);
   position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  contain: content;
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  contain: layout style;
+  transform: translateZ(0); /* GPU acceleration */
 }
 .review-card:hover {
   transform: translateY(-6px);
