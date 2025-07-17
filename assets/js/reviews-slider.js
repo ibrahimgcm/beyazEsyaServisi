@@ -10,12 +10,19 @@ class ReviewsSlider {
     
     this.currentSlide = 0;
     this.totalSlides = this.cards.length; // Her kart bir slayt
+
+    // Önceden hesaplanmış boyutlar (layout thrash'i azaltmak için)
+    this.cardWidth = 0;
+    this.gap = 0;
     
     this.init();
   }
   
   init() {
     if (!this.slider || !this.track || this.cards.length === 0) return;
+
+    // İlk boyut hesaplaması
+    this.computeDimensions();
     
     this.setupEventListeners();
     this.updateSlider();
@@ -26,6 +33,9 @@ class ReviewsSlider {
     window.addEventListener('resize', () => {
       this.totalSlides = this.cards.length; // Her zaman toplam kart sayısı
       this.currentSlide = Math.min(this.currentSlide, this.totalSlides - 1);
+
+      // Yeniden boyut hesapla (kart genişliği veya gap değişmiş olabilir)
+      this.computeDimensions();
       this.updateSlider();
       this.updateDots();
       this.updateButtons();
@@ -166,10 +176,15 @@ class ReviewsSlider {
     this.updateButtons();
   }
   
+  // Tek noktadan boyut hesaplama (offsetWidth / getComputedStyle sadece burada çağrılır)
+  computeDimensions() {
+    if (this.cards.length === 0) return;
+    this.cardWidth = this.cards[0].offsetWidth;
+    this.gap = parseInt(window.getComputedStyle(this.track).gap) || 0;
+  }
+  
   updateSlider() {
-    const cardWidth = this.cards[0].offsetWidth;
-    const gap = parseInt(window.getComputedStyle(this.track).gap) || 0;
-    const translateX = -this.currentSlide * (cardWidth + gap);
+    const translateX = -this.currentSlide * (this.cardWidth + this.gap);
     this.track.style.transform = `translateX(${translateX}px)`;
   }
   
