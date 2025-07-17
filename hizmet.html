@@ -654,6 +654,7 @@
     <script type="application/ld+json" id="articleSchema"></script>
     <script type="application/ld+json" id="faqSchema"></script>
     <script type="application/ld+json" id="breadcrumbSchema"></script>
+    <script type="application/ld+json" id="serviceSchema"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const serviceData = {
@@ -814,22 +815,44 @@
 
         // --- SCHEMA.ORG STRUCTURED DATA ---
 
+        // Individual Review Schemas - Google'ın önerdiği yapı
         const reviewElements = document.querySelectorAll('.review-card');
-        const reviews = Array.from(reviewElements).map(reviewEl => {
+        const reviewSchemas = Array.from(reviewElements).map((reviewEl, index) => {
           const reviewBodyEl = reviewEl.querySelector('.review-content p');
           const authorNameEl = reviewEl.querySelector('.author-name');
           if (reviewBodyEl && authorNameEl) {
             return {
+              "@context": "https://schema.org/",
               "@type": "Review",
+              "itemReviewed": {
+                "@type": "LocalBusiness",
+                "name": "İstanbul Teknik Servis",
+                "image": origin + "/assets/img/beyaz-esya-hero.jpg",
+                "telephone": "+905551234567",
+                "priceRange": "₺₺",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Merkez Ofis",
+                  "addressLocality": "İstanbul",
+                  "addressRegion": "İstanbul",
+                  "addressCountry": "TR"
+                },
+                "servesCuisine": name // Hizmet türü
+              },
               "reviewRating": {
                 "@type": "Rating",
-                "ratingValue": "5", 
+                "ratingValue": "5",
                 "bestRating": "5"
               },
               "reviewBody": reviewBodyEl.textContent.trim(),
               "author": {
                 "@type": "Person",
                 "name": authorNameEl.textContent.trim()
+              },
+              "datePublished": "2024-01-15",
+              "publisher": {
+                "@type": "Organization",
+                "name": "İstanbul Teknik Servis"
               }
             };
           }
@@ -877,18 +900,42 @@
           ] 
         };
         
-        if (reviews.length > 0) {
-          localBusinessSchema.review = reviews;
-          localBusinessSchema.aggregateRating = {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "bestRating": "5",
-            "reviewCount": reviews.length
-          };
-        }
-
         document.getElementById('localBusinessSchema').textContent = JSON.stringify(localBusinessSchema, null, 2);
 
+        // Service Schema - Review'ları buradan çıkardık
+        const serviceSchema = {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": name,
+          "name": name,
+          "description": description,
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "İstanbul Teknik Servis",
+            "telephone": "+905551234567",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "İstanbul",
+              "addressCountry": "TR"
+            }
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "İstanbul"
+          }
+        };
+        
+        document.getElementById('serviceSchema').textContent = JSON.stringify(serviceSchema, null, 2);
+
+        // Her review için ayrı script tag'i oluştur
+        reviewSchemas.forEach((reviewSchema, index) => {
+          const reviewScriptTag = document.createElement('script');
+          reviewScriptTag.type = 'application/ld+json';
+          reviewScriptTag.textContent = JSON.stringify(reviewSchema, null, 2);
+          reviewScriptTag.id = `reviewSchema${index}`;
+          document.head.appendChild(reviewScriptTag);
+        });
+        
 
         // Article Schema
         const articleSchema = {
@@ -946,6 +993,4 @@
       });
     </script>
   </body>
-</html>
-
 </html>
