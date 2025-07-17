@@ -762,10 +762,6 @@
           "review": [
             {
               "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis"
-              },
               "author": {
                 "@type": "Person",
                 "name": "Ayşe K."
@@ -779,10 +775,6 @@
             },
             {
               "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis"
-              },
               "author": {
                 "@type": "Person",
                 "name": "Mehmet T."
@@ -796,10 +788,6 @@
             },
             {
               "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis"
-              },
               "author": {
                 "@type": "Person",
                 "name": "Ali S."
@@ -813,10 +801,6 @@
             },
             {
               "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis"
-              },
               "author": {
                 "@type": "Person",
                 "name": "Fatma L."
@@ -830,10 +814,6 @@
             },
             {
               "@type": "Review",
-              "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "İstanbul Teknik Servis"
-              },
               "author": {
                 "@type": "Person",
                 "name": "Burak Y."
@@ -867,153 +847,7 @@
         };
         document.getElementById('breadcrumbSchema').textContent = JSON.stringify(breadcrumbSchema, null, 2);
 
-        // Additional reviews schema for better SEO
-        const reviewsSchema = {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Beyaz Eşya Servisi İstanbul",
-          "description": "İstanbul'da buzdolabı, çamaşır ve bulaşık makinesi, fırın, klima, kombi ve televizyon için hızlı, güvenilir ve uygun fiyatlı beyaz eşya teknik servis hizmeti.",
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "İstanbul Teknik Servis",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Merkez Mahallesi, Beyaz Eşya Caddesi No:1",
-              "addressLocality": "İstanbul",
-              "postalCode": "34000",
-              "addressRegion": "İstanbul",
-              "addressCountry": "TR"
-            }
-          },
-          "review": [
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Elif D."
-              },
-              "reviewBody": "Fiyatlar çok makul, hizmet kalitesi yüksek.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Gizem U."
-              },
-              "reviewBody": "Teknisyenler çok bilgili ve güler yüzlüydü.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Serkan A."
-              },
-              "reviewBody": "Beyaz eşyam ilk günkü gibi çalışıyor, teşekkürler!",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Melis E."
-              },
-              "reviewBody": "Telefonla aradım, hemen randevu verdiler.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Onur K."
-              },
-              "reviewBody": "Yedek parça hemen temin edildi, çok memnun kaldım.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Deniz S."
-              },
-              "reviewBody": "İşçilik çok kaliteli, tekrar tercih edeceğim.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            },
-            {
-              "@type": "Review",
-              "itemReviewed": {
-                "@type": "Service",
-                "name": "Beyaz Eşya Servisi İstanbul"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Ayhan B."
-              },
-              "reviewBody": "Tavsiye üzerine aradım, çok memnun kaldım.",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": 5,
-                "bestRating": 5
-              }
-            }
-          ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": 4.9,
-            "reviewCount": 12,
-            "bestRating": 5
-          }
-        };
-        document.getElementById('reviewsSchema').textContent = JSON.stringify(reviewsSchema, null, 2);
+        // Removed unsupported reviewsSchema injection to avoid Service review errors
       });
     </script>
 
