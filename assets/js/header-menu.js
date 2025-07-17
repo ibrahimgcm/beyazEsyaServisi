@@ -35,7 +35,9 @@ function setupHeaderMenu() {
       if(window.innerWidth <= 800) {
         e.preventDefault();
         var submenu = btn.nextElementSibling;
+        // Sadece görünürlük ile aç/kapa
         submenu.classList.toggle('submenu-open');
+        // Ölçüme dayalı height/width değişikliği yapma
       }
     });
   });

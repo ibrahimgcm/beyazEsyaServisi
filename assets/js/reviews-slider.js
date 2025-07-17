@@ -74,16 +74,18 @@ class ReviewsSlider {
       startX = e.touches[0].clientX;
       isDragging = true;
       this.track.style.transition = 'none';
+      // DOM ölçümünü başta yap ve sakla
+      this._sliderWidth = this.slider.offsetWidth;
     }, { passive: true });
     
     this.slider.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
-      
       currentX = e.touches[0].clientX;
       const diffX = currentX - startX;
       const currentTransform = this.currentSlide * -100;
-      
-      this.track.style.transform = `translateX(${currentTransform + (diffX / this.slider.offsetWidth) * 100}%)`;
+      // Saklanan değeri kullan
+      const sliderWidth = this._sliderWidth || this.slider.offsetWidth;
+      this.track.style.transform = `translateX(${currentTransform + (diffX / sliderWidth) * 100}%)`;
     }, { passive: true });
     
     this.slider.addEventListener('touchend', (e) => {
