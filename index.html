@@ -242,19 +242,8 @@
     </header>
     <script src="assets/js/header-menu.js" defer></script>
     <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
-    <div class="hero-section">
-      <picture>
-        <source media="(min-width: 900px)" srcset="assets/img/beyaz-esya-hero-900x220.webp" type="image/webp">
-        <source media="(min-width: 900px)" srcset="assets/img/beyaz-esya-hero-900x220.jpg" type="image/jpeg">
-        <source media="(min-width: 600px)" srcset="assets/img/beyaz-esya-hero-600x147.webp" type="image/webp">
-        <source media="(min-width: 600px)" srcset="assets/img/beyaz-esya-hero-600x147.jpg" type="image/jpeg">
-        <source media="(max-width: 599px)" srcset="assets/img/beyaz-esya-hero-400x100.webp" type="image/webp">
-        <img src="assets/img/beyaz-esya-hero.jpg" alt="Beyaz Eşya Servisi" width="900" height="220" fetchpriority="high">
-      </picture>
-=======
     <div class="hero-section" style="display: flex; align-items: center; justify-content: center; min-height: 120px; background: #f8f8f8;">
       <h1 style="font-size: 2em; color: #1976d2; margin: 0;">Beyaz Eşya Servisi İstanbul</h1>
-
     </div>
     <main style="max-width: 900px; margin: 32px auto 0 auto; padding: 0 16px;">
       <div id="breadcrumb" aria-label="breadcrumb">
@@ -946,24 +935,7 @@
     
     <!-- Image loading optimization -->
     <script>
-<<<<<<< HEAD
-      // Hero image loading optimization
-      document.addEventListener('DOMContentLoaded', function() {
-        const heroImg = document.querySelector('.hero-section img');
-        if (heroImg) {
-          heroImg.addEventListener('load', function() {
-            this.classList.add('loaded');
-          });
-          
-          // If image is already cached and loaded
-          if (heroImg.complete) {
-            heroImg.classList.add('loaded');
-          }
-        }
-      });
-=======
       // Removed hero image loading optimization script
->>>>>>> 9b3819c (İlk commit: projeyi ekledim)
     </script>
     
     <script type="application/ld+json" id="localBusinessSchema"></script>
