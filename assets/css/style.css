@@ -148,6 +148,10 @@ body {
   box-sizing: border-box;
 }
 
+#header, #footer {
+  min-height: 80px; /* Ortalama bir yükseklik, içeriğe göre ayarlanabilir */
+}
+
 html {
   scroll-behavior: smooth;
 }
