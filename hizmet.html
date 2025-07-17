@@ -777,7 +777,39 @@
 
         const params = new URLSearchParams(window.location.search);
         const serviceKey = params.get('service');
-        const serviceInfo = serviceKey ? serviceData[serviceKey] : serviceData['beyaz-esya'];
+        let serviceInfo;
+
+        function formatServiceName(key) {
+          if (!key) return 'Beyaz Eşya Servisi';
+          // Converts "some-service-name" or "some+service+name" to "Some Service Name"
+          const decodedKey = decodeURIComponent(key.replace(/\+/g, ' '));
+          return decodedKey
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        if (serviceKey) {
+          if (serviceData.hasOwnProperty(serviceKey)) {
+            // Case 1: It's a predefined service, use the existing detailed data.
+            serviceInfo = serviceData[serviceKey];
+          } else {
+            // Case 2: It's a custom service query. Generate info dynamically.
+            const customServiceName = formatServiceName(serviceKey);
+            serviceInfo = {
+                name: customServiceName,
+                h2: `İstanbul Profesyonel ${customServiceName} Tamir ve Bakım Hizmetleri`,
+                description: `İstanbul’da ${customServiceName} için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.`,
+                faq: [
+                  { q: `${customServiceName} servisi ne kadar sürede gelir?`, a: 'İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.' },
+                  { q: 'Tamir edilen parçalar garantili mi?', a: 'Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.' }
+                ]
+            };
+          }
+        } else {
+          // Case 3: No service parameter, use the default "beyaz-esya".
+          serviceInfo = serviceData['beyaz-esya'];
+        }
+        
         const pageName = serviceInfo.name;
         
         const currentUrl = window.location.href;
