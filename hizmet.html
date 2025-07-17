@@ -35,10 +35,15 @@
     <style>
       body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; }
       .modern-header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-      main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 1200px; contain: layout; will-change: auto; }
-      .hizmetler-ikon-ozet { max-width: 600px; margin: 0 auto 32px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 18px; justify-items: center; align-items: start; min-height: 260px; }
-      .hizmet-ikon-kutu { text-align: center; min-height: 120px; max-height: 140px; width: 100%; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+      main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 1200px; contain: layout style; transform: translateZ(0); will-change: auto; display: block; position: relative; }
+      .hizmetler-ikon-ozet { max-width: 600px; margin: 0 auto 32px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 18px; justify-items: center; align-items: start; height: 280px; grid-template-rows: repeat(2, 1fr); contain: layout; transform: translateZ(0); }
+      .hizmet-ikon-kutu { text-align: center; width: 100%; height: 120px; min-height: 120px; max-height: 140px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
       .hizmet-ikon-kutu div:first-child { height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2.2em; }
+      /* Başlıklar yüklenmeden önce placeholder */
+      #mainTitle:empty::before { content: "Hizmetlerimiz"; color: transparent; user-select: none; pointer-events: none; }
+      #serviceTitle:empty::before { content: "İstanbul'un Tüm Beyaz Eşya Servislerinde Uzmanlık"; color: transparent; user-select: none; pointer-events: none; }
+      /* Müşteri Memnuniyeti başlığı için sabit alan */
+      .hizmet-ikon-kutu div[style*="font-weight: bold"] { height: 28px; display: flex; align-items: center; justify-content: center; line-height: 1.2; overflow: hidden; }
       /* Loading placeholder styles */
       .loading-placeholder { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
       @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
@@ -94,6 +99,11 @@
         padding: 0 16px;
         font-family: Arial, sans-serif;
         min-height: 1200px;
+        contain: layout style;
+        transform: translateZ(0);
+        will-change: auto;
+        display: block;
+        position: relative;
       "
     >
       <h1 id="mainTitle">Hizmetlerimiz</h1>
@@ -181,12 +191,15 @@
           gap: 24px 18px;
           justify-items: center;
           align-items: start;
-          min-height: 260px;
+          height: 280px;
+          grid-template-rows: repeat(2, 1fr);
+          contain: layout;
+          transform: translateZ(0);
         "
       >
-        <div class="hizmet-ikon-kutu" style="text-align: center; min-height:120px;">
-          <div style="font-size: 2.2em">❤️</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
+        <div class="hizmet-ikon-kutu" style="text-align: center; width:100%; height:120px; min-height:120px; max-height:140px; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden;">
+          <div style="font-size: 2.2em; height:48px; display:flex; align-items:center; justify-content:center;">❤️</div>
+          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px; height:28px; display:flex; align-items:center; justify-content:center; line-height:1.2; overflow:hidden;">
             Müşteri Memnuniyeti
           </div>
           <div style="font-size: 0.98em; color: #444; margin-top: 4px">
@@ -194,27 +207,27 @@
             sunuyoruz.
           </div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center; min-height:120px;">
-          <div style="font-size: 2.2em">📞</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
+        <div class="hizmet-ikon-kutu" style="text-align: center; width:100%; height:120px; min-height:120px; max-height:140px; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden;">
+          <div style="font-size: 2.2em; height:48px; display:flex; align-items:center; justify-content:center;">📞</div>
+          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px; height:28px; display:flex; align-items:center; justify-content:center; line-height:1.2; overflow:hidden;">
             7/24 İletişim
           </div>
           <div style="font-size: 0.98em; color: #444; margin-top: 4px">
             Günün her saati bize ulaşabilir, hızlıca destek alabilirsiniz.
           </div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center; min-height:120px;">
-          <div style="font-size: 2.2em">🔧</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
+        <div class="hizmet-ikon-kutu" style="text-align: center; width:100%; height:120px; min-height:120px; max-height:140px; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden;">
+          <div style="font-size: 2.2em; height:48px; display:flex; align-items:center; justify-content:center;">🔧</div>
+          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px; height:28px; display:flex; align-items:center; justify-content:center; line-height:1.2; overflow:hidden;">
             Uzman Teknik Ekip
           </div>
           <div style="font-size: 0.98em; color: #444; margin-top: 4px">
             Deneyimli ve eğitimli teknik ekibimizle güvenilir servis hizmeti.
           </div>
         </div>
-        <div class="hizmet-ikon-kutu" style="text-align: center; min-height:120px;">
-          <div style="font-size: 2.2em">⏱</div>
-          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
+        <div class="hizmet-ikon-kutu" style="text-align: center; width:100%; height:120px; min-height:120px; max-height:140px; display:flex; flex-direction:column; justify-content:flex-start; overflow:hidden;">
+          <div style="font-size: 2.2em; height:48px; display:flex; align-items:center; justify-content:center;">⏱</div>
+          <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px; height:28px; display:flex; align-items:center; justify-content:center; line-height:1.2; overflow:hidden;">
             Hızlı Servis
           </div>
           <div style="font-size: 0.98em; color: #444; margin-top: 4px">
