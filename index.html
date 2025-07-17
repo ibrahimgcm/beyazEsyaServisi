@@ -19,7 +19,9 @@
     
     <!-- Optimized font loading with fallback -->
     <!-- Preload critical resources -->
-    <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-600x147.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-900x220.webp" media="(min-width: 900px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-600x147.webp" media="(min-width: 600px) and (max-width: 899.9px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/beyaz-esya-hero-400x100.webp" media="(max-width: 599.9px)" fetchpriority="high">
     <link rel="preconnect" href="https://servisdeneme.netlify.app" crossorigin>
     <link
       rel="apple-touch-icon"
@@ -52,7 +54,14 @@
     <div id="header"></div>
     <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
     <div class="hero-section">
-      <img src="assets/img/beyaz-esya-hero.jpg" alt="Beyaz Eşya Servisi" width="900" height="220" fetchpriority="high">
+      <picture>
+        <source media="(min-width: 900px)" srcset="assets/img/beyaz-esya-hero-900x220.webp" type="image/webp">
+        <source media="(min-width: 900px)" srcset="assets/img/beyaz-esya-hero-900x220.jpg" type="image/jpeg">
+        <source media="(min-width: 600px)" srcset="assets/img/beyaz-esya-hero-600x147.webp" type="image/webp">
+        <source media="(min-width: 600px)" srcset="assets/img/beyaz-esya-hero-600x147.jpg" type="image/jpeg">
+        <source media="(max-width: 599px)" srcset="assets/img/beyaz-esya-hero-400x100.webp" type="image/webp">
+        <img src="assets/img/beyaz-esya-hero.jpg" alt="Beyaz Eşya Servisi" width="900" height="220" fetchpriority="high">
+      </picture>
     </div>
     <main style="max-width: 900px; margin: 32px auto 0 auto; padding: 0 16px;">
       <div class="text-container" style="contain: layout style;">
