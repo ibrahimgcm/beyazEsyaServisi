@@ -1392,3 +1392,24 @@ textarea {
 .skip-link:focus {
   top: 0;
 }
+
+.breadcrumb {
+  background-color: #2c3e50;
+  padding: 0.5rem 0;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #9ad1ff;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #fff;
+}
