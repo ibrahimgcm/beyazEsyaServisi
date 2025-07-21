@@ -76,6 +76,22 @@
     </style>
     <link rel="preload" href="assets/css/hizmet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/hizmet.css"></noscript>
+
+    <!-- Additional optimizations to reduce CLS and improve LCP -->
+    <style>
+      /* Reserve a fixed row height for the icon grid to prevent layout shifts */
+      .hizmetler-ikon-ozet { grid-auto-rows: minmax(140px, auto); }
+      .hizmet-ikon-kutu { min-height: 140px; }
+
+      /* Defer rendering of the article section until it scrolls into view.
+         This shifts the LCP element to the hero heading, reducing LCP render delay. */
+      @supports (content-visibility: auto) {
+        #makale {
+          content-visibility: auto;
+          contain-intrinsic-size: 800px 500px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
