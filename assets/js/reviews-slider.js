@@ -12,6 +12,7 @@ class ReviewsSlider {
     this.totalSlides = this.cards.length; // Her kart bir slayt
 
     // Önceden hesaplanmış ve kullanılmayan boyutlar kaldırıldı
+    this._sliderWidth = 0;
     
     this.init();
   }
@@ -74,17 +75,15 @@ class ReviewsSlider {
       startX = e.touches[0].clientX;
       isDragging = true;
       this.track.style.transition = 'none';
-      // DOM ölçümünü başta yap ve sakla
-      this._sliderWidth = this.slider.offsetWidth;
     }, { passive: true });
     
     this.slider.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
+      if (!isDragging || !this._sliderWidth) return;
       currentX = e.touches[0].clientX;
       const diffX = currentX - startX;
       const currentTransform = this.currentSlide * -100;
       // Saklanan değeri kullan
-      const sliderWidth = this._sliderWidth || this.slider.offsetWidth;
+      const sliderWidth = this._sliderWidth;
       this.track.style.transform = `translateX(${currentTransform + (diffX / sliderWidth) * 100}%)`;
     }, { passive: true });
     
@@ -178,9 +177,9 @@ class ReviewsSlider {
   
   // Tek noktadan boyut hesaplama (offsetWidth / getComputedStyle sadece burada çağrılır)
   computeDimensions() {
-    if (this.cards.length === 0) return;
-    // this.cardWidth = this.cards[0].offsetWidth; // Kullanılmıyor ve yeniden düzenlemeye neden oluyor
-    // this.gap = parseInt(window.getComputedStyle(this.track).gap) || 0; // Kullanılmıyor ve yeniden düzenlemeye neden oluyor
+    if (this.slider) {
+      this._sliderWidth = this.slider.offsetWidth;
+    }
   }
   
   updateSlider() {
