@@ -145,8 +145,8 @@
       }
     </style>
     <!-- Preload critical images -->
-    <link rel="preload" as="image" href="assets/img/favicon-star-32x32.png" type="image/png">
-    <link rel="preload" as="image" href="assets/img/favicon-call-32x32.png" type="image/png">
+    <link rel="preload" href="assets/img/favicon-star-32x32.png" as="image" type="image/png" fetchpriority="high">
+    <link rel="preload" href="assets/img/favicon-call-32x32.png" as="image" type="image/png" fetchpriority="high">
     
     <!-- Critical CSS optimization -->
     <style>
@@ -298,7 +298,7 @@
       >
         <div class="hizmet-ikon-kutu" style="text-align: center">
           <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; contain: strict;">
-            <img src="assets/img/favicon-star-32x32.png" srcset="assets/img/favicon-star-32x32.png 1x, assets/img/favicon-star-48x48.png 1.5x" alt="Müşteri Memnuniyeti" width="32" height="32" style="display: block; aspect-ratio: 1/1;">
+            <img src="assets/img/favicon-star-32x32.png" alt="Müşteri Memnuniyeti" width="32" height="32" style="display: block; aspect-ratio: 1/1;">
           </div>
           <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
             Müşteri Memnuniyeti
@@ -310,7 +310,7 @@
         </div>
         <div class="hizmet-ikon-kutu" style="text-align: center">
           <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-            <img src="assets/img/favicon-call-32x32.png" srcset="assets/img/favicon-call-32x32.png 1x, assets/img/favicon-call-48x48.png 1.5x" alt="7/24 İletişim" width="32" height="32" style="display: block;">
+            <img src="assets/img/favicon-call-32x32.png" alt="7/24 İletişim" width="32" height="32" style="display: block; aspect-ratio: 1/1;">
           </div>
           <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
             7/24 İletişim
