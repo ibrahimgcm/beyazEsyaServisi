@@ -1,0 +1,10 @@
+[33mf5a86b0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge branch 'main' of https://github.com/ibrahimgcm/beyazEsyaServisi3
+[33mb78d6d0[m Initial commit of the Beyaz Eşya Servisi website, including core HTML pages, CSS styles, JavaScript functionality, and essential assets such as images and fonts. Added configuration files for Netlify and sitemap for SEO optimization.
+[33md2a8fd3[m[33m ([m[1;32myedek-oncesi-silme[m[33m)[m Remote ve local değişiklikleri birleştir
+[33m65b7c82[m İlk commit
+[33mac5e701[m Enhance hizmet.html with layout improvements and performance optimizations
+[33me6dcadb[m Refactor hizmet.html for enhanced layout and performance
+[33m371ed91[m Enhance hizmet.html for improved performance and user experience
+[33m01e65e1[m Add min-height styles to service section for improved layout consistency
+[33m2e16253[m Update hizmet.html to enhance layout consistency and accessibility
+[33m0b576a8[m Refactor hizmet.html for enhanced structure, SEO, and performance
