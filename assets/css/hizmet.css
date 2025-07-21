@@ -39,22 +39,8 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
-#header, #footer {
-  min-height: 80px; /* Ortalama bir yükseklik, içeriğe göre ayarlanabilir */
-}
-
 html {
   scroll-behavior: smooth;
-}
-
-/* Content layout stabilization - CLS düzeltmesi */
-.content-wrapper {
-  max-width: var(--content-width);
-  width: 100%;
-  margin: 0 auto;
-  min-height: 100vh;
-  contain: layout style paint;
-  transform: translateZ(0); /* GPU acceleration */
 }
 
 /* Image layout shift önleme */
@@ -66,91 +52,22 @@ img {
   transform: translateZ(0);
 }
 
-/* Hero section layout stability - Ana CLS sorunu */
+/* Hero section layout stability */
 .hero-section {
-  min-height: 220px;
-  height: 220px; /* Sabit yükseklik */
-  aspect-ratio: 900/220;
-  width: 100%;
-  max-width: 900px;
-  position: relative;
-  overflow: hidden;
-  contain: size layout style;
-  margin: 0 auto;
-  padding: 0;
-  background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%); /* Gradient placeholder */
-  transform: translateZ(0); /* GPU acceleration */
+    min-height: 120px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-section img {
-  width: 100%;
-  height: 220px; /* Sabit yükseklik */
-  object-fit: cover;
-  object-position: center;
-  transform: translateZ(0);
-  will-change: auto; /* Sadece gerektiğinde */
-  aspect-ratio: 900/220; /* Aspect ratio korunması */
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+.hero-section h1 {
+    font-size: 2em;
+    color: #1976d2;
+    margin: 0;
+    font-weight: 700;
 }
 
-.hero-section img.loaded {
-  opacity: 1;
-}
-
-.hero-section picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-/* Responsive hero images - Mobile first approach */
-@media (max-width: 599px) {
-  .hero-section {
-    height: 100px; /* Mobilde daha küçük */
-    min-height: 100px;
-    aspect-ratio: 400/100;
-  }
-  .hero-section img {
-    height: 100px;
-    aspect-ratio: 400/100;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 899px) {
-  .hero-section {
-    height: 147px; /* Tablet boyutu */
-    min-height: 147px;
-    aspect-ratio: 600/147;
-  }
-  .hero-section img {
-    height: 147px;
-    aspect-ratio: 600/147;
-  }
-}
-
-@media (min-width: 900px) {
-  .hero-section {
-    height: 220px; /* Desktop boyutu */
-    min-height: 220px;
-    aspect-ratio: 900/220;
-  }
-  .hero-section img {
-    height: 220px;
-    aspect-ratio: 900/220;
-  }
-}
-
-/* Text container stability - Layout shift önleme */
-.text-container {
-  contain: layout style;
-  min-height: 3em; /* Sabit minimum yükseklik */
-}
 
 h1, .main-heading {
   min-height: 2.5em;
@@ -183,10 +100,6 @@ h2, .secondary-heading {
 
 /* Performance optimizasyonu */
 @media (min-width: 768px) {
-  img[src*="hero"] {
-    content-visibility: auto;
-    contain: layout style paint;
-  }
 }
 
 /* Reduced motion support */
@@ -202,7 +115,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -1332,43 +1245,4 @@ textarea {
 
 [aria-hidden="true"] {
   display: none;
-}
-
-/* Klavye gezintisi için skip link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #1976d2;
-  color: white;
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.3s;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
-.breadcrumb {
-  background-color: #2c3e50;
-  padding: 0.5rem 0;
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 2rem;
-}
-
-.breadcrumb a {
-  color: #9ad1ff;
-  text-decoration: none;
-}
-
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumb span {
-  color: #fff;
-}
-
-/* LCP font optimization rules removed to prevent CLS */
+} 
