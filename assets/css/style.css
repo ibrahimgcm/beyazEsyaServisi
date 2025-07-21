@@ -188,7 +188,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-size: 14px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -762,7 +762,7 @@ a[href^="tel:"]:focus {
   color: #fff;
   padding: 60px 0 24px;
   margin-top: 48px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-container {
@@ -1357,29 +1357,4 @@ textarea {
   color: #fff;
 }
 
-/* LCP font optimization */
-* {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* Override any custom font loading */
-body, p, h1, h2, h3, div, span {
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-display: block !important;
-}
-
-/* Critical content optimization */
-#makale p:first-child {
-  font-family: Arial, Helvetica, sans-serif !important;
-  line-height: 1.4;
-  margin: 0 0 16px 0;
-  contain: none;
-  will-change: auto;
-}
-
-/* Remove expensive visual effects for LCP */
-#makale {
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  transform: none !important;
-}
+/* LCP font optimization rules removed to prevent CLS */
