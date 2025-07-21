@@ -208,6 +208,19 @@
         }
       </style>
   
+      <div id="breadcrumb" aria-label="breadcrumb" style="margin-bottom:16px;">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li style="margin: 0 8px">/</li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/contact.html"><span itemprop="name">İletişim</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        </ol>
+      </div>
       <h1 itemprop="name">İletişim</h1>
   
       <div class="hero-text">
@@ -250,11 +263,11 @@
         <a href="tel:05551234567" class="cta-button">Şimdi Ara: 0555 123 45 67</a>
       </div>
   
-      <div class="disclaimer">
+      <div class="disclaimer" style="display:none;">
         Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için
         hizmet verilmektedir.
       </div>
-      <div id="breadcrumb" aria-label="breadcrumb">
+      <div id="breadcrumb-bottom" aria-label="breadcrumb" style="display:none;">
         <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>

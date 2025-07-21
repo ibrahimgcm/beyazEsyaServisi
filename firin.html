@@ -118,6 +118,19 @@
         padding: 0 16px;
       "
     >
+      <div id="breadcrumb" aria-label="breadcrumb" style="margin-bottom:16px;">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li style="margin: 0 8px">/</li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/firin.html"><span itemprop="name">Fırın Servisi</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+        </ol>
+      </div>
       <h1 id="mainTitle">Fırın Servisi</h1>
       <h2 id="serviceTitle">Her Türlü Fırın İçin Profesyonel Tamir ve Bakım</h2>
       <div class="social-share" style="margin-bottom: 16px">
@@ -334,34 +347,34 @@
             <button class="dot" data-slide="3" aria-label="4. yorum"></button>
           </div>
         </section>
-      <div id="breadcrumb" aria-label="breadcrumb">
-        <ol
-          style="
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            font-size: 0.9em;
-            color: #555;
-          "
-        >
-          <li>
-            <a href="/index.html">
-              <span>Ana Sayfa</span></a
-            >
-            
-          </li>
-          <li style="margin: 0 8px">/</li>
-          <li id="breadcrumb-current-page">
-            <a href="/firin.html">
-              <span>Fırın Servisi</span></a
-            >
-            
-          </li>
-        </ol>
-      </div>
     </main>
+    <div id="breadcrumb-bottom" aria-label="breadcrumb" style="display:none;">
+      <ol
+        style="
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          font-size: 0.9em;
+          color: #555;
+        "
+      >
+        <li>
+          <a href="/index.html">
+            <span>Ana Sayfa</span></a
+          >
+          
+        </li>
+        <li style="margin: 0 8px">/</li>
+        <li id="breadcrumb-current-page">
+          <a href="/firin.html">
+            <span>Fırın Servisi</span></a
+          >
+          
+        </li>
+      </ol>
+    </div>
     <section id="faq-section" style="max-width: 900px; margin: 32px auto; padding: 0 16px;">
       <h2 style="margin-bottom: 24px;">Sıkça Sorulan Sorular</h2>
       <div id="faq-container">
