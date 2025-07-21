@@ -413,10 +413,11 @@ a[href^="tel:"]:focus {
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(6, 77, 26, 0.4);
 }
-.footer-tel-btn img {
-  width: 24px !important;
-  height: 24px !important;
-  filter: brightness(0) invert(1);
+.footer-tel-btn img,
+#floating-search-btn img {
+    width: 20px !important;
+    height: 20px !important;
+    filter: brightness(0) invert(1);
 }
 
 /* SABİT ARAMA BUTONU - AKILLI GÖSTERİM */
