@@ -80,11 +80,8 @@ document.querySelectorAll('.main-nav a[href^="/hizmet/"], .dropdown-content a[hr
   });
 });
 
-if (window.setupHeaderMenuLoaded !== true) {
-  window.setupHeaderMenuLoaded = true;
-  setTimeout(function() {
-    if(document.getElementById('mobile-menu-toggle')) {
-      setupHeaderMenu();
-    }
-  }, 100);
-}
+document.addEventListener('DOMContentLoaded', function() {
+  if(document.getElementById('mobile-menu-toggle')) {
+    setupHeaderMenu();
+  }
+});
