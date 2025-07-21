@@ -9,19 +9,19 @@
       name="description"
       content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
     />
-    <link rel="canonical" href="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
+    <link rel="canonical" id="canonicalLink" href="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Beyaz Eşya Servisi | İstanbul Teknik Servis" />
-    <meta property="og:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
-    <meta property="og:url" content="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
+    <meta property="og:title" id="ogTitle" content="Beyaz Eşya Servisi | İstanbul Teknik Servis" />
+    <meta property="og:description" id="ogDescription" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
+    <meta property="og:url" id="ogUrl" content="https://www.beyaz-esya-servisi.vercel.app/hizmet.html" />
     <meta property="og:image" content="" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Beyaz Eşya Servisi | İstanbul Teknik Servis" />
-    <meta name="twitter:description" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
+    <meta name="twitter:title" id="twitterTitle" content="Beyaz Eşya Servisi | İstanbul Teknik Servis" />
+    <meta name="twitter:description" id="twitterDescription" content="İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
     <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
@@ -213,14 +213,14 @@
           <li class="menu-item has-submenu">
             <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
             <ul class="submenu">
-              <li><a href="/hizmet.html">Beyaz Eşya Servisi</a></li>
-              <li><a href="/buzdolabi.html">Buzdolabı</a></li>
-              <li><a href="/camasir-makinesi.html">Çamaşır Makinesi</a></li>
-              <li><a href="/bulasik-makinesi.html">Bulaşık Makinesi</a></li>
-              <li><a href="/firin.html">Fırın</a></li>
-              <li><a href="/klima.html">Klima</a></li>
-              <li><a href="/kombi.html">Kombi</a></li>
-              <li><a href="/televizyon.html">Televizyon</a></li>
+              <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
+              <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
+              <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
+              <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
+              <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
+              <li><a href="/hizmet.html?service=Klima">Klima</a></li>
+              <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
+              <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
             </ul>
           </li>
           <li><a href="/about.html">Hakkımızda</a></li>
@@ -231,7 +231,7 @@
     <script src="assets/js/header-menu.js" defer></script>
     <!-- Hero Section -->
     <div class="hero-section">
-      <h1>Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
+      <h1 id="heroTitle">Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
     </div>
     <main>
       <div id="breadcrumb" aria-label="breadcrumb" style="margin-bottom:16px;">
@@ -241,7 +241,7 @@
             <meta itemprop="position" content="1" />
           </li>
           <li style="margin: 0 8px">/</li>
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" id="breadcrumbCurrent">
             <a itemprop="item" href="/hizmet.html"><span itemprop="name">Beyaz Eşya Servisi</span></a>
             <meta itemprop="position" content="2" />
           </li>
@@ -250,10 +250,10 @@
       <h1 id="mainTitle">Beyaz Eşya Servisi</h1>
       <h2 id="serviceTitle">İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri</h2>
       <div class="social-share">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
+        <a id="facebookShare" href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
            target="_blank"
            rel="noopener">Facebook'ta Paylaş</a> |
-        <a href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
+        <a id="twitterShare" href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
            target="_blank"
            rel="noopener">Twitter'da Paylaş</a>
       </div>
@@ -500,13 +500,13 @@
       <div class="footer-container">
         <section>
           <h3>Hizmetlerimiz</h3>
-          <a href="/buzdolabi.html">Buzdolabı Servisi</a> |
-          <a href="/camasir-makinesi.html">Çamaşır Makinesi Servisi</a> |
-          <a href="/bulasik-makinesi.html">Bulaşık Makinesi Servisi</a> |
-          <a href="/firin.html">Fırın Servisi</a> |
-          <a href="/klima.html">Klima Servisi</a> |
-          <a href="/kombi.html">Kombi Servisi</a> |
-          <a href="/televizyon.html">Televizyon Servisi</a>
+          <a href="/hizmet.html?service=Buzdolabı">Buzdolabı Servisi</a> |
+          <a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi Servisi</a> |
+          <a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi Servisi</a> |
+          <a href="/hizmet.html?service=Fırın">Fırın Servisi</a> |
+          <a href="/hizmet.html?service=Klima">Klima Servisi</a> |
+          <a href="/hizmet.html?service=Kombi">Kombi Servisi</a> |
+          <a href="/hizmet.html?service=Televizyon">Televizyon Servisi</a>
         </section>
         <section>
           <h3>Kurumsal</h3>
@@ -615,5 +615,189 @@
     "name": "İstanbul"
   }
 }</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const serviceData = {
+            'Beyaz Eşya Servisi': {
+                title: 'Beyaz Eşya Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul’da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.',
+                heroTitle: 'Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek',
+                mainTitle: 'Beyaz Eşya Servisi',
+                serviceTitle: 'İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri',
+                mainDescription: 'Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.',
+                serviceDescription: 'Hizmetlerimiz kapsamında, beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon için uzman teknik servis desteği sunuyoruz. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşabilirsiniz. Deneyimli ekibimizle müşteri memnuniyetini ön planda tutuyoruz.'
+            },
+            'Buzdolabı': {
+                title: 'Buzdolabı Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul’da tüm marka ve model buzdolapları için profesyonel tamir, bakım ve onarım servisi. Hızlı ve güvenilir çözümler.',
+                heroTitle: 'Buzdolabı Servisi İstanbul - Uzman Tamir ve Bakım',
+                mainTitle: 'Buzdolabı Servisi',
+                serviceTitle: 'İstanbul Profesyonel Buzdolabı Tamir ve Bakım Hizmetleri',
+                mainDescription: 'Buzdolabı arızaları, gaz dolumu, motor değişimi gibi tüm ihtiyaçlarınız için uzman ekibimizle hizmetinizdeyiz. İstanbul genelinde aynı gün servis imkanı.',
+                serviceDescription: 'Buzdolabınız soğutmuyor mu? Ses mi yapıyor? Uzman ekibimizle tüm buzdolabı arızalarınıza yerinde ve garantili çözümler sunuyoruz. Orijinal yedek parça kullanıyoruz.'
+            },
+            'Çamaşır Makinesi': {
+                title: 'Çamaşır Makinesi Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul’da çamaşır makinesi tamiri, bakımı ve onarımı. Tüm markalar için profesyonel ve garantili servis hizmeti.',
+                heroTitle: 'Çamaşır Makinesi Servisi İstanbul - Hızlı ve Garantili Çözümler',
+                mainTitle: 'Çamaşır Makinesi Servisi',
+                serviceTitle: 'İstanbul Profesyonel Çamaşır Makinesi Tamir Hizmetleri',
+                mainDescription: 'Çamaşır makineniz su mu akıtıyor, sıkma mı yapmıyor? Deneyimli teknisyenlerimizle her türlü çamaşır makinesi arızasını hızla gideriyoruz.',
+                serviceDescription: 'Her marka ve model çamaşır makinesi için tamir, bakım, kazan değişimi, pompa motoru arızaları gibi konularda profesyonel destek sağlıyoruz.'
+            },
+            'Bulaşık Makinesi': {
+                title: 'Bulaşık Makinesi Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul bulaşık makinesi servisi. Tüm marka ve modeller için yerinde tamir, bakım ve onarım hizmetleri.',
+                heroTitle: 'Bulaşık Makinesi Servisi İstanbul - Profesyonel Onarım',
+                mainTitle: 'Bulaşık Makinesi Servisi',
+                serviceTitle: 'İstanbul Profesyonel Bulaşık Makinesi Tamir ve Bakım',
+                mainDescription: 'Bulaşık makineniz temiz yıkamıyor veya su mu almıyor? Endişelenmeyin. Uzman ekibimizle bulaşık makinesi sorunlarınıza kalıcı çözümler üretiyoruz.',
+                serviceDescription: 'Bulaşık makinesi arızaları, parlatıcı sorunları, su ısıtma problemleri gibi tüm konularda deneyimli ekibimizle yanınızdayız.'
+            },
+            'Fırın': {
+                title: 'Fırın Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul fırın ve ocak servisi. Ankastre ve solo fırınlar için profesyonel tamir, bakım ve montaj hizmetleri.',
+                heroTitle: 'Fırın Servisi İstanbul - Uzman Tamir ve Montaj',
+                mainTitle: 'Fırın Servisi',
+                serviceTitle: 'İstanbul Profesyonel Fırın Tamir ve Bakım Hizmetleri',
+                mainDescription: 'Fırınınız ısıtmıyor mu? Ocağınız yanmıyor mu? Her marka fırın ve ocak için uzman teknisyenlerimizle garantili tamir hizmeti sunuyoruz.',
+                serviceDescription: 'Ankastre fırın montajı, fırın rezistans değişimi, termostat arızaları gibi tüm fırın ve ocak sorunlarınız için bize ulaşın.'
+            },
+            'Klima': {
+                title: 'Klima Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul klima servisi. Klima montaj, demontaj, bakım, onarım ve gaz dolumu hizmetleri. Tüm markalarda uzmanız.',
+                heroTitle: 'Klima Servisi İstanbul - Montaj, Bakım ve Onarım',
+                mainTitle: 'Klima Servisi',
+                serviceTitle: 'İstanbul Profesyonel Klima Bakım ve Tamir Hizmetleri',
+                mainDescription: 'Yazın serin, kışın sıcak bir ortam için klimanızın periyodik bakımını ihmal etmeyin. Klima arızaları ve montaj için profesyonel ekibimizle hizmetinizdeyiz.',
+                serviceDescription: 'Klima bakımı, gaz dolumu, iç ve dış ünite temizliği, elektronik kart arızaları gibi tüm klima ihtiyaçlarınız için bize ulaşabilirsiniz.'
+            },
+            'Kombi': {
+                title: 'Kombi Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul kombi servisi. Kombi arıza, bakım, onarım ve petek temizliği hizmetleri. 7/24 acil servis.',
+                heroTitle: 'Kombi Servisi İstanbul - Acil Arıza, Bakım ve Petek Temizliği',
+                mainTitle: 'Kombi Servisi',
+                serviceTitle: 'İstanbul Profesyonel Kombi Bakım ve Onarım Hizmetleri',
+                mainDescription: 'Kombiniz arızalandığında veya petekleriniz ısınmadığında 7/24 acil servisimizle yanınızdayız. Tüm marka kombilerde uzmanız.',
+                serviceDescription: 'Yıllık kombi bakımı, petek temizliği, eşanjör değişimi, ana kart tamiri gibi tüm kombi hizmetlerini garantili olarak sunuyoruz.'
+            },
+            'Televizyon': {
+                title: 'Televizyon Servisi | İstanbul Teknik Servis',
+                description: 'İstanbul televizyon tamir servisi. LED, LCD, Plazma TV tamiri, panel değişimi ve onarımı. Tüm markalara hizmet.',
+                heroTitle: 'Televizyon Servisi İstanbul - Panel Değişimi ve Onarımı',
+                mainTitle: 'Televizyon Servisi',
+                serviceTitle: 'İstanbul Profesyonel Televizyon Tamir Hizmetleri',
+                mainDescription: 'Televizyonunuzda ses var görüntü mü yok? Ekran mı kırıldı? Her marka ve model televizyon için panel değişimi ve onarım hizmeti sunuyoruz.',
+                serviceDescription: 'LED TV panel onarımı, anakart tamiri, besleme kartı sorunları gibi tüm televizyon arızalarınızda uzman ekibimizle garantili çözümler üretiyoruz.'
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        let serviceName = params.get('service');
+
+        // Use default if service is not provided or empty
+        if (!serviceName || serviceName.trim() === '') {
+            serviceName = 'Beyaz Eşya Servisi';
+        }
+
+        let data = serviceData[serviceName];
+
+        // If the service is not in our predefined list, create a generic entry for it
+        if (!data) {
+            data = {
+                title: `${serviceName} Servisi | İstanbul Teknik Servis`,
+                description: `İstanbul’da ${serviceName} için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.`,
+                heroTitle: `${serviceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`,
+                mainTitle: serviceName,
+                serviceTitle: `İstanbul Profesyonel ${serviceName} Tamir ve Bakım Hizmetleri`,
+                mainDescription: `${serviceName} için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`,
+                serviceDescription: `Hizmetlerimiz kapsamında, ${serviceName} için uzman teknik servis desteği sunuyoruz. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşabilirsiniz. Deneyimli ekibimizle müşteri memnuniyetini ön planda tutuyoruz.`
+            };
+        }
+
+        const updateText = (id, text) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = text;
+        };
+
+        const updateContent = (id, content) => {
+            const el = document.getElementById(id);
+            if (el) el.content = content;
+        };
+        
+        const updateHref = (id, url) => {
+            const el = document.getElementById(id);
+            if (el) el.href = url;
+        };
+
+        // Update Meta Tags
+        document.title = data.title;
+        updateContent('metaDescription', data.description);
+        updateHref('canonicalLink', window.location.href);
+        
+        // Update Open Graph Tags
+        updateContent('ogTitle', data.title);
+        updateContent('ogDescription', data.description);
+        updateContent('ogUrl', window.location.href);
+
+        // Update Twitter Tags
+        updateContent('twitterTitle', data.title);
+        updateContent('twitterDescription', data.description);
+        
+        // Update Page Content
+        updateText('heroTitle', data.heroTitle);
+        updateText('mainTitle', data.mainTitle);
+        updateText('serviceTitle', data.serviceTitle);
+        updateText('mainDescription', data.mainDescription);
+        updateText('serviceDescription', data.serviceDescription);
+
+        // Update Breadcrumb
+        const breadcrumbCurrent = document.querySelector('#breadcrumbCurrent span');
+        const breadcrumbCurrentLink = document.querySelector('#breadcrumbCurrent a');
+        if (breadcrumbCurrent) breadcrumbCurrent.textContent = data.mainTitle;
+        if (breadcrumbCurrentLink) breadcrumbCurrentLink.href = window.location.href;
+
+        // Update Share Links
+        const currentUrlEncoded = encodeURIComponent(window.location.href);
+        updateHref('facebookShare', `https://www.facebook.com/sharer/sharer.php?u=${currentUrlEncoded}`);
+        updateHref('twitterShare', `https://twitter.com/intent/tweet?url=${currentUrlEncoded}&text=${encodeURIComponent(data.title)}`);
+
+        // Update JSON-LD Schemas
+        const updateSchema = (schemaId, updater) => {
+            const schemaEl = document.getElementById(schemaId);
+            if (schemaEl) {
+                try {
+                    const schema = JSON.parse(schemaEl.textContent);
+                    updater(schema);
+                    schemaEl.textContent = JSON.stringify(schema, null, 2);
+                } catch (e) {
+                    console.error(`Error parsing or updating schema ${schemaId}:`, e);
+                }
+            }
+        };
+
+        updateSchema('breadcrumbSchema', schema => {
+            if (schema.itemListElement && schema.itemListElement.length > 1) {
+                const lastItem = schema.itemListElement[schema.itemListElement.length - 1];
+                lastItem.name = data.mainTitle;
+                lastItem.item = window.location.href;
+            }
+        });
+
+        updateSchema('serviceSchema', schema => {
+            schema.serviceType = data.mainTitle;
+            schema.name = data.mainTitle;
+            schema.description = data.description;
+        });
+        
+        updateSchema('articleSchema', schema => {
+            schema.headline = data.mainTitle;
+            schema.description = data.description;
+            if (schema.mainEntityOfPage) {
+                schema.mainEntityOfPage['@id'] = window.location.href;
+            }
+        });
+    });
+</script>
   </body>
 </html>
