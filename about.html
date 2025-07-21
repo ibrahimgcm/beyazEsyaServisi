@@ -12,6 +12,9 @@
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
     
       <link rel="canonical" href="https://www.beyaz-esya-servisi.vercel.app/about.html" />
+    <!-- Preload critical fonts to avoid render-blocking re-flows -->
+    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
   </head>
   <body>
     <header>
@@ -239,9 +242,10 @@
     <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
       <img
         src="assets/img/favicon-call-32x32.png"
+        srcset="assets/img/favicon-call-32x32.png 1x, assets/img/favicon-call-32x32.png 2x"
         alt="Ara"
-        width="22"
-        height="22"
+        width="32"
+        height="32"
       />
       <span style="color: #fff;">Şimdi Ara</span>
     </a>
