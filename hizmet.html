@@ -62,7 +62,59 @@
       .modern-menu .has-submenu { position: relative; }
       .modern-menu .submenu { display: none; position: absolute; left: 0; top: 100%; background: #fff; min-width: 200px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); z-index: 1000; padding: 0; border-radius: 12px; }
       .menu-item.has-submenu:hover > .submenu, .menu-item.has-submenu:focus-within > .submenu { display: block; }
-      main { display: block; }
+      /* Optimize main content rendering */
+      main { display: block; max-width: 900px; margin: 32px auto 0; padding: 0 16px; }
+      #mainTitle, #serviceTitle { margin-bottom: 16px; }
+      #mainDescription {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin: 0 0 24px;
+        color: var(--text-color);
+        max-width: 65ch; /* Improve readability */
+        font-display: swap;
+      }
+      /* Prevent layout shifts */
+      .social-share {
+        min-height: 32px;
+        margin-bottom: 16px;
+      }
+      .vurgulu-servis-yazi {
+        min-height: 60px;
+      }
+      /* CTA Container Styles */
+      .cta-container {
+        text-align: center;
+        margin: 18px 0 24px;
+      }
+      .vurgulu-servis-yazi {
+        font-size: 11px;
+        font-weight: 500;
+        background: #fff;
+        border-radius: 16px;
+        padding: 16px 14px 14px;
+        box-shadow: 0 2px 12px #0001;
+        letter-spacing: 0.01em;
+        line-height: 1.6;
+        color: #1976d2;
+        margin-bottom: 12px;
+      }
+      /* Optimize text rendering */
+      .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        background: #f8f8f8;
+        text-align: center;
+        padding: 16px;
+      }
+      .hero-section h1 {
+        font-size: 2em;
+        color: #1976d2;
+        margin: 0;
+        font-weight: 700;
+        max-width: 800px;
+      }
       @media (max-width: 800px) {
         .header-bar { height: 48px; padding: 0 10px; }
         .site-title { font-size: 1.1em; }
@@ -123,55 +175,24 @@
       </nav>
     </header>
     <script src="assets/js/header-menu.js" defer></script>
-    <!-- Hero Section: Mobilde ilk ekranda gözükecek görsel ve başlık -->
-    <div class="hero-section" style="display: flex; align-items: center; justify-content: center; min-height: 120px; background: #f8f8f8;">
-      <h1 style="font-size: 2em; color: #1976d2; margin: 0; font-weight: 700;">Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1>Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
     </div>
-    <main
-      style="
-        max-width: 900px;
-        margin: 32px auto 0 auto;
-        padding: 0 16px;
-      "
-    >
+    <main>
       <h1 id="mainTitle">Beyaz Eşya Servisi</h1>
       <h2 id="serviceTitle">İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri</h2>
-      <div class="social-share" style="margin-bottom: 16px">
-        <a
-          href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
-          target="_blank"
-          rel="noopener"
-          >Facebook'ta Paylaş</a
-        >
-        |
-        <a
-          href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
-          target="_blank"
-          rel="noopener"
-          >Twitter'da Paylaş</a
-        >
+      <div class="social-share">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.beyaz-esya-servisi.vercel.app/hizmet.html"
+           target="_blank"
+           rel="noopener">Facebook'ta Paylaş</a> |
+        <a href="https://twitter.com/intent/tweet?url=https://www.beyaz-esya-servisi.vercel.app/hizmet.html&text=Hizmetlerimiz"
+           target="_blank"
+           rel="noopener">Twitter'da Paylaş</a>
       </div>
-      <div style="text-align: center; margin: 18px 0 24px 0">
-        <div
-          class="vurgulu-servis-yazi"
-          style="
-            font-size: 11px;
-            font-weight: 500;
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px 14px 14px 14px;
-            box-shadow: 0 2px 12px #0001;
-            letter-spacing: 0.01em;
-            line-height: 1.6;
-            color: #1976d2;
-            margin-bottom: 12px;
-          "
-        >
-          <span style="font-weight: bold; text-transform: uppercase"
-            >HER MARKA VE MODEL BEYAZ EŞYA İÇİN HIZLI ve GÜVENİLİR PROFESYONEL
-            SERVİS HİZMETİ</span
-          >
-          <br />
+      <div class="cta-container">
+        <div class="vurgulu-servis-yazi">
+          <span style="font-weight: bold; text-transform: uppercase">HER MARKA VE MODEL BEYAZ EŞYA İÇİN HIZLI ve GÜVENİLİR PROFESYONEL SERVİS HİZMETİ</span>
         </div>
         <a
           href="tel:05551234567"
