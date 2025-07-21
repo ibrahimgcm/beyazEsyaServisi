@@ -164,8 +164,7 @@
       
       /* Optimize LCP */
       .hero-section {
-        content-visibility: auto;
-        contain-intrinsic-size: 120px;
+        /* Remove content-visibility for above-the-fold element to avoid LCP delay */
         display: flex;
         align-items: center;
         justify-content: center;

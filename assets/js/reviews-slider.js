@@ -177,9 +177,13 @@ class ReviewsSlider {
   
   // Tek noktadan boyut hesaplama (offsetWidth / getComputedStyle sadece burada çağrılır)
   computeDimensions() {
-    if (this.slider) {
-      this._sliderWidth = this.slider.offsetWidth;
-    }
+    if (!this.slider) return;
+
+    // Measure layout in the next animation frame to avoid layout thrashing
+    window.requestAnimationFrame(() => {
+      // Using `clientWidth` is generally cheaper and sufficient here
+      this._sliderWidth = this.slider.clientWidth || this.slider.getBoundingClientRect().width;
+    });
   }
   
   updateSlider() {
