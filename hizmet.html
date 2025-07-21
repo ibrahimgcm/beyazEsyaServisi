@@ -144,6 +144,61 @@
         }
       }
     </style>
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="assets/img/favicon-star-32x32.png" type="image/png">
+    <link rel="preload" as="image" href="assets/img/favicon-call-32x32.png" type="image/png">
+    
+    <!-- Critical CSS optimization -->
+    <style>
+      :root { --primary-color: #1976d2; --text-color: #222; }
+      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
+      * { box-sizing: border-box; }
+      
+      /* Optimize image loading */
+      img { 
+        display: block; 
+        max-width: 100%; 
+        height: auto;
+        content-visibility: auto;
+      }
+      
+      /* Optimize LCP */
+      .hero-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        background: #f8f8f8;
+        text-align: center;
+        padding: 16px;
+      }
+      
+      /* Prevent layout shifts */
+      .hizmetler-ikon-ozet {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 18px;
+        justify-items: center;
+        align-items: start;
+        contain: layout style paint;
+        content-visibility: auto;
+      }
+      
+      .hizmet-ikon-kutu {
+        text-align: center;
+        contain: layout style;
+        min-height: 140px;
+      }
+      
+      .hizmet-ikon-kutu img {
+        width: 32px;
+        height: 32px;
+        aspect-ratio: 1/1;
+        contain: strict;
+      }
+    </style>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
@@ -242,8 +297,8 @@
         "
       >
         <div class="hizmet-ikon-kutu" style="text-align: center">
-          <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-            <img src="assets/img/favicon-star-32x32.png" srcset="assets/img/favicon-star-32x32.png 1x, assets/img/favicon-star-48x48.png 1.5x" alt="Müşteri Memnuniyeti" width="32" height="32" style="display: block;">
+          <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto; contain: strict;">
+            <img src="assets/img/favicon-star-32x32.png" srcset="assets/img/favicon-star-32x32.png 1x, assets/img/favicon-star-48x48.png 1.5x" alt="Müşteri Memnuniyeti" width="32" height="32" style="display: block; aspect-ratio: 1/1;">
           </div>
           <div style="font-weight: bold; font-size: 1.1em; margin-top: 8px">
             Müşteri Memnuniyeti
