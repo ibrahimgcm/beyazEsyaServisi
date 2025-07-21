@@ -42,7 +42,40 @@
         font-display: optional;
       }
     </style>
-    <link rel="stylesheet" href="assets/css/hizmet.css">
+    <style>
+      /* Critical CSS for above-the-fold content */
+      :root { --primary-color: #1976d2; --text-color: #222; }
+      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
+      * { box-sizing: border-box; }
+      h1, h2, h3 { font-family: 'Roboto', Arial, Helvetica, sans-serif; color: #111; margin: 0; }
+      a { color: #0d47a1; text-decoration: none; font-weight: 600; }
+      img { display: block; max-width: 100%; height: auto; }
+      .hero-section { min-height: 120px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; }
+      .hero-section h1 { font-size: 2em; color: #1976d2; margin: 0; font-weight: 700; }
+      .modern-header { position: relative; z-index: 100; }
+      .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
+      .site-title { color: #fff; font-size: 1.25em; font-weight: 700; letter-spacing: 0.5px; }
+      .header-bar > a { display: flex; align-items: center; height: 100%; }
+      .hamburger { display: none; font-size: 2.1em; color: #fff; background: none; border: none; cursor: pointer; padding: 6px 10px; border-radius: 8px; }
+      .modern-menu { list-style: none; display: flex; gap: 12px; padding: 0 18px; margin: 0; align-items: center; background: linear-gradient(135deg, #1976d2, #1565c0); font-family: 'Roboto', Arial, sans-serif; font-size: 1.08em; position: relative; z-index: 101; }
+      .modern-menu li a { color: #fff; text-decoration: none; padding: 12px 18px; display: inline-block; border-radius: 10px; font-weight: 600; }
+      .modern-menu .has-submenu { position: relative; }
+      .modern-menu .submenu { display: none; position: absolute; left: 0; top: 100%; background: #fff; min-width: 200px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); z-index: 1000; padding: 0; border-radius: 12px; }
+      .menu-item.has-submenu:hover > .submenu, .menu-item.has-submenu:focus-within > .submenu { display: block; }
+      main { display: block; }
+      @media (max-width: 800px) {
+        .header-bar { height: 48px; padding: 0 10px; }
+        .site-title { font-size: 1.1em; }
+        .hamburger { display: block; }
+        .modern-menu { display: none; }
+        .modern-menu.open { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0 0 12px 0; position: fixed; top: 0; right: 0; width: 80vw; max-width: 340px; height: 100vh; background: #fff; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15); z-index: 300; }
+        .modern-menu li a { color: #1976d2; }
+        .modern-menu .submenu { position: static; box-shadow: none; border: none; background: none; display: none; }
+        .modern-menu .submenu.submenu-open { display: block; }
+      }
+    </style>
+    <link rel="preload" href="assets/css/hizmet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/hizmet.css"></noscript>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
