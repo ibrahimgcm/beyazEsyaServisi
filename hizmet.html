@@ -24,7 +24,6 @@
     <meta name="twitter:description" id="twitterDescription" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
-    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <style>
       @font-face {
         font-family: 'Roboto';
@@ -127,76 +126,6 @@
     </style>
     <link rel="preload" href="assets/css/hizmet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/hizmet.css"></noscript>
-
-    <!-- Additional optimizations to reduce CLS and improve LCP -->
-    <style>
-      /* Reserve a fixed row height for the icon grid to prevent layout shifts */
-      .hizmetler-ikon-ozet { grid-auto-rows: minmax(140px, auto); }
-      .hizmet-ikon-kutu { min-height: 140px; }
-
-      /* Defer rendering of the article section until it scrolls into view.
-         This shifts the LCP element to the hero heading, reducing LCP render delay. */
-      @supports (content-visibility: auto) {
-        #makale {
-          content-visibility: auto;
-          contain-intrinsic-size: 800px 500px;
-        }
-      }
-    </style>
-    <!-- Preload critical images -->
-    <link rel="preload" href="assets/img/favicon-star-32x32.png" as="image" type="image/png" fetchpriority="high">
-    <link rel="preload" href="assets/img/favicon-call-32x32.png" as="image" type="image/png" fetchpriority="high">
-    
-    <!-- Critical CSS optimization -->
-    <style>
-      :root { --primary-color: #1976d2; --text-color: #222; }
-      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
-      * { box-sizing: border-box; }
-      
-      /* Optimize image loading */
-      img { 
-        display: block; 
-        max-width: 100%; 
-        height: auto;
-        content-visibility: auto;
-      }
-      
-      /* Optimize LCP */
-      .hero-section {
-        /* Remove content-visibility for above-the-fold element to avoid LCP delay */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 120px;
-        background: #f8f8f8;
-        text-align: center;
-        padding: 16px;
-      }
-      
-      /* Prevent layout shifts */
-      .hizmetler-ikon-ozet {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px 18px;
-        justify-items: center;
-        align-items: start;
-        contain: layout style paint;
-        content-visibility: auto;
-      }
-      
-      .hizmet-ikon-kutu {
-        text-align: center;
-        contain: layout style;
-        min-height: 140px;
-      }
-      
-      .hizmet-ikon-kutu img {
-        width: 32px;
-        height: 32px;
-        aspect-ratio: 1/1;
-        contain: strict;
-      }
-    </style>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
