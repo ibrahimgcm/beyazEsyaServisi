@@ -1,5 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
 
-# Sitemap dosyanız varsa aşağıdaki satırı ekleyebilirsiniz:
-# Sitemap: https://www.orneksite.com/sitemap.xml 
+Sitemap: https://www.beyaz-esya-servisi.vercel.app/sitemap.xml 
