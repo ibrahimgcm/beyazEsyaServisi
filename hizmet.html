@@ -119,6 +119,78 @@
       .footer-tel-btn img, #floating-search-btn img {
         aspect-ratio: 1 / 1;
       }
+
+      /* Menu Styles */
+      .menu-list {
+        list-style: none;
+        display: flex;
+        gap: 12px;
+        padding: 0 18px;
+        margin: 0;
+        align-items: center;
+        background: linear-gradient(135deg, #1976d2, #1565c0);
+        font-family: 'Roboto', Arial, sans-serif;
+        font-size: 1.08em;
+      }
+
+      .menu-list li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 18px;
+        display: inline-block;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      /* Footer List Styles */
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .footer-links li {
+        position: relative;
+      }
+
+      .footer-links li:not(:last-child)::after {
+        content: '|';
+        margin: 0 8px;
+        color: #666;
+      }
+
+      .footer-links a {
+        color: #1976d2;
+        text-decoration: none;
+        font-weight: normal;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 800px) {
+        .menu-list {
+          display: none;
+        }
+        .menu-list.open {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 0;
+        }
+        .footer-links {
+          flex-direction: column;
+          gap: 4px;
+        }
+        .footer-links li:not(:last-child)::after {
+          display: none;
+        }
+      }
     </style>
     <link rel="preload" href="assets/css/hizmet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/hizmet.css"></noscript>
@@ -132,24 +204,26 @@
           <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
         </div>
         <div id="mobile-menu-overlay" class="menu-overlay"></div>
-        <ul id="main-menu" class="modern-menu">
-          <li><a href="/index.html">Ana Sayfa</a></li>
-          <li class="menu-item has-submenu">
-            <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
-            <ul class="submenu">
-              <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
-              <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
-              <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
-              <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
-              <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
-              <li><a href="/hizmet.html?service=Klima">Klima</a></li>
-              <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
-              <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
-            </ul>
-          </li>
-          <li><a href="/about.html">Hakkımızda</a></li>
-          <li><a href="/contact.html">İletişim</a></li>
-        </ul>
+        <div class="modern-menu">
+          <ul class="menu-list">
+            <li><a href="/index.html">Ana Sayfa</a></li>
+            <li class="menu-item has-submenu">
+              <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
+              <ul class="submenu">
+                <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
+                <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
+                <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
+                <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
+                <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
+                <li><a href="/hizmet.html?service=Klima">Klima</a></li>
+                <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
+                <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
+              </ul>
+            </li>
+            <li><a href="/about.html">Hakkımızda</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+          </ul>
+        </div>
       </nav>
     </header>
     <!-- Hero Section -->
@@ -515,21 +589,25 @@
       <div class="footer-container">
         <section>
           <h3>Hizmetlerimiz</h3>
-          <a href="/hizmet.html?service=Buzdolabı">Buzdolabı Servisi</a> |
-          <a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi Servisi</a> |
-          <a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi Servisi</a> |
-          <a href="/hizmet.html?service=Fırın">Fırın Servisi</a> |
-          <a href="/hizmet.html?service=Klima">Klima Servisi</a> |
-          <a href="/hizmet.html?service=Kombi">Kombi Servisi</a> |
-          <a href="/hizmet.html?service=Televizyon">Televizyon Servisi</a>
+          <ul class="footer-links">
+            <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı Servisi</a></li>
+            <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi Servisi</a></li>
+            <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi Servisi</a></li>
+            <li><a href="/hizmet.html?service=Fırın">Fırın Servisi</a></li>
+            <li><a href="/hizmet.html?service=Klima">Klima Servisi</a></li>
+            <li><a href="/hizmet.html?service=Kombi">Kombi Servisi</a></li>
+            <li><a href="/hizmet.html?service=Televizyon">Televizyon Servisi</a></li>
+          </ul>
         </section>
         <section>
           <h3>Kurumsal</h3>
-          <a href="/index.html">Ana Sayfa</a> |
-          <a href="/about.html">Hakkımızda</a> |
-          <a href="/contact.html">İletişim</a> |
-          <a href="/privacy.html">Gizlilik Politikası</a> |
-          <a href="/kvkk.html">KVKK</a>
+          <ul class="footer-links">
+            <li><a href="/index.html">Ana Sayfa</a></li>
+            <li><a href="/about.html">Hakkımızda</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+            <li><a href="/privacy.html">Gizlilik Politikası</a></li>
+            <li><a href="/kvkk.html">KVKK</a></li>
+          </ul>
         </section>
         <section class="contact-section">
           <h3>İletişim</h3>
