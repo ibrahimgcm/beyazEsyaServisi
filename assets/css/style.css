@@ -1372,12 +1372,20 @@ textarea {
 }
 
 /* LCP font optimization rules removed to prevent CLS */
-main h1, main h2, #makale, #yorumlar, #yorumlar li {
+main, main h1, main h2, #makale, #makale p {
   font-family: Arial, Roboto, sans-serif;
 }
 main p, #makale p {
   min-height: 48px;
   display: block;
+}
+#makale h2 {
+  min-height: 38px;
+  line-height: 1.2;
+}
+#makale p {
+  min-height: 48px;
+  line-height: 1.6;
 }
 #yorumlar ul {
   min-height: 120px;
