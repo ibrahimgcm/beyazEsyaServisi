@@ -26,6 +26,7 @@
 
     <!-- Optimize Font Awesome loading -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <style>
       @font-face {
         font-family: 'Font Awesome 5 Free';
@@ -89,6 +90,8 @@
         font-weight: 700;
         max-width: 800px;
         line-height: 1.2;
+        /* CLS önleme: En az iki satır yüksekliği rezerve et */
+        min-height: calc(2 * 1.2em);
       }
       .modern-header { position: relative; z-index: 100; }
       .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
@@ -260,7 +263,7 @@
           <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
         </div>
         <div id="mobile-menu-overlay" class="menu-overlay"></div>
-        <div class="modern-menu">
+        <div class="modern-menu" id="main-menu">
           <ul class="menu-list">
             <li><a href="/index.html">Ana Sayfa</a></li>
             <li class="menu-item has-submenu">
@@ -662,7 +665,7 @@
         <p>© 2024 Beyaz Eşya Servisi. Tüm hakları saklıdır.</p>
       </div>
     </footer>
-    <script src="assets/js/header-menu.js"></script>
+    <script defer src="assets/js/header-menu.js"></script>
     <script src="assets/js/reviews-slider.js" async></script>
     <script src="assets/js/hizmet-dynamic-content.js" async></script>
   </body>
