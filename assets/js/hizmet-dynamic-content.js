@@ -95,79 +95,94 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    const updateText = (id, text) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = text;
+    // DOM elementlerini bir kere seç ve sakla
+    const elements = {
+        title: document.title,
+        metaDescription: document.getElementById('metaDescription'),
+        canonicalLink: document.getElementById('canonicalLink'),
+        ogTitle: document.getElementById('ogTitle'),
+        ogDescription: document.getElementById('ogDescription'),
+        ogUrl: document.getElementById('ogUrl'),
+        twitterTitle: document.getElementById('twitterTitle'),
+        twitterDescription: document.getElementById('twitterDescription'),
+        heroTitle: document.getElementById('heroTitle'),
+        mainTitle: document.getElementById('mainTitle'),
+        serviceTitle: document.getElementById('serviceTitle'),
+        mainDescription: document.getElementById('mainDescription'),
+        breadcrumbCurrent: document.querySelector('#breadcrumbCurrent span'),
+        breadcrumbCurrentLink: document.querySelector('#breadcrumbCurrent a'),
+        facebookShare: document.getElementById('facebookShare'),
+        twitterShare: document.getElementById('twitterShare'),
+        breadcrumbSchema: document.getElementById('breadcrumbSchema'),
+        serviceSchema: document.getElementById('serviceSchema'),
+        articleSchema: document.getElementById('articleSchema')
     };
 
-    const updateContent = (id, content) => {
-        const el = document.getElementById(id);
-        if (el) el.content = content;
-    };
-    
-    const updateHref = (id, url) => {
-        const el = document.getElementById(id);
-        if (el) el.href = url;
-    };
-
+    // Tüm DOM güncellemelerini tek bir requestAnimationFrame içinde yap
     requestAnimationFrame(() => {
+        const currentUrl = window.location.href;
+        const currentUrlEncoded = encodeURIComponent(currentUrl);
+
+        // Meta güncellemeleri
         document.title = data.title;
-        updateContent('metaDescription', data.description);
-        updateHref('canonicalLink', window.location.href);
+        if (elements.metaDescription) elements.metaDescription.content = data.description;
+        if (elements.canonicalLink) elements.canonicalLink.href = currentUrl;
         
-        updateContent('ogTitle', data.title);
-        updateContent('ogDescription', data.description);
-        updateContent('ogUrl', window.location.href);
+        // Open Graph güncellemeleri
+        if (elements.ogTitle) elements.ogTitle.content = data.title;
+        if (elements.ogDescription) elements.ogDescription.content = data.description;
+        if (elements.ogUrl) elements.ogUrl.content = currentUrl;
 
-        updateContent('twitterTitle', data.title);
-        updateContent('twitterDescription', data.description);
+        // Twitter Card güncellemeleri
+        if (elements.twitterTitle) elements.twitterTitle.content = data.title;
+        if (elements.twitterDescription) elements.twitterDescription.content = data.description;
         
-        updateText('heroTitle', data.heroTitle);
-        updateText('mainTitle', data.mainTitle);
-        updateText('serviceTitle', data.serviceTitle);
-        updateText('mainDescription', data.mainDescription);
+        // İçerik güncellemeleri
+        if (elements.heroTitle) elements.heroTitle.textContent = data.heroTitle;
+        if (elements.mainTitle) elements.mainTitle.textContent = data.mainTitle;
+        if (elements.serviceTitle) elements.serviceTitle.textContent = data.serviceTitle;
+        if (elements.mainDescription) elements.mainDescription.textContent = data.mainDescription;
 
-        const breadcrumbCurrent = document.querySelector('#breadcrumbCurrent span');
-        const breadcrumbCurrentLink = document.querySelector('#breadcrumbCurrent a');
-        if (breadcrumbCurrent) breadcrumbCurrent.textContent = data.mainTitle;
-        if (breadcrumbCurrentLink) breadcrumbCurrentLink.href = window.location.href;
+        // Breadcrumb güncellemeleri
+        if (elements.breadcrumbCurrent) elements.breadcrumbCurrent.textContent = data.mainTitle;
+        if (elements.breadcrumbCurrentLink) elements.breadcrumbCurrentLink.href = currentUrl;
 
-        const currentUrlEncoded = encodeURIComponent(window.location.href);
-        updateHref('facebookShare', `https://www.facebook.com/sharer/sharer.php?u=${currentUrlEncoded}`);
-        updateHref('twitterShare', `https://twitter.com/intent/tweet?url=${currentUrlEncoded}&text=${encodeURIComponent(data.title)}`);
+        // Paylaşım linkleri
+        if (elements.facebookShare) elements.facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrlEncoded}`;
+        if (elements.twitterShare) elements.twitterShare.href = `https://twitter.com/intent/tweet?url=${currentUrlEncoded}&text=${encodeURIComponent(data.title)}`;
 
-        const updateSchema = (schemaId, updater) => {
-            const schemaEl = document.getElementById(schemaId);
-            if (schemaEl) {
+        // Schema güncellemeleri
+        const updateSchema = (element, updater) => {
+            if (element) {
                 try {
-                    const schema = JSON.parse(schemaEl.textContent);
+                    const schema = JSON.parse(element.textContent);
                     updater(schema);
-                    schemaEl.textContent = JSON.stringify(schema, null, 2);
+                    element.textContent = JSON.stringify(schema, null, 2);
                 } catch (e) {
-                    console.error(`Error parsing or updating schema ${schemaId}:`, e);
+                    console.error('Schema güncelleme hatası:', e);
                 }
             }
         };
 
-        updateSchema('breadcrumbSchema', schema => {
-            if (schema.itemListElement && schema.itemListElement.length > 1) {
+        updateSchema(elements.breadcrumbSchema, schema => {
+            if (schema.itemListElement?.length > 1) {
                 const lastItem = schema.itemListElement[schema.itemListElement.length - 1];
                 lastItem.name = data.mainTitle;
-                lastItem.item = window.location.href;
+                lastItem.item = currentUrl;
             }
         });
 
-        updateSchema('serviceSchema', schema => {
+        updateSchema(elements.serviceSchema, schema => {
             schema.serviceType = data.mainTitle;
             schema.name = data.mainTitle;
             schema.description = data.description;
         });
         
-        updateSchema('articleSchema', schema => {
+        updateSchema(elements.articleSchema, schema => {
             schema.headline = data.mainTitle;
             schema.description = data.description;
             if (schema.mainEntityOfPage) {
-                schema.mainEntityOfPage['@id'] = window.location.href;
+                schema.mainEntityOfPage['@id'] = currentUrl;
             }
         });
     });
