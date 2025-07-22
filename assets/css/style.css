@@ -1372,3 +1372,13 @@ textarea {
 }
 
 /* LCP font optimization rules removed to prevent CLS */
+main h1, main h2, #makale, #yorumlar, #yorumlar li {
+  font-family: Arial, Roboto, sans-serif;
+}
+main p, #makale p {
+  min-height: 48px;
+  display: block;
+}
+#yorumlar ul {
+  min-height: 120px;
+}
