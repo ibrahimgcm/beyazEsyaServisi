@@ -12,16 +12,14 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -1383,7 +1381,7 @@ main p, #makale p {
   min-height: 38px;
   line-height: 1.2;
 }
-#makale p {
+#makale p, main p {
   min-height: 48px;
   line-height: 1.6;
 }
