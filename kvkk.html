@@ -75,9 +75,12 @@
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 <body>
-<div id="header" style="min-height:80px;"></div>
+<div id="header" style="min-height:80px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+  <span style="color:#bbb;font-size:14px;">Yükleniyor...</span>
+</div>
 <main style="max-width:900px;margin:32px auto 0 auto;padding:0 16px;font-family:Arial,sans-serif;">
   <style>
     @media (max-width:600px) {
@@ -86,9 +89,12 @@
       #makale, #yorumlar { padding: 0; }
       #yorumlar ul { grid-template-columns: 1fr !important; }
     }
+    main {
+      min-height: 600px;
+    }
     main h1 { color:#1976d2; font-size:2.1em; margin-bottom:8px; }
     main h2 { color:#1565c0; font-size:1.3em; margin-top:32px; }
-    #makale, #yorumlar { background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:24px 18px; margin:24px 0; }
+    #makale, #yorumlar { background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:24px 18px; margin:24px 0; min-height: 180px; }
     #yorumlar ul { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:0; margin:0; list-style:none; }
     #yorumlar li { background:#e3f2fd; border-radius:12px; padding:18px 16px; box-shadow:0 2px 8px #0001; display:flex; flex-direction:column; justify-content:space-between; min-height:110px; }
     #yorumlar li span[itemprop="reviewBody"] { color:#1976d2; font-weight:600; font-size:1.08em; margin-bottom:10px; display:block; }
@@ -110,6 +116,8 @@
     </ul>
   </section>
 </main>
-<div id="footer" style="min-height:120px;"></div>
+<div id="footer" style="min-height:120px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+  <span style="color:#bbb;font-size:14px;">Yükleniyor...</span>
+</div>
 </body>
 </html>
