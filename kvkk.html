@@ -3,12 +3,52 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KVKK | Beyaz Eşya Servisi - Kişisel Verilerin Korunması</title>
+  
+  <!-- Google Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Critical CSS inline -->
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #header { min-height: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: #f5f5f5; }
+    main { max-width: 900px; margin: 32px auto 0; padding: 0 16px; min-height: 600px; }
+    main h1 { color: #1976d2; font-size: 2.1em; margin-bottom: 8px; }
+    main h2 { color:#1565c0; font-size:1.3em; margin-top:32px; }
+    #footer { min-height: 120px; height: 120px; display: flex; align-items: center; justify-content: center; background: #f5f5f5; }
+  </style>
+  
+  <!-- Non-critical CSS -->
   <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
+  
+  <!-- Google Fonts'u non-blocking yap -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Fallback font tanımla -->
+  <style>
+    body, main {
+      font-family: Arial, sans-serif; /* Roboto yüklenmeden önce Arial kullan */
+    }
+    .fonts-loaded body, .fonts-loaded main {
+      font-family: 'Roboto', Arial, sans-serif; /* Roboto yüklendikten sonra */
+    }
+  </style>
+  
+  <!-- Font yükleme kontrolü -->
+  <script>
+    if ('fonts' in document) {
+      document.fonts.load('400 1em Roboto').then(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    }
+  </script>
+  
   <meta name="description" content="Beyaz Eşya Servisi KVKK: Kişisel verileriniz 6698 sayılı kanun kapsamında korunur. İstanbul genelinde güvenilir beyaz eşya tamir, bakım ve arıza hizmeti.">
   <link rel="canonical" href="https://beyaz-esya-servisi.vercel.app/kvkk.html" />
   <!-- Yapılandırılmış Veri: LocalBusiness + Breadcrumb -->
-  <script type="application/ld+json">
+  <script type="application/ld+json" defer>
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -43,7 +83,7 @@
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": 4.9, "reviewCount": 12, "bestRating": 5 }
   }
   </script>
-  <script type="application/ld+json">
+  <script type="application/ld+json" defer>
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -60,8 +100,6 @@
       font-display: optional; /* swap yerine optional daha az kayma yapar */
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <!-- Google Fonts ile Roboto yükle -->
