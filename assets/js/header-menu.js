@@ -1,65 +1,63 @@
-// Mobil ve masaüstü menü açma/kapatma, alt menü açma, ESC ile kapama
-function setupHeaderMenu() {
-  var toggle = document.getElementById('mobile-menu-toggle');
-  var menu = document.getElementById('main-menu');
-  var overlay = document.getElementById('mobile-menu-overlay');
-  var submenuToggles = document.querySelectorAll('.submenu-toggle');
+const toggle = document.getElementById('mobile-menu-toggle');
+const menu = document.getElementById('main-menu');
+const overlay = document.getElementById('mobile-menu-overlay');
+const submenuToggles = document.querySelectorAll('.submenu-toggle');
 
-  function closeMenu() {
+if (toggle && menu && overlay) {
+  const closeMenu = () => {
     menu.classList.remove('open');
     overlay.classList.remove('show');
     document.body.classList.remove('menu-open');
-  }
+  };
 
-  function openMenu() {
+  const openMenu = () => {
     menu.classList.add('open');
     overlay.classList.add('show');
     document.body.classList.add('menu-open');
-    attachMenuLinkEvents();
-  }
+  };
 
-  if(toggle) {
-    toggle.onclick = function() {
-      if(menu.classList.contains('open')) closeMenu();
-      else openMenu();
-    };
-  }
-  if(overlay) overlay.onclick = closeMenu;
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeMenu();
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (menu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
-  submenuToggles.forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      if(window.innerWidth <= 800) {
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+
+  submenuToggles.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 800) {
         e.preventDefault();
-        var submenu = btn.nextElementSibling;
-        // Sadece görünürlük ile aç/kapa
-        submenu.classList.toggle('submenu-open');
-        // Ölçüme dayalı height/width değişikliği yapma
+        const submenu = btn.nextElementSibling;
+        if (submenu) {
+          submenu.classList.toggle('submenu-open');
+        }
       }
     });
   });
 
-  function attachMenuLinkEvents() {
-    var menuLinks = menu.querySelectorAll('a');
-    menuLinks.forEach(function(link) {
-      if(!link.classList.contains('submenu-toggle')) {
-        function handleMenuLink(e) {
-          if(menu.classList.contains('open') && window.innerWidth <= 800) {
-            e.preventDefault();
-            var href = link.getAttribute('href');
-            window.location.href = href;
-            setTimeout(closeMenu, 200);
-          }
-        }
-        link.onclick = handleMenuLink;
-        link.ontouchend = handleMenuLink; // iOS için
+  const menuLinks = menu.querySelectorAll('a:not(.submenu-toggle)');
+  menuLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (menu.classList.contains('open') && window.innerWidth <= 800) {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        closeMenu();
+        setTimeout(() => {
+          window.location.href = href;
+        }, 300);
       }
     });
-  }
-  attachMenuLinkEvents();
+  });
 }
 
 // SEO dostu hizmet linklerini dinamik parametreli URL'ye yönlendir
@@ -78,10 +76,4 @@ document.querySelectorAll('.main-nav a[href^="/hizmet/"], .dropdown-content a[hr
       window.location.href = 'hizmet.html?service=' + encodeURIComponent(service);
     }
   });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  if(document.getElementById('mobile-menu-toggle')) {
-    setupHeaderMenu();
-  }
 });

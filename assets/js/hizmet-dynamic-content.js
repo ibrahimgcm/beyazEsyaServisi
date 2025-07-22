@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateText('mainTitle', data.mainTitle);
         updateText('serviceTitle', data.serviceTitle);
         updateText('mainDescription', data.mainDescription);
-        updateText('serviceDescription', data.serviceDescription);
 
         const breadcrumbCurrent = document.querySelector('#breadcrumbCurrent span');
         const breadcrumbCurrentLink = document.querySelector('#breadcrumbCurrent a');
