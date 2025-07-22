@@ -2,109 +2,102 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const serviceName = params.get('service');
 
-    // Sadece service parametresi varsa DOM'u güncelle
     if (serviceName && serviceName.trim() !== '') {
         const trimmedServiceName = serviceName.trim();
 
-        const data = {
-            title: trimmedServiceName,
-            description: `İstanbul ${trimmedServiceName} servisi. Profesyonel, hızlı ve güvenilir ${trimmedServiceName} teknik servis hizmeti.`,
-            heroTitle: trimmedServiceName,
-            mainTitle: trimmedServiceName,
-            serviceTitle: `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`,
-            mainDescription: `${trimmedServiceName} için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`
-        };
+        // Sayfa başlığını güncelle
+        document.title = `${trimmedServiceName} Servisi | İstanbul Teknik Servis`;
 
-        // DOM elementlerini bir kere seç ve sakla
-        const elements = {
-            title: document.querySelector('title'),
-            metaDescription: document.getElementById('metaDescription'),
-            canonicalLink: document.getElementById('canonicalLink'),
-            ogTitle: document.getElementById('ogTitle'),
-            ogDescription: document.getElementById('ogDescription'),
-            ogUrl: document.getElementById('ogUrl'),
-            twitterTitle: document.getElementById('twitterTitle'),
-            twitterDescription: document.getElementById('twitterDescription'),
-            heroTitle: document.getElementById('heroTitle'),
-            mainTitle: document.getElementById('mainTitle'),
-            serviceTitle: document.getElementById('serviceTitle'),
-            mainDescription: document.getElementById('mainDescription'),
-            breadcrumbCurrent: document.querySelector('#breadcrumbCurrent span'),
-            breadcrumbCurrentLink: document.querySelector('#breadcrumbCurrent a'),
-            facebookShare: document.getElementById('facebookShare'),
-            twitterShare: document.getElementById('twitterShare'),
-            breadcrumbSchema: document.getElementById('breadcrumbSchema'),
-            serviceSchema: document.getElementById('serviceSchema'),
-            articleSchema: document.getElementById('articleSchema')
-        };
+        // Meta etiketlerini güncelle
+        const metaDesc = document.getElementById('metaDescription');
+        if (metaDesc) {
+            metaDesc.setAttribute('content', `İstanbul ${trimmedServiceName} servisi. Profesyonel, hızlı ve güvenilir ${trimmedServiceName} teknik servis hizmeti.`);
+        }
 
-        // Tüm DOM güncellemelerini tek bir requestAnimationFrame içinde yap
-        requestAnimationFrame(() => {
-            const currentUrl = window.location.href;
-            const currentUrlEncoded = encodeURIComponent(currentUrl);
+        // H1 başlığını güncelle
+        const heroTitle = document.getElementById('heroTitle');
+        if (heroTitle) {
+            heroTitle.textContent = `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`;
+        }
+      
+        const mainTitle = document.getElementById('mainTitle');
+        if (mainTitle) {
+            mainTitle.textContent = `${trimmedServiceName} Servisi`;
+        }
 
-            // Meta güncellemeleri
-            if (elements.title) elements.title.textContent = data.title;
-            if (elements.metaDescription) elements.metaDescription.content = data.description;
-            if (elements.canonicalLink) elements.canonicalLink.href = currentUrl;
-            
-            // Open Graph güncellemeleri
-            if (elements.ogTitle) elements.ogTitle.content = data.title;
-            if (elements.ogDescription) elements.ogDescription.content = data.description;
-            if (elements.ogUrl) elements.ogUrl.content = currentUrl;
+        const serviceTitle = document.getElementById('serviceTitle');
+        if (serviceTitle) {
+            serviceTitle.textContent = `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`;
+        }
 
-            // Twitter Card güncellemeleri
-            if (elements.twitterTitle) elements.twitterTitle.content = data.title;
-            if (elements.twitterDescription) elements.twitterDescription.content = data.description;
-            
-            // İçerik güncellemeleri
-            if (elements.heroTitle) elements.heroTitle.textContent = data.heroTitle;
-            if (elements.mainTitle) elements.mainTitle.textContent = data.mainTitle;
-            if (elements.serviceTitle) elements.serviceTitle.textContent = data.serviceTitle;
-            if (elements.mainDescription) elements.mainDescription.textContent = data.mainDescription;
+        const mainDescription = document.getElementById('mainDescription');
+        if (mainDescription) {
+            mainDescription.textContent = `${trimmedServiceName} için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`;
+        }
 
-            // Breadcrumb güncellemeleri
-            if (elements.breadcrumbCurrent) elements.breadcrumbCurrent.textContent = data.mainTitle;
-            if (elements.breadcrumbCurrentLink) elements.breadcrumbCurrentLink.href = currentUrl;
+        // Breadcrumb güncelle
+        const breadcrumbCurrent = document.querySelector('#breadcrumbCurrent span');
+        if(breadcrumbCurrent) {
+            breadcrumbCurrent.textContent = `${trimmedServiceName} Servisi`;
+        }
 
-            // Paylaşım linkleri
-            if (elements.facebookShare) elements.facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrlEncoded}`;
-            if (elements.twitterShare) elements.twitterShare.href = `https://twitter.com/intent/tweet?url=${currentUrlEncoded}&text=${encodeURIComponent(data.title)}`;
+        const breadcrumbCurrentLink = document.querySelector('#breadcrumbCurrent a');
+        if(breadcrumbCurrentLink){
+            breadcrumbCurrentLink.href = window.location.href;
+        }
 
-            // Schema güncellemeleri
-            const updateSchema = (element, updater) => {
-                if (element) {
-                    try {
-                        const schema = JSON.parse(element.textContent);
-                        updater(schema);
-                        element.textContent = JSON.stringify(schema, null, 2);
-                    } catch (e) {
-                        console.error('Schema güncelleme hatası:', e);
-                    }
-                }
-            };
 
-            updateSchema(elements.breadcrumbSchema, schema => {
-                if (schema.itemListElement?.length > 1) {
-                    const lastItem = schema.itemListElement[schema.itemListElement.length - 1];
-                    lastItem.name = data.mainTitle;
+        // Open Graph ve Twitter kartları gibi diğer tüm dinamik alanları da güncelleyelim...
+        const currentUrl = window.location.href;
+        const ogTitle = document.getElementById('ogTitle');
+        if (ogTitle) ogTitle.setAttribute('content', document.title);
+
+        const ogDescription = document.getElementById('ogDescription');
+        if (ogDescription) ogDescription.setAttribute('content', metaDesc.getAttribute('content'));
+        
+        const ogUrl = document.getElementById('ogUrl');
+        if (ogUrl) ogUrl.setAttribute('content', currentUrl);
+
+        const twitterTitle = document.getElementById('twitterTitle');
+        if (twitterTitle) twitterTitle.setAttribute('content', document.title);
+
+        const twitterDescription = document.getElementById('twitterDescription');
+        if (twitterDescription) twitterDescription.setAttribute('content', metaDesc.getAttribute('content'));
+        
+        // Şema verilerini de güncelleyelim
+        const breadcrumbSchemaEl = document.getElementById('breadcrumbSchema');
+        if(breadcrumbSchemaEl){
+            try {
+                const breadcrumbSchema = JSON.parse(breadcrumbSchemaEl.textContent);
+                if (breadcrumbSchema.itemListElement?.length > 1) {
+                    const lastItem = breadcrumbSchema.itemListElement[1];
+                    lastItem.name = `${trimmedServiceName} Servisi`;
                     lastItem.item = currentUrl;
                 }
-            });
+                breadcrumbSchemaEl.textContent = JSON.stringify(breadcrumbSchema, null, 2);
+            } catch (e) { console.error("Breadcrumb schema güncellenemedi.", e); }
+        }
 
-            updateSchema(elements.serviceSchema, schema => {
-                schema.serviceType = data.mainTitle;
-                schema.name = data.mainTitle;
-                schema.description = data.description;
-            });
-            
-            updateSchema(elements.articleSchema, schema => {
-                schema.headline = data.mainTitle;
-                schema.description = data.description;
-                if (schema.mainEntityOfPage) {
-                    schema.mainEntityOfPage['@id'] = currentUrl;
-                }
-            });
-        });
+        const serviceSchemaEl = document.getElementById('serviceSchema');
+        if(serviceSchemaEl){
+            try {
+                const serviceSchema = JSON.parse(serviceSchemaEl.textContent);
+                serviceSchema.serviceType = `${trimmedServiceName} Servisi`;
+                serviceSchema.name = `${trimmedServiceName} Servisi`;
+                serviceSchema.description = metaDesc.getAttribute('content');
+                serviceSchemaEl.textContent = JSON.stringify(serviceSchema, null, 2);
+            } catch (e) { console.error("Service schema güncellenemedi.", e); }
+        }
+
+        const articleSchemaEl = document.getElementById('articleSchema');
+        if(articleSchemaEl){
+             try {
+                const articleSchema = JSON.parse(articleSchemaEl.textContent);
+                articleSchema.headline = `${trimmedServiceName} Servisi`;
+                articleSchema.description = metaDesc.getAttribute('content');
+                articleSchema.mainEntityOfPage['@id'] = currentUrl;
+                articleSchemaEl.textContent = JSON.stringify(articleSchema, null, 2);
+            } catch (e) { console.error("Article schema güncellenemedi.", e); }
+        }
     }
 }); 
