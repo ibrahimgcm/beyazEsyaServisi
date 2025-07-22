@@ -24,8 +24,24 @@
     <meta name="twitter:description" id="twitterDescription" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+    <!-- Optimize Font Awesome loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+      @font-face {
+        font-family: 'Font Awesome 5 Free';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2') format('woff2');
+      }
+      .fas {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+      }
+      /* Only include used icons */
+      .fa-star:before {content: "\f005";}
+      .fa-phone-alt:before {content: "\f879";}
+    </style>
     <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
     <style>

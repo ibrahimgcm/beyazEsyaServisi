@@ -13,6 +13,16 @@ class ReviewsSlider {
 
     // Önceden hesaplanmış ve kullanılmayan boyutlar kaldırıldı
     this._sliderWidth = 0;
+    this._dimensions = {
+      width: 0,
+      cardWidth: 0,
+      gap: 0
+    };
+    
+    // Add will-change to optimize animations
+    if (this.track) {
+      this.track.style.willChange = 'transform';
+    }
     
     this.init();
   }
@@ -20,25 +30,35 @@ class ReviewsSlider {
   init() {
     if (!this.slider || !this.track || this.cards.length === 0) return;
 
-    // İlk boyut hesaplaması
-    this.computeDimensions();
-    
-    this.setupEventListeners();
-    this.updateSlider();
-    this.updateDots();
-    this.updateButtons();
-    
-    // Resize event listener
-    window.addEventListener('resize', () => {
-      this.totalSlides = this.cards.length; // Her zaman toplam kart sayısı
-      this.currentSlide = Math.min(this.currentSlide, this.totalSlides - 1);
-
-      // Yeniden boyut hesapla (kart genişliği veya gap değişmiş olabilir)
+    // Batch all layout reads
+    requestAnimationFrame(() => {
       this.computeDimensions();
-      this.updateSlider();
-      this.updateDots();
-      this.updateButtons();
+      
+      // Batch all layout writes
+      requestAnimationFrame(() => {
+        this.setupEventListeners();
+        this.updateSlider();
+        this.updateDots();
+        this.updateButtons();
+      });
     });
+    
+    // Optimize resize handler
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      if (resizeTimeout) {
+        window.cancelAnimationFrame(resizeTimeout);
+      }
+      
+      resizeTimeout = requestAnimationFrame(() => {
+        this.totalSlides = this.cards.length;
+        this.currentSlide = Math.min(this.currentSlide, this.totalSlides - 1);
+        this.computeDimensions();
+        this.updateSlider();
+        this.updateDots();
+        this.updateButtons();
+      });
+    }, { passive: true });
     
     // Touch/swipe support
     this.setupTouchEvents();
@@ -179,17 +199,23 @@ class ReviewsSlider {
   computeDimensions() {
     if (!this.slider) return;
 
-    // Measure layout in the next animation frame to avoid layout thrashing
-    window.requestAnimationFrame(() => {
-      // Using `clientWidth` is generally cheaper and sufficient here
-      this._sliderWidth = this.slider.clientWidth || this.slider.getBoundingClientRect().width;
-    });
+    // Batch all layout reads in one frame
+    const rect = this.slider.getBoundingClientRect();
+    this._dimensions = {
+      width: rect.width,
+      cardWidth: this.cards[0]?.getBoundingClientRect().width || 0,
+      gap: parseInt(getComputedStyle(this.track).gap) || 0
+    };
+    
+    this._sliderWidth = rect.width;
   }
   
   updateSlider() {
-    // Use percentage-based transforms to avoid layout calculations
+    if (!this.track) return;
+    
+    // Use transform3d for GPU acceleration
     const translateX = -this.currentSlide * 100;
-    this.track.style.transform = `translateX(${translateX}%)`;
+    this.track.style.transform = `translate3d(${translateX}%, 0, 0)`;
   }
   
   updateDots() {
@@ -229,24 +255,22 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe review cards for scroll animations - Optimized to prevent layout shift
+// Optimize scroll animations
 document.addEventListener('DOMContentLoaded', () => {
-  // Use requestAnimationFrame to batch DOM operations
+  const reviewCards = document.querySelectorAll('.review-card');
+  
+  // Batch DOM writes
   requestAnimationFrame(() => {
-    const reviewCards = document.querySelectorAll('.review-card');
     reviewCards.forEach((card, index) => {
-      // Batch style changes to prevent layout thrashing
-      card.style.cssText += `
+      card.style.cssText = `
         opacity: 0;
-        transform: translateY(20px) translateZ(0);
+        transform: translate3d(0, 20px, 0);
         transition: opacity 0.6s ease, transform 0.6s ease;
         will-change: opacity, transform;
       `;
       
-      // Stagger the observation to prevent simultaneous animations
-      setTimeout(() => {
-        observer.observe(card);
-      }, index * 50);
+      // Stagger observations
+      setTimeout(() => observer.observe(card), index * 50);
     });
   });
 });

@@ -4,76 +4,93 @@ const overlay = document.getElementById('mobile-menu-overlay');
 const submenuToggles = document.querySelectorAll('.submenu-toggle');
 
 if (toggle && menu && overlay) {
+  // Cache classList operations
+  const menuClassList = menu.classList;
+  const overlayClassList = overlay.classList;
+  const bodyClassList = document.body.classList;
+
   const closeMenu = () => {
-    menu.classList.remove('open');
-    overlay.classList.remove('show');
-    document.body.classList.remove('menu-open');
+    requestAnimationFrame(() => {
+      menuClassList.remove('open');
+      overlayClassList.remove('show');
+      bodyClassList.remove('menu-open');
+    });
   };
 
   const openMenu = () => {
-    menu.classList.add('open');
-    overlay.classList.add('show');
-    document.body.classList.add('menu-open');
+    requestAnimationFrame(() => {
+      menuClassList.add('open');
+      overlayClassList.add('show');
+      bodyClassList.add('menu-open');
+    });
   };
 
   toggle.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (menu.classList.contains('open')) {
+    if (menuClassList.contains('open')) {
       closeMenu();
     } else {
       openMenu();
     }
-  });
+  }, { passive: true });
 
-  overlay.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu, { passive: true });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu.classList.contains('open')) {
+    if (e.key === 'Escape' && menuClassList.contains('open')) {
       closeMenu();
     }
-  });
+  }, { passive: true });
+
+  // Batch submenu operations
+  const submenuHandler = (e) => {
+    if (window.innerWidth <= 800) {
+      e.preventDefault();
+      const submenu = e.currentTarget.nextElementSibling;
+      if (submenu) {
+        requestAnimationFrame(() => {
+          submenu.classList.toggle('submenu-open');
+        });
+      }
+    }
+  };
 
   submenuToggles.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      if (window.innerWidth <= 800) {
-        e.preventDefault();
-        const submenu = btn.nextElementSibling;
-        if (submenu) {
-          submenu.classList.toggle('submenu-open');
-        }
-      }
-    });
+    btn.addEventListener('click', submenuHandler, { passive: false });
   });
 
+  // Optimize menu link clicks
   const menuLinks = menu.querySelectorAll('a:not(.submenu-toggle)');
+  const linkHandler = (e) => {
+    if (menuClassList.contains('open') && window.innerWidth <= 800) {
+      e.preventDefault();
+      const href = e.currentTarget.getAttribute('href');
+      closeMenu();
+      setTimeout(() => {
+        window.location.href = href;
+      }, 300);
+    }
+  };
+
   menuLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      if (menu.classList.contains('open') && window.innerWidth <= 800) {
-        e.preventDefault();
-        const href = link.getAttribute('href');
-        closeMenu();
-        setTimeout(() => {
-          window.location.href = href;
-        }, 300);
-      }
-    });
+    link.addEventListener('click', linkHandler, { passive: false });
   });
 }
 
-// SEO dostu hizmet linklerini dinamik parametreli URL'ye yönlendir
-// Hem .main-nav hem .dropdown-content içindeki /hizmet/ ile başlayan linkler için
+// SEO dostu hizmet linklerini optimize et
+const serviceLinks = document.querySelectorAll('.main-nav a[href^="/hizmet/"], .dropdown-content a[href^="/hizmet/"]');
+const serviceHandler = (e) => {
+  const href = e.currentTarget.getAttribute('href');
+  const match = href.match(/\/?hizmet\/([^.\/]+)\.html$/);
+  if (match) {
+    e.preventDefault();
+    const service = match[1]
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+    window.location.href = `hizmet.html?service=${encodeURIComponent(service)}`;
+  }
+};
 
-document.querySelectorAll('.main-nav a[href^="/hizmet/"], .dropdown-content a[href^="/hizmet/"]').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    var href = link.getAttribute('href');
-    // /hizmet/xyz.html veya hizmet/xyz.html formatını yakala
-    var match = href.match(/\/?hizmet\/([^.\/]+)\.html$/);
-    if (match) {
-      e.preventDefault();
-      var service = match[1]
-        .replace(/-/g, ' ') // tireleri boşluğa çevir
-        .replace(/\b\w/g, function(l) { return l.toUpperCase(); }); // baş harfleri büyüt
-      window.location.href = 'hizmet.html?service=' + encodeURIComponent(service);
-    }
-  });
+serviceLinks.forEach(link => {
+  link.addEventListener('click', serviceHandler, { passive: false });
 });
