@@ -2,39 +2,52 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hakkımızda | İstanbul Teknik Servis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hakkımızda - İstanbul Beyaz Eşya Teknik Servisi | Güvenilir Onarım</title>
     <meta
       name="description"
-      content="İstanbul'da güvenilir ve profesyonel beyaz eşya teknik servis hizmeti sunan ekibimizle tanışın. Müşteri memnuniyeti odaklı, hızlı ve garantili çözümler."
+      content="İstanbul'da 20+ yıl deneyimli beyaz eşya teknik servis ekibi. Buzdolabı, çamaşır makinesi, bulaşık makinesi onarımı. 7/24 hizmet, garantili işçilik."
     />
+    <meta name="keywords" content="beyaz eşya servisi istanbul, teknik servis, buzdolabı tamiri, çamaşır makinesi servisi" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="İstanbul Teknik Servis" />
+    
+    <!-- Preload critical CSS -->
     <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="assets/css/style.css" /></noscript>
     
-      <link rel="canonical" href="https://beyaz-esya-servisi.vercel.app/about.html" />
-    <!-- Preload critical fonts to avoid render-blocking re-flows -->
-    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://beyaz-esya-servisi.vercel.app/about.html" />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    
+    <!-- Critical CSS inline -->
     <style>
-        @media (max-width: 600px) {
-          main {
-            padding: 0 4vw;
-            font-size: 15px;
-          }
-          main h1,
-          main h2 {
-            font-size: 1.3em;
-          }
-          .section-card {
-            padding: 20px 16px !important;
-          }
-          .feature-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .hero-text {
-            font-size: 1em !important;
-          }
+        /* Critical above-the-fold styles */
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          line-height: 1.6;
+          color: #333;
         }
+        
+        header {
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          background: #fff;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        main {
+          max-width: 900px;
+          margin: 32px auto 0 auto;
+          padding: 0 16px;
+          font-family: Arial, sans-serif;
+        }
+        
         main h1 {
           color: #1976d2;
           font-size: 2.4em;
@@ -43,23 +56,14 @@
           font-weight: 700;
           font-family: Arial, Helvetica, sans-serif !important;
         }
+        
         main h2 {
           color: #1565c0;
           font-size: 1.5em;
           margin-top: 32px;
           margin-bottom: 16px;
         }
-        .section-card {
-          background: #fff;
-          border-radius: 16px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          padding: 32px 28px;
-          margin: 24px 0;
-          transition: transform 0.3s ease;
-        }
-        .section-card:hover {
-          transform: translateY(-4px);
-        }
+        
         .hero-text {
           font-size: 1.2em;
           line-height: 1.6;
@@ -69,12 +73,14 @@
           padding: 0 20px;
           font-family: Arial, Helvetica, sans-serif !important;
         }
+        
         .feature-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 24px;
           margin: 40px 0;
         }
+        
         .feature-item {
           text-align: center;
           padding: 24px;
@@ -82,40 +88,79 @@
           border-radius: 12px;
           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
         }
+        
         .feature-icon {
           font-size: 2.5em;
           margin-bottom: 16px;
           color: #1976d2;
         }
+        
         .feature-title {
           font-weight: 600;
           color: #333;
           margin-bottom: 8px;
         }
+        
         .feature-desc {
           color: #666;
           font-size: 0.95em;
           line-height: 1.5;
         }
-        .disclaimer {
-          margin-top: 32px;
-          padding: 16px 24px;
-          background: #ffebee;
-          border-radius: 8px;
-          border-left: 4px solid #b00;
-          color: #b00;
-          font-weight: 500;
-          font-size: 0.95em;
+        
+        .section-card {
+          background: #fff;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          padding: 32px 28px;
+          margin: 24px 0;
+          transition: transform 0.3s ease;
         }
+        
+        .section-card:hover {
+          transform: translateY(-4px);
+        }
+        
         .company-info {
           background: #e3f2fd;
           padding: 24px;
           border-radius: 12px;
           margin-top: 32px;
         }
+        
         .company-info h2 {
           color: #0d47a1;
           margin-top: 0;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 600px) {
+          main {
+            padding: 0 4vw;
+            font-size: 15px;
+          }
+          main h1 {
+            font-size: 1.8em;
+          }
+          main h2 {
+            font-size: 1.3em;
+          }
+          .section-card {
+            padding: 20px 16px !important;
+          }
+          .feature-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px;
+          }
+          .hero-text {
+            font-size: 1em !important;
+            padding: 0 10px;
+          }
+        }
+        
+        /* Loading optimization */
+        img {
+          height: auto;
+          max-width: 100%;
         }
       </style>
   </head>
@@ -123,7 +168,7 @@
     <header>
       <nav class="modern-header">
         <div class="header-bar">
-          <a href="/index.html" style="text-decoration:none;color:inherit;"><span class="site-title">Beyaz Esya Servisi</span></a>
+          <a href="/index.html" style="text-decoration:none;color:inherit;"><span class="site-title">Beyaz Eşya Servisi</span></a>
           <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">&#9776;</div>
         </div>
         <div id="mobile-menu-overlay" class="menu-overlay"></div>
@@ -147,29 +192,27 @@
         </ul>
       </nav>
     </header>
+    
+    <!-- Defer non-critical JavaScript -->
     <script src="assets/js/header-menu.js" defer></script>
-    <main
-      style="
-        max-width: 900px;
-        margin: 32px auto 0 auto;
-        padding: 0 16px;
-        font-family: Arial, sans-serif;
-      "
-    >
-      <h1 itemprop="name">Hakkımızda</h1>
-      <div id="breadcrumb" aria-label="breadcrumb" style="margin-bottom:16px;">
+    
+    <main>
+      <h1>Hakkımızda</h1>
+      
+      <!-- Enhanced breadcrumb with proper structure -->
+      <nav id="breadcrumb" aria-label="breadcrumb" style="margin-bottom:16px;">
         <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
             <meta itemprop="position" content="1" />
           </li>
-          <li style="margin: 0 8px">/</li>
+          <li style="margin: 0 8px" aria-hidden="true">/</li>
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a itemprop="item" href="/about.html"><span itemprop="name">Hakkımızda</span></a>
+            <span itemprop="name">Hakkımızda</span>
             <meta itemprop="position" content="2" />
           </li>
         </ol>
-      </div>
+      </nav>
   
       <div class="hero-text">
         Beyaz eşya servisi olarak, 20 yılı aşkın deneyimimizle İstanbul'da
@@ -180,25 +223,25 @@
   
       <div class="feature-grid">
         <div class="feature-item">
-          <div class="feature-icon">🛠️</div>
-          <div class="feature-title">Uzman Kadro</div>
-          <div class="feature-desc">
+          <div class="feature-icon" aria-hidden="true">🛠️</div>
+          <h3 class="feature-title">Uzman Kadro</h3>
+          <p class="feature-desc">
             Deneyimli ve profesyonel teknik ekibimizle kaliteli hizmet sunuyoruz.
-          </div>
+          </p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">⚡</div>
-          <div class="feature-title">Hızlı Servis</div>
-          <div class="feature-desc">
+          <div class="feature-icon" aria-hidden="true">⚡</div>
+          <h3 class="feature-title">Hızlı Servis</h3>
+          <p class="feature-desc">
             Aynı gün içinde servis hizmeti ile sorunlarınızı çözüyoruz.
-          </div>
+          </p>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">💰</div>
-          <div class="feature-title">Uygun Fiyat</div>
-          <div class="feature-desc">
+          <div class="feature-icon" aria-hidden="true">💰</div>
+          <h3 class="feature-title">Uygun Fiyat</h3>
+          <p class="feature-desc">
             Ekonomik fiyatlarla kaliteli hizmet garantisi sunuyoruz.
-          </div>
+          </p>
         </div>
       </div>
   
@@ -219,9 +262,7 @@
           servisi denildiğinde aklına gelen ilk ve en güvenilir firma olmaktır.
           Bu hedefe ulaşmak için, alanında sertifikalı teknisyenlerden oluşan
           geniş bir ekip, şeffaf fiyat politikası ve orijinal yedek parça
-          garantisi ile çalışıyoruz. Ekibimiz, teknoloji ve sektördeki
-          yenilikleri yakından takip ederek sürekli eğitim almaktadır; böylece
-          yeni çıkan ürün modellerine dahi aynı gün içinde müdahale edebiliyoruz.
+          garantisi ile çalışıyoruz.
         </p>
         <p>
           Müşteri odaklı yaklaşımımız doğrultusunda, sizi uzun bekleme
@@ -229,65 +270,56 @@
           hizmeti sunuyor ve randevu saatlerine sadık kalıyoruz. Sunduğumuz her
           hizmetin arkasında <em>işçilik ve yedek parça garantisi</em>
           bulunması, sorunlarınıza kalıcı çözümler getirdiğimizin bir
-          göstergesidir. Kısacası, hızlı servis ağımız, uzman kadromuz ve güçlü
-          garanti politikamızla ev aletleriniz emin ellerde.
+          göstergesidir.
         </p>
       </section>
   
       <section class="company-info">
         <h2>Şirket Bilgilerimiz</h2>
-        <p itemprop="address">
-          [Buraya şirket adı, vergi no, adres, telefon gelecek]
+        <p>
+          İstanbul Teknik Servis<br>
+          Telefon: <a href="tel:+905551234567">0555 123 45 67</a><br>
+          Adres: İstanbul, Türkiye<br>
+          Çalışma Saatleri: 7/24 Hizmet
         </p>
       </section>
-  
-      <div class="disclaimer" style="display:none;">
-        Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlar için
-        hizmet verilmektedir.
-      </div>
-      <div id="breadcrumb-bottom" aria-label="breadcrumb" style="display:none;">
-        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style:none; padding:0; margin:0; display:flex; align-items:center; font-size:0.9em; color:#555;">
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a itemprop="item" href="/index.html"><span itemprop="name">Ana Sayfa</span></a>
-            <meta itemprop="position" content="1" />
-          </li>
-          <li style="margin: 0 8px">/</li>
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a itemprop="item" href="/about.html"><span itemprop="name">Hakkımızda</span></a>
-            <meta itemprop="position" content="2" />
-          </li>
-        </ol>
-      </div>
     </main>
-    <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
+    
+    <!-- Floating call button with optimized image -->
+    <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;" aria-label="Hemen Ara">
       <img
         src="assets/img/favicon-call-32x32.png"
-        srcset="assets/img/favicon-call-32x32.png 1x, assets/img/favicon-call-32x32.png 2x"
-        alt="Ara"
+        alt="Telefon"
         width="32"
         height="32"
+        loading="lazy"
       />
       <span style="color: #fff;">Şimdi Ara</span>
     </a>
+    
     <footer class="modern-footer">
       <div class="footer-container">
         <section>
           <h3>Hizmetlerimiz</h3>
-          <a href="/hizmet.html?service=Buzdolabı">Buzdolabı Servisi</a> |
-          <a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi Servisi</a> |
-          <a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi Servisi</a> |
-          <a href="/hizmet.html?service=Fırın">Fırın Servisi</a> |
-          <a href="/hizmet.html?service=Klima">Klima Servisi</a> |
-          <a href="/hizmet.html?service=Kombi">Kombi Servisi</a> |
-          <a href="/hizmet.html?service=Televizyon">Televizyon Servisi</a>
+          <nav aria-label="Hizmet Linkleri">
+            <a href="/hizmet.html?service=Buzdolabı">Buzdolabı Servisi</a> |
+            <a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi Servisi</a> |
+            <a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi Servisi</a> |
+            <a href="/hizmet.html?service=Fırın">Fırın Servisi</a> |
+            <a href="/hizmet.html?service=Klima">Klima Servisi</a> |
+            <a href="/hizmet.html?service=Kombi">Kombi Servisi</a> |
+            <a href="/hizmet.html?service=Televizyon">Televizyon Servisi</a>
+          </nav>
         </section>
         <section>
           <h3>Kurumsal</h3>
-          <a href="/index.html">Ana Sayfa</a> |
-          <a href="/about.html">Hakkımızda</a> |
-          <a href="/contact.html">İletişim</a> |
-          <a href="/privacy.html">Gizlilik Politikası</a> |
-          <a href="/kvkk.html">KVKK</a>
+          <nav aria-label="Kurumsal Linkleri">
+            <a href="/index.html">Ana Sayfa</a> |
+            <a href="/about.html">Hakkımızda</a> |
+            <a href="/contact.html">İletişim</a> |
+            <a href="/privacy.html">Gizlilik Politikası</a> |
+            <a href="/kvkk.html">KVKK</a>
+          </nav>
         </section>
         <section class="contact-section">
           <h3>İletişim</h3>
@@ -301,50 +333,64 @@
         <p>&copy; 2024 Beyaz Eşya Servisi. Tüm hakları saklıdır.</p>
       </div>
     </footer>
-    <script type="application/ld+json" id="localBusinessSchema"></script>
-    <script type="application/ld+json" id="breadcrumbSchema"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
-
-        const localBusinessSchema = {
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "İstanbul Teknik Servis",
-          "@id": origin,
-          "url": origin,
-          "telephone": "+905551234567",
-          "priceRange": "₺₺",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Merkez Ofis",
-            "addressLocality": "İstanbul",
-            "addressCountry": "TR"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "41.0082",
-            "longitude": "28.9784"
-          },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
-          }
-        };
-        document.getElementById('localBusinessSchema').textContent = JSON.stringify(localBusinessSchema, null, 2);
-
-        const breadcrumbSchema = {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": origin + "/index.html" },
-            { "@type": "ListItem", "position": 2, "name": "Hakkımızda", "item": window.location.href }
-          ]
-        };
-        document.getElementById('breadcrumbSchema').textContent = JSON.stringify(breadcrumbSchema, null, 2);
-      });
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "İstanbul Teknik Servis",
+      "description": "İstanbul'da güvenilir ve profesyonel beyaz eşya teknik servis hizmeti. 20+ yıl deneyim, 7/24 hizmet.",
+      "url": "https://beyaz-esya-servisi.vercel.app/about.html",
+      "telephone": "+905551234567",
+      "priceRange": "₺₺",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "İstanbul",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "41.0082",
+        "longitude": "28.9784"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "41.0082",
+          "longitude": "28.9784"
+        },
+        "geoRadius": "50000"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://beyaz-esya-servisi.vercel.app/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Hakkımızda",
+          "item": "https://beyaz-esya-servisi.vercel.app/about.html"
+        }
+      ]
+    }
     </script>
   </body>
 </html>
