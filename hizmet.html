@@ -124,6 +124,16 @@
         max-width: 800px;
         min-height: 2.4em; /* Prevent layout shift */
       }
+      /* CLS Önleme: Ana içerik alanı için minimum yükseklik belirle */
+      main {
+        min-height: 500px; /* İçerik yüklenene kadar yer ayır */
+      }
+      #mainTitle, #serviceTitle {
+        min-height: 1.5em; /* Başlıklar için yer ayır */
+      }
+      #mainDescription {
+        min-height: 100px; /* Açıklama paragrafı için yer ayır */
+      }
       .modern-header { position: relative; z-index: 100; }
       .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
       .site-title { color: #fff; font-size: 1.25em; font-weight: 700; letter-spacing: 0.5px; }
@@ -565,44 +575,44 @@
               <span aria-hidden="true">←</span>
             </button>
             <div class="reviews-slider">
-              <ul class="reviews-track" style="list-style: none; margin: 0; padding: 0; display: flex;">
-                <li class="review-card">
+              <div class="reviews-track" style="display: flex;">
+                <div class="review-card">
                   <blockquote>Çok hızlı ve güvenilir bir servis, teşekkürler!<footer>Ayşe K.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Uygun fiyat ve kaliteli hizmet.<footer>Mehmet T.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Usta çok ilgiliydi, sorunum hemen çözüldü.<footer>Ali S.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Çalışanlar çok nazik ve profesyonel.<footer>Fatma L.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Servis çok hızlı geldi, sorunum hemen çözüldü.<footer>Burak Y.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Fiyatlar çok makul, hizmet kalitesi yüksek.<footer>Elif D.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Teknisyenler çok bilgili ve güler yüzlüydü.<footer>Gizem U.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Beyaz eşyam ilk günkü gibi çalışıyor, teşekkürler!<footer>Serkan A.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Telefonla aradım, hemen randevu verdiler.<footer>Melis E.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Yedek parça hemen temin edildi, çok memnun kaldım.<footer>Onur K.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>İşçilik çok kaliteli, tekrar tercih edeceğim.<footer>Deniz S.</footer></blockquote>
-                </li>
-                <li class="review-card">
+                </div>
+                <div class="review-card">
                   <blockquote>Tavsiye üzerine aradım, çok memnun kaldım.<footer>Ayhan B.</footer></blockquote>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
             <button class="slider-btn next-btn" aria-label="Sonraki yorumlar">
               <span aria-hidden="true">→</span>
