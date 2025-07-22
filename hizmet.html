@@ -24,6 +24,12 @@
     <meta name="twitter:description" id="twitterDescription" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
+    <!-- Fontları önceden yükle ve bağlan -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"></noscript>
+
     <!-- JSON-LD: Breadcrumb -->
     <script type="application/ld+json" id="breadcrumbSchema">{
       "@context": "https://schema.org",
@@ -81,30 +87,12 @@
       .fa-star:before {content: "\f005";}
       .fa-phone-alt:before {content: "\f879";}
     </style>
-    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
-    <style>
-      @font-face {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
-      }
-      @font-face {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url('assets/fonts/Roboto-Bold.ttf') format('truetype');
-      }
-    </style>
     <style>
       /* Critical CSS for above-the-fold content */
       :root { --primary-color: #1976d2; --text-color: #222; }
-      body { font-family: Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
+      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
       * { box-sizing: border-box; }
-      h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; color: #111; margin: 0; }
+      h1, h2, h3 { font-family: 'Roboto', Arial, Helvetica, sans-serif; color: #111; margin: 0; }
       a { color: #0d47a1; text-decoration: none; font-weight: 600; }
       img {
   display: block;
@@ -296,7 +284,7 @@
         }
       }
     </style>
-    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.onload=null;this.media='all'">
     <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     <style>
     @media (max-width:800px){
