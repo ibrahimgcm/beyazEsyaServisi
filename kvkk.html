@@ -66,9 +66,18 @@
     ]
   }
   </script>
+  <style>
+    @font-face {
+      font-family: 'Roboto';
+      src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+      font-display: swap;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-<div id="header"></div>
+<div id="header" style="min-height:80px;"></div>
 <main style="max-width:900px;margin:32px auto 0 auto;padding:0 16px;font-family:Arial,sans-serif;">
   <style>
     @media (max-width:600px) {
@@ -101,6 +110,6 @@
     </ul>
   </section>
 </main>
-<div id="footer"></div>
+<div id="footer" style="min-height:120px;"></div>
 </body>
 </html>
