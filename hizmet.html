@@ -117,12 +117,12 @@
       }
       #heroTitle {
         font-size: 2em;
+        line-height: 1.2;
         color: #1976d2;
         margin: 0;
         font-weight: 700;
         max-width: 800px;
-        line-height: 1.2;
-        min-height: 2.4em;
+        min-height: 2.4em; /* Prevent layout shift */
       }
       .modern-header { position: relative; z-index: 100; }
       .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }

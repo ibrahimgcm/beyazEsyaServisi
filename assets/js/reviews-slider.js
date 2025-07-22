@@ -1,112 +1,99 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const sliderContainer = document.querySelector('.reviews-slider-container');
-    if (!sliderContainer) return;
+  const sliderContainer = document.querySelector('.reviews-slider-container');
+  if (!sliderContainer) return;
 
-    const track = sliderContainer.querySelector('.reviews-track');
-    const cards = Array.from(track.children);
-    const nextButton = sliderContainer.querySelector('.next-btn');
-    const prevButton = sliderContainer.querySelector('.prev-btn');
-    const dotsNav = sliderContainer.querySelector('.slider-dots');
+  const track = sliderContainer.querySelector('.reviews-track');
+  const slides = Array.from(track.children);
+  const nextButton = sliderContainer.querySelector('.next-btn');
+  const prevButton = sliderContainer.querySelector('.prev-btn');
+  const dotsNav = sliderContainer.nextElementSibling;
+  const dots = dotsNav ? Array.from(dotsNav.children) : [];
 
-    if (!track || !nextButton || !prevButton || cards.length === 0) {
-        console.warn('Slider bileşenleri eksik, slider başlatılamadı.');
-        return;
+  let slideWidth = 0;
+  let currentIndex = 0;
+  let isMoving = false;
+
+  function setSlideWidth() {
+    // Read layout once
+    const slideRect = slides[0].getBoundingClientRect();
+    const containerRect = sliderContainer.getBoundingClientRect();
+    slideWidth = slideRect.width;
+    
+    // Adjust track width for all slides
+    track.style.width = `${slideWidth * slides.length}px`;
+    
+    // Apply width to each slide
+    slides.forEach(slide => {
+      slide.style.width = `${slideWidth}px`;
+    });
+    
+    // Update position without animation
+    updateTrackPosition(false);
+  }
+
+  function updateTrackPosition(useTransition = true) {
+    const newPosition = -currentIndex * slideWidth;
+    // Write to layout
+    requestAnimationFrame(() => {
+      track.style.transition = useTransition ? 'transform 0.5s ease-in-out' : 'none';
+      track.style.transform = `translateX(${newPosition}px)`;
+    });
+  }
+
+  function updateDots(targetIndex) {
+    const currentDot = dotsNav.querySelector('.active');
+    if (currentDot) {
+      currentDot.classList.remove('active');
     }
+    const newDot = dots[targetIndex];
+    if (newDot) {
+      newDot.classList.add('active');
+    }
+  }
 
-    let cardWidth = 0;
-    let currentIndex = 0;
-    let autoPlayInterval;
+  function moveToSlide(targetIndex) {
+    if (isMoving || targetIndex === currentIndex) return;
+    isMoving = true;
 
-    // Boyutları hesapla ve slider'ı kur
-    const setupSlider = () => {
-        // --- OKUMA ---
-        // Layout thrashing'i önlemek için tüm okumaları bir kerede yap
-        cardWidth = cards[0].getBoundingClientRect().width;
-        
-        // --- YAZMA ---
-        // Tüm yazmaları bir kerede yap
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        
-        // Dot'ları oluştur
-        if (dotsNav) {
-            dotsNav.innerHTML = ''; // Öncekileri temizle
-            cards.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.setAttribute('aria-label', `${i + 1}. yoruma git`);
-                dot.addEventListener('click', () => {
-                    moveToSlide(i);
-                    stopAutoPlay(); // Kullanıcı etkileşiminde otomatik oynatmayı durdur
-                });
-                dotsNav.appendChild(dot);
-            });
-            updateDots();
-        }
-    };
+    currentIndex = targetIndex;
+    updateTrackPosition();
+    updateDots(targetIndex);
+  }
 
-    const moveToSlide = (targetIndex) => {
-        const newIndex = (targetIndex + cards.length) % cards.length;
-        
-        // --- YAZMA ---
-        track.style.transform = `translateX(-${newIndex * cardWidth}px)`;
-        currentIndex = newIndex;
-        updateDots();
-    };
+  // Event Listeners
+  nextButton.addEventListener('click', () => {
+    const nextIndex = (currentIndex + 1) % slides.length;
+    moveToSlide(nextIndex);
+  });
 
-    const updateDots = () => {
-        if (!dotsNav) return;
-        const dots = Array.from(dotsNav.children);
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    };
+  prevButton.addEventListener('click', () => {
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    moveToSlide(prevIndex);
+  });
 
-    // Buton event'leri
-    nextButton.addEventListener('click', () => {
-        moveToSlide(currentIndex + 1);
-        stopAutoPlay();
-    });
+  dotsNav.addEventListener('click', e => {
+    const targetDot = e.target.closest('button');
+    if (!targetDot) return;
 
-    prevButton.addEventListener('click', () => {
-        moveToSlide(currentIndex - 1);
-        stopAutoPlay();
-    });
+    const targetIndex = dots.findIndex(dot => dot === targetDot);
+    if (targetIndex !== -1) {
+      moveToSlide(targetIndex);
+    }
+  });
 
-    // Otomatik oynatma
-    const startAutoPlay = () => {
-        autoPlayInterval = setInterval(() => {
-            moveToSlide(currentIndex + 1);
-        }, 5000);
-    };
+  track.addEventListener('transitionend', () => {
+    isMoving = false;
+  });
 
-    const stopAutoPlay = () => {
-        clearInterval(autoPlayInterval);
-    };
+  // Initial setup
+  setSlideWidth();
 
-    // Yeniden boyutlandırmayı yönet
-    const handleResize = () => {
-        // Yeniden boyutlandırmada slider'ı tekrar kur
-        setupSlider();
-    };
-
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(handleResize, 100);
-    }, { passive: true });
-
-    // Başlangıç kurulumu
-    // Resimlerin ve fontların yüklenmesini beklemek için küçük bir gecikme
-    setTimeout(() => {
-        setupSlider();
-        startAutoPlay();
-    }, 100);
-
-    // Sayfa görünürlüğü değiştiğinde otomatik oynatmayı durdur/başlat
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            stopAutoPlay();
-        } else {
-            startAutoPlay();
-        }
-    });
+  // Recalculate on resize, with debouncing to avoid excessive calls
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      setSlideWidth();
+    }, 250);
+  });
 });
