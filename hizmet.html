@@ -24,8 +24,23 @@
     <meta name="twitter:description" id="twitterDescription" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
+    <link rel="preload" href="assets/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
     <style>
-      /* Removed custom font to prevent critical request */
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('assets/fonts/Roboto-Bold.ttf') format('truetype');
+      }
     </style>
     <style>
       /* Critical CSS for above-the-fold content */
@@ -34,9 +49,29 @@
       * { box-sizing: border-box; }
       h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; color: #111; margin: 0; }
       a { color: #0d47a1; text-decoration: none; font-weight: 600; }
-      img { display: block; max-width: 100%; height: auto; }
-      .hero-section { min-height: 120px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; }
-      .hero-section h1 { font-size: 2em; color: #1976d2; margin: 0; font-weight: 700; }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: attr(width) / attr(height);
+      }
+      .hero-section {
+        height: 120px;
+        background: #f8f8f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        contain: layout;
+        contain-intrinsic-size: 120px;
+      }
+      .hero-section h1 {
+        font-size: 2em;
+        color: #1976d2;
+        margin: 0;
+        font-weight: 700;
+        max-width: 800px;
+        line-height: 1.2;
+      }
       .modern-header { position: relative; z-index: 100; }
       .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
       .site-title { color: #fff; font-size: 1.25em; font-weight: 700; letter-spacing: 0.5px; }
@@ -117,7 +152,10 @@
         contain: strict;
       }
       .footer-tel-btn img, #floating-search-btn img {
-        aspect-ratio: 1 / 1;
+        width: 32px;
+        height: 32px;
+        aspect-ratio: 1/1;
+        contain: strict;
       }
 
       /* Menu Styles */
