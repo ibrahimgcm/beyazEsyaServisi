@@ -1,316 +1,112 @@
-// Modern Reviews Slider
-class ReviewsSlider {
-  constructor() {
-    this.slider = document.querySelector('.reviews-slider');
-    this.track = document.querySelector('.reviews-track');
-    this.cards = document.querySelectorAll('.review-card');
-    this.prevBtn = document.querySelector('.prev-btn');
-    this.nextBtn = document.querySelector('.next-btn');
-    this.dots = document.querySelectorAll('.dot');
-    
-    this.currentSlide = 0;
-    this.totalSlides = this.cards.length; // Her kart bir slayt
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderContainer = document.querySelector('.reviews-slider-container');
+    if (!sliderContainer) return;
 
-    // Önceden hesaplanmış ve kullanılmayan boyutlar kaldırıldı
-    this._sliderWidth = 0;
-    this._dimensions = {
-      width: 0,
-      cardWidth: 0,
-      gap: 0
-    };
-    
-    // Add will-change to optimize animations
-    if (this.track) {
-      this.track.style.willChange = 'transform';
+    const track = sliderContainer.querySelector('.reviews-track');
+    const cards = Array.from(track.children);
+    const nextButton = sliderContainer.querySelector('.next-btn');
+    const prevButton = sliderContainer.querySelector('.prev-btn');
+    const dotsNav = sliderContainer.querySelector('.slider-dots');
+
+    if (!track || !nextButton || !prevButton || cards.length === 0) {
+        console.warn('Slider bileşenleri eksik, slider başlatılamadı.');
+        return;
     }
-    
-    this.init();
-  }
-  
-  init() {
-    if (!this.slider || !this.track || this.cards.length === 0) return;
 
-    // Batch all layout reads
-    requestAnimationFrame(() => {
-      this.computeDimensions();
-      
-      // Batch all layout writes
-      requestAnimationFrame(() => {
-        this.setupEventListeners();
-        this.updateSlider();
-        this.updateDots();
-        this.updateButtons();
-      });
+    let cardWidth = 0;
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    // Boyutları hesapla ve slider'ı kur
+    const setupSlider = () => {
+        // --- OKUMA ---
+        // Layout thrashing'i önlemek için tüm okumaları bir kerede yap
+        cardWidth = cards[0].getBoundingClientRect().width;
+        
+        // --- YAZMA ---
+        // Tüm yazmaları bir kerede yap
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        
+        // Dot'ları oluştur
+        if (dotsNav) {
+            dotsNav.innerHTML = ''; // Öncekileri temizle
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('aria-label', `${i + 1}. yoruma git`);
+                dot.addEventListener('click', () => {
+                    moveToSlide(i);
+                    stopAutoPlay(); // Kullanıcı etkileşiminde otomatik oynatmayı durdur
+                });
+                dotsNav.appendChild(dot);
+            });
+            updateDots();
+        }
+    };
+
+    const moveToSlide = (targetIndex) => {
+        const newIndex = (targetIndex + cards.length) % cards.length;
+        
+        // --- YAZMA ---
+        track.style.transform = `translateX(-${newIndex * cardWidth}px)`;
+        currentIndex = newIndex;
+        updateDots();
+    };
+
+    const updateDots = () => {
+        if (!dotsNav) return;
+        const dots = Array.from(dotsNav.children);
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    };
+
+    // Buton event'leri
+    nextButton.addEventListener('click', () => {
+        moveToSlide(currentIndex + 1);
+        stopAutoPlay();
     });
-    
-    // Optimize resize handler
+
+    prevButton.addEventListener('click', () => {
+        moveToSlide(currentIndex - 1);
+        stopAutoPlay();
+    });
+
+    // Otomatik oynatma
+    const startAutoPlay = () => {
+        autoPlayInterval = setInterval(() => {
+            moveToSlide(currentIndex + 1);
+        }, 5000);
+    };
+
+    const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+    };
+
+    // Yeniden boyutlandırmayı yönet
+    const handleResize = () => {
+        // Yeniden boyutlandırmada slider'ı tekrar kur
+        setupSlider();
+    };
+
     let resizeTimeout;
     window.addEventListener('resize', () => {
-      if (resizeTimeout) {
-        window.cancelAnimationFrame(resizeTimeout);
-      }
-      
-      resizeTimeout = requestAnimationFrame(() => {
-        this.totalSlides = this.cards.length;
-        this.currentSlide = Math.min(this.currentSlide, this.totalSlides - 1);
-        this.computeDimensions();
-        this.updateSlider();
-        this.updateDots();
-        this.updateButtons();
-      });
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResize, 100);
     }, { passive: true });
-    
-    // Touch/swipe support
-    this.setupTouchEvents();
-    
-    // Auto-play (optional)
-    this.setupAutoPlay();
-  }
-  
-  getCardsPerView() {
-    return 1; // Her zaman 1 kart göster
-  }
-  
-  setupEventListeners() {
-    this.prevBtn?.addEventListener('click', () => this.prevSlide());
-    this.nextBtn?.addEventListener('click', () => this.nextSlide());
-    
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.goToSlide(index));
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') this.prevSlide();
-      if (e.key === 'ArrowRight') this.nextSlide();
-    });
-  }
-  
-  setupTouchEvents() {
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    
-    this.slider.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      this.track.style.transition = 'none';
-    }, { passive: true });
-    
-    this.slider.addEventListener('touchmove', (e) => {
-      if (!isDragging || !this._sliderWidth) return;
-      currentX = e.touches[0].clientX;
-      const diffX = currentX - startX;
-      const currentTransform = this.currentSlide * -100;
-      // Saklanan değeri kullan
-      const sliderWidth = this._sliderWidth;
-      this.track.style.transform = `translateX(${currentTransform + (diffX / sliderWidth) * 100}%)`;
-    }, { passive: true });
-    
-    this.slider.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      
-      isDragging = false;
-      this.track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-      
-      const diffX = currentX - startX;
-      const threshold = 50;
-      
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          this.prevSlide();
-        } else {
-          this.nextSlide();
-        }
-      } else {
-        this.updateSlider();
-      }
-    }, { passive: true });
-  }
-  
-  setupAutoPlay() {
-    let autoPlayInterval;
-    
-    const startAutoPlay = () => {
-      autoPlayInterval = setInterval(() => {
-        if (this.currentSlide >= this.totalSlides - 1) {
-          this.goToSlide(0);
-        } else {
-          this.nextSlide();
-        }
-      }, 5000);
-    };
-    
-    const stopAutoPlay = () => {
-      clearInterval(autoPlayInterval);
-    };
-    
-    // Start auto-play
-    startAutoPlay();
-    
-    // Pause on hover
-    this.slider.addEventListener('mouseenter', stopAutoPlay);
-    this.slider.addEventListener('mouseleave', startAutoPlay);
-    
-    // Pause on focus
-    this.slider.addEventListener('focusin', stopAutoPlay);
-    this.slider.addEventListener('focusout', startAutoPlay);
-    
-    // Pause when page is not visible
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopAutoPlay();
-      } else {
+
+    // Başlangıç kurulumu
+    // Resimlerin ve fontların yüklenmesini beklemek için küçük bir gecikme
+    setTimeout(() => {
+        setupSlider();
         startAutoPlay();
-      }
-    });
-  }
-  
-  prevSlide() {
-    if (this.currentSlide > 0) {
-      this.currentSlide--;
-    } else {
-      this.currentSlide = this.totalSlides - 1;
-    }
-    this.updateSlider();
-    this.updateDots();
-    this.updateButtons();
-  }
-  
-  nextSlide() {
-    if (this.currentSlide < this.totalSlides - 1) {
-      this.currentSlide++;
-    } else {
-      this.currentSlide = 0;
-    }
-    this.updateSlider();
-    this.updateDots();
-    this.updateButtons();
-  }
-  
-  goToSlide(index) {
-    this.currentSlide = Math.max(0, Math.min(index, this.totalSlides - 1));
-    this.updateSlider();
-    this.updateDots();
-    this.updateButtons();
-  }
-  
-  // Tek noktadan boyut hesaplama (offsetWidth / getComputedStyle sadece burada çağrılır)
-  computeDimensions() {
-    if (!this.slider) return;
+    }, 100);
 
-    // Batch all layout reads in one frame
-    const rect = this.slider.getBoundingClientRect();
-    this._dimensions = {
-      width: rect.width,
-      cardWidth: this.cards[0]?.getBoundingClientRect().width || 0,
-      gap: parseInt(getComputedStyle(this.track).gap) || 0
-    };
-    
-    this._sliderWidth = rect.width;
-  }
-  
-  updateSlider() {
-    if (!this.track) return;
-    
-    // Use transform3d for GPU acceleration
-    const translateX = -this.currentSlide * 100;
-    this.track.style.transform = `translate3d(${translateX}%, 0, 0)`;
-  }
-  
-  updateDots() {
-    this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === this.currentSlide);
+    // Sayfa görünürlüğü değiştiğinde otomatik oynatmayı durdur/başlat
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoPlay();
+        } else {
+            startAutoPlay();
+        }
     });
-  }
-  
-  updateButtons() {
-    if (this.prevBtn) {
-      this.prevBtn.disabled = false; // Always enabled for infinite loop
-    }
-    
-    if (this.nextBtn) {
-      this.nextBtn.disabled = false; // Always enabled for infinite loop
-    }
-  }
-}
-
-// Initialize slider when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new ReviewsSlider();
 });
-
-// Intersection Observer for animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-// Optimize scroll animations
-document.addEventListener('DOMContentLoaded', () => {
-  const reviewCards = document.querySelectorAll('.review-card');
-  
-  // Batch DOM writes
-  requestAnimationFrame(() => {
-    reviewCards.forEach((card, index) => {
-      card.style.cssText = `
-        opacity: 0;
-        transform: translate3d(0, 20px, 0);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-        will-change: opacity, transform;
-      `;
-      
-      // Stagger observations
-      setTimeout(() => observer.observe(card), index * 50);
-    });
-  });
-});
-
-// Performance optimization: Preload next slides
-class SliderPreloader {
-  constructor() {
-    this.preloadedSlides = new Set();
-  }
-  
-  preloadSlide(index) {
-    if (this.preloadedSlides.has(index)) return;
-    
-    const cards = document.querySelectorAll('.review-card');
-    const startIndex = index * 3; // Assuming 3 cards per slide on desktop
-    
-    for (let i = startIndex; i < Math.min(startIndex + 3, cards.length); i++) {
-      const card = cards[i];
-      if (card) {
-        // Trigger any lazy loading or animations
-        card.classList.add('preloaded');
-      }
-    }
-    
-    this.preloadedSlides.add(index);
-  }
-}
-
-// Add smooth scrolling to slider section
-function scrollToReviews() {
-  const reviewsSection = document.getElementById('yorumlar');
-  if (reviewsSection) {
-    reviewsSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
-}
-
-// Export for potential external use
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { ReviewsSlider, SliderPreloader };
-}

@@ -36,7 +36,14 @@ function updateServiceContent() {
     updateElement('ogUrl', 'content', currentUrl);
     updateElement('twitterTitle', 'content', newTitle);
     updateElement('twitterDescription', 'content', newDescription);
-    updateElement('heroTitle', 'textContent', `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`);
+    
+    // Hero başlığını güncelle ve görünür yap
+    const heroTitleEl = document.getElementById('heroTitle');
+    if (heroTitleEl) {
+        heroTitleEl.textContent = `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`;
+        heroTitleEl.classList.add('visible');
+    }
+    
     updateElement('mainTitle', 'textContent', `${trimmedServiceName} Servisi`);
     updateElement('serviceTitle', 'textContent', `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`);
     updateElement('mainDescription', 'textContent', `${trimmedServiceName} için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`);

@@ -1231,3 +1231,15 @@ textarea {
 [aria-hidden="true"] {
   display: none;
 } 
+
+/* LCP Optimizasyonu: Başlığın görünürlüğünü yumuşak bir geçişle sağla */
+#heroTitle {
+    visibility: hidden; /* Başlangıçta gizli */
+    transition: visibility 0s linear 0s, opacity 0.5s ease; /* yumuşak geçiş */
+    opacity: 0;
+}
+
+#heroTitle.visible {
+    visibility: visible;
+    opacity: 1;
+} 
