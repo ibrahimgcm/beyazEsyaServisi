@@ -511,25 +511,23 @@
           align-items: center;
           gap: 10px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: transform 0.3s ease;
           text-decoration: none;
+          will-change: transform;
+          transform: translateZ(0);
         }
 
         #floating-search-btn:hover {
           background: #043812;
           transform: translateY(-2px);
-          box-shadow: 0 6px 24px rgba(6, 77, 26, 0.4);
         }
 
         #floating-search-btn img {
           vertical-align: middle;
           margin-right: 8px;
           filter: brightness(0) invert(1);
-          transition: transform 0.3s ease;
-        }
-
-        #floating-search-btn:hover img {
-          transform: scale(1.1);
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         #floating-search-btn span {
@@ -558,24 +556,52 @@
           width="16"
           height="16"
           srcset="assets/img/favicon-call-32x32.png 1x, assets/img/favicon-call-32x32.png 2x"
+          loading="lazy"
         />
         <span style="color: #fff;">Şimdi Ara</span>
       </a>
 
       <script>
-        window.addEventListener("scroll", function () {
-          var floatBtn = document.getElementById("floating-search-btn");
+        // Scroll performansını optimize etmek için throttle fonksiyonu
+        function throttle(func, limit) {
+          let inThrottle;
+          return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+              func.apply(context, args);
+              inThrottle = true;
+              setTimeout(() => inThrottle = false, limit);
+            }
+          }
+        }
+
+        // Scroll event listener'ı throttle ile optimize edildi
+        window.addEventListener("scroll", throttle(function () {
+          const floatBtn = document.getElementById("floating-search-btn");
           if (!floatBtn) return;
 
-          // Sayfa 300px aşağı kaydırıldığında butonu göster
-          if (window.scrollY > 300) {
-            floatBtn.style.display = "flex";
-          } else {
-            floatBtn.style.display = "none";
-          }
-        });
+          // requestAnimationFrame kullanarak DOM güncellemelerini optimize ediyoruz
+          requestAnimationFrame(() => {
+            floatBtn.style.display = window.scrollY > 300 ? "flex" : "none";
+          });
+        }, 100)); // 100ms throttle
       </script>
       <!-- Sabit Arama Butonu Bitiş -->
+
+      <!-- Reviews slider optimizasyonu -->
+      <style>
+        .reviews-slider {
+          transform: translateZ(0);
+          will-change: transform;
+          backface-visibility: hidden;
+        }
+        .reviews-track {
+          transform: translateZ(0);
+          will-change: transform;
+          backface-visibility: hidden;
+        }
+      </style>
     <script src="assets/js/reviews-slider.js" defer></script>
     
     <!-- Image loading optimization -->
