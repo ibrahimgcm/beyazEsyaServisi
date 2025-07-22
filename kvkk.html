@@ -79,51 +79,57 @@
   <link rel="preload" href="fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 <body>
-<div id="header" style="min-height:80px;height:80px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
-  <span style="color:#bbb;font-size:14px;">Yükleniyor...</span>
-</div>
-<main style="max-width:900px;margin:32px auto 0 auto;padding:0 16px;font-family:Arial,Roboto,sans-serif;">
-  <style>
-    @media (max-width:600px) {
-      main { padding: 0 4vw; font-size: 15px; }
-      main h1, main h2 { font-size: 1.3em; }
-      #makale, #yorumlar { padding: 0; }
-      #yorumlar ul { grid-template-columns: 1fr !important; }
-    }
-    main {
-      min-height: 600px;
-      max-width: 900px;
-      margin: 32px auto 0 auto;
-      padding: 0 16px;
-      font-family: Arial,Roboto,sans-serif;
-      box-sizing: border-box;
-    }
-    main h1 { color:#1976d2; font-size:2.1em; margin-bottom:8px; }
-    main h2 { color:#1565c0; font-size:1.3em; margin-top:32px; }
-    #makale, #yorumlar { background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:24px 18px; margin:24px 0; min-height: 180px; }
-    #yorumlar ul { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:0; margin:0; list-style:none; }
-    #yorumlar li { background:#e3f2fd; border-radius:12px; padding:18px 16px; box-shadow:0 2px 8px #0001; display:flex; flex-direction:column; justify-content:space-between; min-height:110px; }
-    #yorumlar li span[itemprop="reviewBody"] { color:#1976d2; font-weight:600; font-size:1.08em; margin-bottom:10px; display:block; }
-    #yorumlar li span[itemprop="author"] { color:#444; font-size:0.98em; font-weight:400; margin-top:auto; align-self:flex-end; }
-  </style>
-  <h1 itemprop="name">KVKK</h1>
-  <p>Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi ve Televizyon, günümüz evlerinde vazgeçilmez bir yer tutar. Ev aletleri, günlük yaşamı kolaylaştırarak konfor sunar. Bu nedenle, bu ürünlerin bakım ve onarımı büyük bir önem taşır. Özellikle buzdolabı, çamaşır makinesi ve bulaşık makinesi gibi cihazların sorunsuz çalışması, evdeki işlerin düzenli bir şekilde sürdürülmesini sağlar. Yüksek kaliteli beyaz eşya servisi ile, elektronik ev aletleri onarımı konusunda profesyonel yardım almak mümkündür. Bu hizmetler, kullanıcıların ihtiyaç duyduğu zamanlarda hızlı bir çözüm sunar.</p>
-  <section id="makale">
-    <h2>Beyaz Eşya Servisi Hakkında Makale</h2>
-    <p itemprop="description">Beyaz eşya servisi, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi cihazların tamir, bakım ve arıza hizmetlerini kapsar. [Buraya 10.000 kelimelik makale eklenecek. Şimdilik örnek uzun metin: Beyaz eşyalarınızın ömrünü uzatmak ve verimli çalışmasını sağlamak için düzenli bakım ve profesyonel servis hizmeti almak önemlidir. ...]</p>
-  </section>
-  <section id="yorumlar">
-    <h2>Müşteri Yorumları</h2>
-    <ul>
-      <li>Çok hızlı ve güvenilir bir servis, teşekkürler! - Ayşe K.</li>
-      <li>Uygun fiyat ve kaliteli hizmet. - Mehmet T.</li>
-      <li>Usta çok ilgiliydi, sorunum hemen çözüldü. - Ali S.</li>
-      <li>Çalışanlar çok nazik ve profesyonel. - Fatma L.</li>
-    </ul>
-  </section>
-</main>
-<div id="footer" style="min-height:120px;height:120px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
-  <span style="color:#bbb;font-size:14px;">Yükleniyor...</span>
-</div>
+  <div id="header" style="min-height:80px;height:80px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+    <!-- Buraya header içeriğini doğrudan ekleyin -->
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="kvkk.html">KVKK</a>
+      <!-- Diğer menü -->
+    </nav>
+  </div>
+  <main style="max-width:900px;margin:32px auto 0 auto;padding:0 16px;font-family:Arial,Roboto,sans-serif;">
+    <style>
+      @media (max-width:600px) {
+        main { padding: 0 4vw; font-size: 15px; }
+        main h1, main h2 { font-size: 1.3em; }
+        #makale, #yorumlar { padding: 0; }
+        #yorumlar ul { grid-template-columns: 1fr !important; }
+      }
+      main {
+        min-height: 600px;
+        max-width: 900px;
+        margin: 32px auto 0 auto;
+        padding: 0 16px;
+        font-family: Arial,Roboto,sans-serif;
+        box-sizing: border-box;
+      }
+      main h1 { color:#1976d2; font-size:2.1em; margin-bottom:8px; }
+      main h2 { color:#1565c0; font-size:1.3em; margin-top:32px; }
+      #makale, #yorumlar { background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:24px 18px; margin:24px 0; min-height: 180px; }
+      #yorumlar ul { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:0; margin:0; list-style:none; }
+      #yorumlar li { background:#e3f2fd; border-radius:12px; padding:18px 16px; box-shadow:0 2px 8px #0001; display:flex; flex-direction:column; justify-content:space-between; min-height:110px; }
+      #yorumlar li span[itemprop="reviewBody"] { color:#1976d2; font-weight:600; font-size:1.08em; margin-bottom:10px; display:block; }
+      #yorumlar li span[itemprop="author"] { color:#444; font-size:0.98em; font-weight:400; margin-top:auto; align-self:flex-end; }
+    </style>
+    <h1 itemprop="name">KVKK</h1>
+    <p>Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi ve Televizyon, günümüz evlerinde vazgeçilmez bir yer tutar. Ev aletleri, günlük yaşamı kolaylaştırarak konfor sunar. Bu nedenle, bu ürünlerin bakım ve onarımı büyük bir önem taşır. Özellikle buzdolabı, çamaşır makinesi ve bulaşık makinesi gibi cihazların sorunsuz çalışması, evdeki işlerin düzenli bir şekilde sürdürülmesini sağlar. Yüksek kaliteli beyaz eşya servisi ile, elektronik ev aletleri onarımı konusunda profesyonel yardım almak mümkündür. Bu hizmetler, kullanıcıların ihtiyaç duyduğu zamanlarda hızlı bir çözüm sunar.</p>
+    <section id="makale">
+      <h2>Beyaz Eşya Servisi Hakkında Makale</h2>
+      <p itemprop="description">Beyaz eşya servisi, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi cihazların tamir, bakım ve arıza hizmetlerini kapsar. [Buraya 10.000 kelimelik makale eklenecek. Şimdilik örnek uzun metin: Beyaz eşyalarınızın ömrünü uzatmak ve verimli çalışmasını sağlamak için düzenli bakım ve profesyonel servis hizmeti almak önemlidir. ...]</p>
+    </section>
+    <section id="yorumlar">
+      <h2>Müşteri Yorumları</h2>
+      <ul>
+        <li>Çok hızlı ve güvenilir bir servis, teşekkürler! - Ayşe K.</li>
+        <li>Uygun fiyat ve kaliteli hizmet. - Mehmet T.</li>
+        <li>Usta çok ilgiliydi, sorunum hemen çözüldü. - Ali S.</li>
+        <li>Çalışanlar çok nazik ve profesyonel. - Fatma L.</li>
+      </ul>
+    </section>
+  </main>
+  <div id="footer" style="min-height:120px;height:120px;display:flex;align-items:center;justify-content:center;background:#f5f5f5;">
+    <!-- Buraya footer içeriğini doğrudan ekleyin -->
+    <span style="color:#bbb;font-size:14px;">© 2025 Beyaz Eşya Servisi</span>
+  </div>
 </body>
 </html>
