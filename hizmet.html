@@ -24,6 +24,44 @@
     <meta name="twitter:description" id="twitterDescription" content="İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz." />
     <meta name="twitter:image" content="" />
 
+    <!-- JSON-LD: Breadcrumb -->
+    <script type="application/ld+json" id="breadcrumbSchema">{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://beyaz-esya-servisi.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Beyaz Eşya Servisi",
+          "item": "https://beyaz-esya-servisi.vercel.app/hizmet.html"
+        }
+      ]
+    }</script>
+
+    <!-- JSON-LD: Service -->
+    <script type="application/ld+json" id="serviceSchema">{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Beyaz Eşya Servisi",
+      "name": "Beyaz Eşya Servisi",
+      "description": "İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz."
+    }</script>
+
+    <!-- JSON-LD: Article -->
+    <script type="application/ld+json" id="articleSchema">{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Beyaz Eşya Servisi",
+      "description": "İstanbul'da buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın gibi tüm beyaz eşyalarınız için profesyonel, hızlı ve güvenilir teknik servis hizmeti sunuyoruz.",
+      "mainEntityOfPage": { "@id": "https://beyaz-esya-servisi.vercel.app/hizmet.html" }
+    }</script>
+
     <!-- Optimize Font Awesome loading -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>

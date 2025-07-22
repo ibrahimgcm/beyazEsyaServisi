@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM elementlerini bir kere seç ve sakla
     const elements = {
-        title: document.title,
+        title: document.querySelector('title'),
         metaDescription: document.getElementById('metaDescription'),
         canonicalLink: document.getElementById('canonicalLink'),
         ogTitle: document.getElementById('ogTitle'),
@@ -124,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentUrlEncoded = encodeURIComponent(currentUrl);
 
         // Meta güncellemeleri
+        if (elements.title) elements.title.textContent = data.title;
         document.title = data.title;
         if (elements.metaDescription) elements.metaDescription.content = data.description;
         if (elements.canonicalLink) elements.canonicalLink.href = currentUrl;
