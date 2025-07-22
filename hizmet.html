@@ -144,13 +144,23 @@
       /* Optimize main content rendering */
       main { display: block; max-width: 900px; margin: 32px auto 0; padding: 0 16px; }
       #mainTitle, #serviceTitle { margin-bottom: 16px; }
+      /* LCP için kritik stiller */
       #mainDescription {
         font-size: 1.1em;
         line-height: 1.6;
         margin: 0 0 24px;
-        color: var(--text-color);
-        max-width: 65ch; /* Improve readability */
+        color: #222;
+        max-width: 65ch;
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
         font-display: swap;
+      }
+      h2 {
+        min-height: 2em;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0.5em 0;
+        color: #111;
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
       }
       /* Prevent layout shifts */
       .social-share {
@@ -289,8 +299,17 @@
         }
       }
     </style>
-    <link rel="preload" href="assets/css/hizmet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/hizmet.css"></noscript>
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+    <style>
+    @media (max-width:800px){
+      .modern-menu{display:none!important; background:#fff !important;}
+      .modern-menu.open{display:flex!important;}
+      .menu-list{display:flex!important; flex-direction:column; align-items:stretch; gap:0; padding:0;}
+      .modern-menu li a { color: #1976d2 !important; background: none !important; font-weight: 700; }
+      .modern-menu li a:hover, .modern-menu li a:focus { background: #e3f2fd !important; color: #0d47a1 !important; }
+    }
+    </style>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
@@ -301,26 +320,24 @@
           <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
         </div>
         <div id="mobile-menu-overlay" class="menu-overlay"></div>
-        <div class="modern-menu" id="main-menu">
-          <ul class="menu-list">
-            <li><a href="/index.html">Ana Sayfa</a></li>
-            <li class="menu-item has-submenu">
-              <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
-              <ul class="submenu">
-                <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
-                <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
-                <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
-                <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
-                <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
-                <li><a href="/hizmet.html?service=Klima">Klima</a></li>
-                <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
-                <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
-              </ul>
-            </li>
-            <li><a href="/about.html">Hakkımızda</a></li>
-            <li><a href="/contact.html">İletişim</a></li>
-          </ul>
-        </div>
+        <ul id="main-menu" class="modern-menu">
+          <li><a href="/index.html">Ana Sayfa</a></li>
+          <li class="menu-item has-submenu">
+            <a href="/hizmet.html" class="submenu-toggle">Hizmetler</a>
+            <ul class="submenu">
+              <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
+              <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
+              <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
+              <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
+              <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
+              <li><a href="/hizmet.html?service=Klima">Klima</a></li>
+              <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
+              <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
+            </ul>
+          </li>
+          <li><a href="/about.html">Hakkımızda</a></li>
+          <li><a href="/contact.html">İletişim</a></li>
+        </ul>
       </nav>
     </header>
     <!-- Hero Section -->
@@ -343,6 +360,11 @@
       </div>
       <h2 id="mainTitle">Beyaz Eşya Servisi</h2>
       <h2 id="serviceTitle">İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri</h2>
+      <p id="mainDescription">
+        Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima,
+        kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde
+        hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.
+      </p>
       <div class="social-share">
         <a id="facebookShare" href="https://www.facebook.com/sharer/sharer.php?u=https://beyaz-esya-servisi.vercel.app/hizmet"
            target="_blank"
@@ -375,11 +397,6 @@
           Şimdi Ara: 0555 123 45 67
         </a>
       </div>
-      <p id="mainDescription">
-        Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima,
-        kombi ve televizyon için uzman teknik servis hizmeti. İstanbul genelinde
-        hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.
-      </p>
       <section
         class="hizmetler-ikon-ozet"
         style="
