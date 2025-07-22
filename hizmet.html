@@ -90,7 +90,7 @@
     <style>
       /* Critical CSS for above-the-fold content */
       :root { --primary-color: #1976d2; --text-color: #222; }
-      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
+      body { font-family: 'Roboto', Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; font-display: swap; }
       * { box-sizing: border-box; }
       h1, h2, h3 { font-family: 'Roboto', Arial, Helvetica, sans-serif; color: #111; margin: 0; }
       a { color: #0d47a1; text-decoration: none; font-weight: 600; }
@@ -100,23 +100,22 @@
   height: auto;
       }
       .hero-section {
-        height: 120px;
-        background: #f8f8f8;
         display: flex;
         align-items: center;
         justify-content: center;
-        contain: layout;
-        contain-intrinsic-size: 120px;
+        min-height: 120px;
+        background: #f8f8f8;
+        text-align: center;
+        padding: 16px;
       }
-      .hero-section h1 {
+      #heroTitle {
         font-size: 2em;
         color: #1976d2;
         margin: 0;
         font-weight: 700;
         max-width: 800px;
         line-height: 1.2;
-        /* CLS önleme: En az iki satır yüksekliği rezerve et */
-        min-height: calc(2 * 1.2em);
+        min-height: 2.4em;
       }
       .modern-header { position: relative; z-index: 100; }
       .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
@@ -327,10 +326,9 @@
     </header>
     <!-- Hero Section -->
     <div class="hero-section">
-      <h1 id="heroTitle" style="min-height:2.4em;">Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
+      <h1 id="heroTitle">Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
     </div>
     <main>
-      <h1 id="heroTitle" style="min-height:2.4em;">Beyaz Eşya Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek</h1>
       <h2 id="mainTitle">Beyaz Eşya Servisi</h2>
       <h2 id="serviceTitle">İstanbul Profesyonel Beyaz Eşya Tamir ve Bakım Hizmetleri</h2>
       <p id="mainDescription" style="font-size:1.1em;line-height:1.6;margin:0 0 24px;color:#222;max-width:65ch;font-family:'Roboto',Arial,sans-serif;font-display:swap;">
