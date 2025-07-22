@@ -25,72 +25,78 @@ function updateServiceContent() {
             }
         }
     };
-    
-    const newDescription = `İstanbul ${trimmedServiceName} servisi. Profesyonel, hızlı ve güvenilir ${trimmedServiceName} teknik servis hizmeti.`;
 
-    // Metin ve Özellikleri Güncelle
-    updateElement('metaDescription', 'content', newDescription);
-    updateElement('canonicalLink', 'href', currentUrl);
-    updateElement('ogTitle', 'content', newTitle);
-    updateElement('ogDescription', 'content', newDescription);
-    updateElement('ogUrl', 'content', currentUrl);
-    updateElement('twitterTitle', 'content', newTitle);
-    updateElement('twitterDescription', 'content', newDescription);
-    
-    // Hero başlığını güncelle ve görünür yap
-    const heroTitleEl = document.getElementById('heroTitle');
-    if (heroTitleEl) {
-        heroTitleEl.textContent = `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`;
-        heroTitleEl.classList.add('visible');
-    }
-    
-    updateElement('mainTitle', 'textContent', `${trimmedServiceName} Servisi`);
-    updateElement('serviceTitle', 'textContent', `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`);
-    updateElement('mainDescription', 'textContent', `${trimmedServiceName} için uzman teknik servis hizmeti. İstanbul genelinde hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`);
+    // DOM güncellemelerini gruplayarak reflow'u azalt
+    requestAnimationFrame(() => {
+        document.title = newTitle;
+        updateElement('metaTitle', 'textContent', newTitle);
+        updateElement('ogTitle', 'content', newTitle);
+        updateElement('twitterTitle', 'content', newTitle);
 
-    // InnerHTML kullanan özel durumlar (sadece kesin gerekliyse)
-    const breadcrumbCurrentSpan = document.querySelector('#breadcrumbCurrent span');
-    if (breadcrumbCurrentSpan) {
-        breadcrumbCurrentSpan.textContent = `${trimmedServiceName} Servisi`;
-    }
-    const breadcrumbCurrentLink = document.querySelector('#breadcrumbCurrent a');
-    if (breadcrumbCurrentLink) {
-        breadcrumbCurrentLink.href = currentUrl;
-    }
+        const newDescription = `İstanbul ${trimmedServiceName} servisi: Profesyonel, hızlı ve güvenilir teknik destek. Garantili tamir ve bakım hizmetleri.`;
+        updateElement('metaDescription', 'content', newDescription);
+        updateElement('ogDescription', 'content', newDescription);
+        updateElement('twitterDescription', 'content', newDescription);
 
-    // Şema Güncellemeleri
-    const updateSchema = (id, updater) => {
-        const element = document.getElementById(id);
-        if (element) {
-            try {
-                const schema = JSON.parse(element.textContent);
-                updater(schema);
-                element.textContent = JSON.stringify(schema, null, 2);
-            } catch (e) {
-                console.error(`Schema ID'si '${id}' güncellenirken hata oluştu:`, e);
+        const newUrl = `https://beyaz-esya-servisi.vercel.app/hizmet.html?service=${encodeURIComponent(trimmedServiceName)}`;
+        updateElement('canonicalLink', 'href', newUrl);
+        updateElement('ogUrl', 'content', newUrl);
+
+        updateElement('heroTitle', 'textContent', `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`);
+        updateElement('mainTitle', 'textContent', `${trimmedServiceName} Servisi`);
+        updateElement('serviceTitle', 'textContent', `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`);
+        updateElement('mainDescription', 'textContent', `İstanbul'da ${trimmedServiceName} ve diğer tüm beyaz eşyalarınız için uzman teknik servis hizmeti. Hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`);
+
+        // Breadcrumb güncellemesi
+        const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
+        if (breadcrumbCurrent) {
+            const link = breadcrumbCurrent.querySelector('a');
+            const span = breadcrumbCurrent.querySelector('span');
+            if (link) link.href = newUrl;
+            if (span) span.textContent = `${trimmedServiceName} Servisi`;
+        }
+
+        // Schema.org JSON-LD güncellemesi
+        const updateJsonLd = (id, updater) => {
+            const script = document.getElementById(id);
+            if (script) {
+                try {
+                    const json = JSON.parse(script.textContent);
+                    updater(json);
+                    script.textContent = JSON.stringify(json, null, 2);
+                } catch (e) {
+                    console.error(`Error parsing or updating JSON-LD for ${id}:`, e);
+                }
             }
-        }
-    };
+        };
 
-    updateSchema('breadcrumbSchema', schema => {
-        if (schema.itemListElement && schema.itemListElement.length > 1) {
-            schema.itemListElement[1].name = `${trimmedServiceName} Servisi`;
-            schema.itemListElement[1].item = currentUrl;
-        }
-    });
+        updateJsonLd('breadcrumbSchema', json => {
+            if (json.itemListElement && json.itemListElement[1]) {
+                json.itemListElement[1].name = `${trimmedServiceName} Servisi`;
+                json.itemListElement[1].item = newUrl;
+            }
+        });
 
-    updateSchema('serviceSchema', schema => {
-        schema.serviceType = `${trimmedServiceName} Servisi`;
-        schema.name = `${trimmedServiceName} Servisi`;
-        schema.description = newDescription;
-    });
+        updateJsonLd('serviceSchema', json => {
+            json.serviceType = `${trimmedServiceName} Servisi`;
+            json.name = `${trimmedServiceName} Servisi`;
+            json.description = newDescription;
+        });
 
-    updateSchema('articleSchema', schema => {
-        schema.headline = `${trimmedServiceName} Servisi`;
-        schema.description = newDescription;
-        if (schema.mainEntityOfPage) {
-            schema.mainEntityOfPage['@id'] = currentUrl;
-        }
+        updateJsonLd('articleSchema', json => {
+            json.headline = `${trimmedServiceName} Servisi`;
+            json.description = newDescription;
+            if(json.mainEntityOfPage) {
+                json.mainEntityOfPage['@id'] = newUrl;
+            }
+        });
+
+        // Sosyal medya paylaşım linklerini güncelle
+        const facebookShare = document.getElementById('facebookShare');
+        if(facebookShare) facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(newUrl)}`;
+
+        const twitterShare = document.getElementById('twitterShare');
+        if(twitterShare) twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(newUrl)}&text=${encodeURIComponent(newTitle)}`;
     });
 }
 
@@ -100,4 +106,4 @@ if (document.readyState === 'loading') {
 } else {
     // DOM zaten hazırsa doğrudan çalıştır
     updateServiceContent();
-} 
+}
