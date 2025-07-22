@@ -204,6 +204,55 @@
     <meta property="og:image" content="" />
     <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+    <style>
+      /* Critical CSS for above-the-fold content */
+      :root { --primary-color: #1976d2; --text-color: #222; }
+      body { font-family: Arial, Helvetica, sans-serif; min-width: 320px; overflow-x: hidden; color: #222; margin: 0; }
+      * { box-sizing: border-box; }
+      h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; color: #111; margin: 0; }
+      a { color: #0d47a1; text-decoration: none; font-weight: 600; }
+      img { display: block; max-width: 100%; height: auto; }
+      
+      /* Footer List Styles */
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .footer-links li {
+        position: relative;
+      }
+
+      .footer-links li:not(:last-child)::after {
+        content: '|';
+        margin: 0 8px;
+        color: #666;
+      }
+
+      .footer-links a {
+        color: #1976d2;
+        text-decoration: none;
+        font-weight: normal;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 800px) {
+        .footer-links {
+          flex-direction: column;
+          gap: 4px;
+        }
+        .footer-links li:not(:last-child)::after {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header (inlined to eliminate extra network requests) -->
@@ -409,22 +458,26 @@
       <div class="footer-container">
         <section>
           <h3>Hizmetlerimiz</h3>
-          <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
-          <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
-          <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
-          <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
-          <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
-          <li><a href="/hizmet.html?service=Klima">Klima</a></li>
-          <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
-          <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
+          <ul class="footer-links">
+            <li><a href="/hizmet.html?service=Beyaz Eşya Servisi">Beyaz Eşya Servisi</a></li>
+            <li><a href="/hizmet.html?service=Buzdolabı">Buzdolabı</a></li>
+            <li><a href="/hizmet.html?service=Çamaşır Makinesi">Çamaşır Makinesi</a></li>
+            <li><a href="/hizmet.html?service=Bulaşık Makinesi">Bulaşık Makinesi</a></li>
+            <li><a href="/hizmet.html?service=Fırın">Fırın</a></li>
+            <li><a href="/hizmet.html?service=Klima">Klima</a></li>
+            <li><a href="/hizmet.html?service=Kombi">Kombi</a></li>
+            <li><a href="/hizmet.html?service=Televizyon">Televizyon</a></li>
+          </ul>
         </section>
         <section>
           <h3>Kurumsal</h3>
-          <a href="/index.html">Ana Sayfa</a> |
-          <a href="/about.html">Hakkımızda</a> |
-          <a href="/contact.html">İletişim</a> |
-          <a href="/privacy.html">Gizlilik Politikası</a> |
-          <a href="/kvkk.html">KVKK</a>
+          <ul class="footer-links">
+            <li><a href="/index.html">Ana Sayfa</a></li>
+            <li><a href="/about.html">Hakkımızda</a></li>
+            <li><a href="/contact.html">İletişim</a></li>
+            <li><a href="/privacy.html">Gizlilik Politikası</a></li>
+            <li><a href="/kvkk.html">KVKK</a></li>
+          </ul>
         </section>
         <section class="contact-section">
           <h3>İletişim</h3>
