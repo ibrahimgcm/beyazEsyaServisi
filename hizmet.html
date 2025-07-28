@@ -31,38 +31,44 @@
     <meta name="twitter:image" content="" />
 
     <!-- Local Font Loading - Optimized for LCP -->
+    <!-- Preload critical fonts to reduce LCP delay -->
+    <link rel="preload" href="assets/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
     <style>
-      /* Roboto Font Face Definitions */
+      /* Roboto Font Face Definitions - Optimized for LCP */
       @font-face {
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
-        font-display: swap;
+        font-display: optional;
         src: url('assets/fonts/Roboto-Regular.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 700;
-        font-display: swap;
+        font-display: optional;
         src: url('assets/fonts/Roboto-Bold.woff2') format('woff2');
       }
       
-      /* Font Awesome Font Face Definition */
-      @font-face {
-        font-family: 'Font Awesome 5 Free';
-        font-style: normal;
-        font-weight: 900;
-        font-display: swap;
-        src: url('assets/fonts/fa-solid-900.woff2') format('woff2');
+      /* Custom icons using CSS - no font loading required */
+      .icon-star::before {
+        content: "★";
+        color: #ffd700;
+        font-size: 1.2em;
       }
-      .fas {
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
+      
+      .icon-phone::before {
+        content: "📞";
+        font-size: 1.2em;
+        margin-right: 8px;
       }
-      /* Only include used icons */
-      .fa-star:before {content: "\f005";}
-      .fa-phone-alt:before {content: "\f879";}
+      
+      .icon-phone-alt::before {
+        content: "📱";
+        font-size: 1.2em;
+        margin-right: 8px;
+      }
     </style>
 
     <!-- JSON-LD: Breadcrumb -->
@@ -104,17 +110,23 @@
     }</script>
 
     <style>
-      /* Sadece kritik LCP ve başlık stilleri */
-      :root { --primary-color: #1976d2; --text-color: #222; }
+      /* Critical CSS for LCP - optimized */
+      * { box-sizing: border-box; }
+      
       body { 
-        font-family: 'Roboto', Arial, Helvetica, sans-serif; 
-        min-width: 320px; 
-        overflow-x: hidden; 
-        color: #222; 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
         margin: 0; 
-        font-display: swap;
-        text-rendering: optimizeSpeed;
+        color: #222;
+        min-width: 320px;
+        overflow-x: hidden;
       }
+      
+      h1, h2, h3 { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+        color: #111; 
+        margin: 0;
+      }
+      
       h1#heroTitle {
         font-size: 2em;
         line-height: 1.2;
@@ -123,8 +135,8 @@
         font-weight: 700;
         max-width: 800px;
         min-height: 2.4em;
-        text-rendering: optimizeSpeed;
       }
+      
       .hero-section {
         display: flex;
         align-items: center;
@@ -134,22 +146,25 @@
         text-align: center;
         padding: 16px;
       }
+      
       #mainTitle, #serviceTitle {
         min-height: 1.5em;
         margin-bottom: 16px;
         color: #111;
-        font-family: 'Roboto', Arial, Helvetica, sans-serif;
         font-weight: 700;
-        text-rendering: optimizeSpeed;
+        font-size: 1.5em;
+        line-height: 1.2;
       }
+      
       #mainDescription {
         font-size: 1.1em;
         line-height: 1.6;
         margin: 0 0 24px;
         color: #222;
         max-width: 65ch;
-        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+        min-height: 100px;
       }
+      
       main {
         min-height: 500px;
         max-width: 900px;
@@ -157,239 +172,21 @@
         padding: 0 16px;
         display: block;
       }
-      * { box-sizing: border-box; }
-      h1, h2, h3 { 
-        font-family: 'Roboto', Arial, Helvetica, sans-serif; 
-        color: #111; 
-        margin: 0;
-        text-rendering: optimizeSpeed;
-      }
-      a { color: #0d47a1; text-decoration: none; font-weight: 600; }
-      img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-      /* Slider performance optimization */
-      .reviews-track {
-        will-change: transform;
-      }
-      .review-card {
-        will-change: opacity, transform;
-      }
-      /* Optimized hero section for LCP */
-      .hero-section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 120px;
-        background: #f8f8f8;
-        text-align: center;
-        padding: 16px;
-        contain: layout style paint;
-      }
-      #heroTitle {
-        font-size: 2em;
-        line-height: 1.2;
-        color: #1976d2;
-        margin: 0;
-        font-weight: 700;
-        max-width: 800px;
-        min-height: 2.4em; /* Prevent layout shift */
-        text-rendering: optimizeSpeed;
-        will-change: auto;
-      }
-      /* CLS Önleme: Ana içerik alanı için minimum yükseklik belirle */
-      main {
-        min-height: 500px; /* İçerik yüklenene kadar yer ayır */
-      }
-      #mainTitle, #serviceTitle {
-        min-height: 1.5em; /* Başlıklar için yer ayır */
-      }
-      #mainDescription {
-        min-height: 100px; /* Açıklama paragrafı için yer ayır */
-      }
-      .modern-header { position: relative; z-index: 100; }
-      .header-bar { display: flex; align-items: center; justify-content: space-between; height: 56px; background: linear-gradient(135deg, #1976d2, #1565c0); padding: 0 18px; box-shadow: 0 4px 16px rgba(25, 118, 210, 0.2); }
-      .site-title { color: #fff; font-size: 1.25em; font-weight: 700; letter-spacing: 0.5px; }
-      .header-bar > a { display: flex; align-items: center; height: 100%; }
-      .hamburger { display: none; font-size: 2.1em; color: #fff; background: none; border: none; cursor: pointer; padding: 6px 10px; border-radius: 8px; }
-      .modern-menu { list-style: none; display: flex; gap: 12px; padding: 0 18px; margin: 0; align-items: center; background: linear-gradient(135deg, #1976d2, #1565c0); font-family: 'Roboto', Arial, sans-serif; font-size: 1.08em; position: relative; z-index: 101; }
-      .modern-menu li a { color: #fff; text-decoration: none; padding: 12px 18px; display: inline-block; border-radius: 10px; font-weight: 600; }
-      .modern-menu .has-submenu { position: relative; }
-      .modern-menu .submenu { display: none; position: absolute; left: 0; top: 100%; background: #fff; min-width: 200px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); z-index: 1000; padding: 0; border-radius: 12px; }
-      .menu-item.has-submenu:hover > .submenu, .menu-item.has-submenu:focus-within > .submenu { display: block; }
-      /* Optimize main content rendering - reduce layout shifts */
-      main { 
-        display: block; 
-        max-width: 900px; 
-        margin: 32px auto 0; 
-        padding: 0 16px;
-        contain: layout style;
-      }
-      #mainTitle, #serviceTitle { 
-        margin-bottom: 16px;
-        text-rendering: optimizeSpeed;
-        contain: layout style paint;
-      }
-      /* LCP optimization - improve mainDescription rendering */
-      #mainDescription {
-        font-size: 1.1em;
-        line-height: 1.6;
-        margin: 0 0 24px;
-        color: #222;
-        max-width: 65ch;
-        font-family: 'Roboto', Arial, Helvetica, sans-serif;
-        font-display: swap;
-        contain: layout style paint;
-        will-change: auto;
-      }
-      h2 {
-        min-height: 2em;
-        line-height: 1.2;
-        margin: 0;
-        padding: 0.5em 0;
-        color: #111;
-        font-family: 'Roboto', Arial, Helvetica, sans-serif;
-        text-rendering: optimizeSpeed;
-        contain: layout style paint;
-      }
-      /* Prevent layout shifts - optimized */
-      .social-share {
-        min-height: 32px;
-        margin-bottom: 16px;
-        contain: layout style;
-      }
-      .vurgulu-servis-yazi {
-        min-height: 60px;
-        contain: layout style paint;
-      }
-      /* CTA Container optimized */
-      .cta-container {
-        text-align: center;
-        margin: 18px 0 24px;
-        contain: layout style;
-      }
-      .vurgulu-servis-yazi {
-        font-size: 11px;
-        font-weight: 500;
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px 14px 14px;
-        box-shadow: 0 2px 12px #0001;
-        letter-spacing: 0.01em;
-        line-height: 1.6;
-        color: #1976d2;
-        margin-bottom: 12px;
-        contain: layout style paint;
-        text-rendering: optimizeSpeed;
+      
+      /* Custom icons using CSS - no font loading required */
+      .icon-star::before {
+        content: "★";
+        color: #ffd700;
+        font-size: 1.2em;
       }
       
-      /* Optimized service icons - prevent forced reflow */
-      .hizmetler-ikon-ozet {
-        max-width: 600px;
-        margin: 0 auto 32px auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px 18px;
-        justify-items: center;
-        align-items: start;
-        contain: layout style paint;
-      }
-      
-      .hizmet-ikon-kutu {
-        text-align: center;
-        contain: layout style paint;
-      }
-      
-      .hizmet-ikon-wrapper {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-        contain: strict;
-      }
-      
-      .hizmet-ikon-title {
-        font-weight: bold;
-        font-size: 1.1em;
-        margin-top: 8px;
-        contain: layout style paint;
-      }
-      
-      .hizmet-ikon-desc {
-        font-size: 0.98em;
-        color: #444;
-        margin-top: 4px;
-        contain: layout style paint;
-      }
-      
-      .vurgulu-span {
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-      
-      .footer-tel-btn-cta {
-        display: inline-block;
-        background: #064d1a;
-        color: #fff;
-        font-weight: bold;
-        border: none;
-        border-radius: 16px;
-        padding: 18px 36px;
-        font-size: 20px;
-        box-shadow: 0 2px 12px #0002;
-        margin: 0;
-        text-decoration: none;
-        contain: layout style paint;
-      }
-      
-      .phone-icon-cta {
-        vertical-align: middle;
+      .icon-phone-alt::before {
+        content: "📱";
+        font-size: 1.2em;
         margin-right: 8px;
-        font-size: 24px;
       }
       
-      /* Article section optimization */
-      .makale-section {
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 12px #0001;
-        padding: 24px 18px;
-        margin: 24px 0;
-        contain: layout style paint;
-      }
-      
-      /* FAQ Section optimization */
-      .faq-section {
-        max-width: 900px;
-        margin: 32px auto;
-        padding: 0 16px;
-        contain: layout style;
-      }
-      
-      .faq-title {
-        margin-bottom: 24px;
-        contain: layout style paint;
-      }
-      
-      .faq-item-title {
-        font-size: 1.1em;
-        color: #1976d2;
-        margin-bottom: 8px;
-        contain: layout style paint;
-      }
-      
-      .faq-item-content {
-        margin-top: 0;
-        margin-bottom: 16px;
-        line-height: 1.6;
-        contain: layout style paint;
-      }
-      
-      /* Floating button optimization */
+      /* Floating button CLS optimization */
       .floating-btn {
         position: fixed;
         bottom: 20px;
@@ -409,7 +206,6 @@
         min-width: 140px;
         min-height: 48px;
         justify-content: center;
-        contain: layout style paint;
       }
       
       .floating-icon {
@@ -423,123 +219,44 @@
         white-space: nowrap;
       }
       
-      /* Breadcrumb optimization */
-      .breadcrumb-bottom {
-        display: none;
+      /* Essential layout styles for LCP */
+      .cta-container {
+        text-align: center;
+        margin: 18px 0 24px;
       }
       
-      .breadcrumb-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        font-size: 0.9em;
-        color: #555;
-        contain: layout style paint;
-      }
-      
-      .breadcrumb-separator {
-        margin: 0 8px;
-      }
-      
-      /* Reviews slider optimization */
-      .reviews-track-flex {
-        display: flex;
-        contain: layout style paint;
-      }
-      /* Remove duplicate hero-section styles - already defined above */
-      @media (max-width: 800px) {
-        .header-bar { height: 48px; padding: 0 10px; }
-        .site-title { font-size: 1.1em; }
-        .hamburger { display: block; }
-        .modern-menu { display: none; }
-        .modern-menu.open { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 0 0 12px 0; position: fixed; top: 0; right: 0; width: 80vw; max-width: 340px; height: 100vh; background: #fff; box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15); z-index: 300; }
-        .modern-menu li a { color: #1976d2; }
-        .modern-menu .submenu { position: static; box-shadow: none; border: none; background: none; display: none; }
-        .modern-menu .submenu.submenu-open { display: block; }
-      }
-      .hizmet-ikon-kutu img {
-        width: 32px;
-        height: 32px;
-        contain: strict;
-      }
-      .footer-tel-btn img, #floating-search-btn img {
-        width: 32px;
-        height: 32px;
-        contain: strict;
-      }
-
-      /* Menu Styles */
-      .menu-list {
-        list-style: none;
-        display: flex;
-        gap: 12px;
-        padding: 0 18px;
-        margin: 0;
-        align-items: center;
-        background: linear-gradient(135deg, #1976d2, #1565c0);
-        font-family: 'Roboto', Arial, sans-serif;
-        font-size: 1.08em;
-      }
-
-      .menu-list li a {
-        color: #fff;
-        text-decoration: none;
-        padding: 12px 18px;
-        display: inline-block;
-        border-radius: 10px;
-        font-weight: 600;
-      }
-
-      /* Footer List Styles */
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 10px 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .footer-links li {
-        position: relative;
-      }
-
-      .footer-links li:not(:last-child)::after {
-        content: '|';
-        margin: 0 8px;
-        color: #666;
-      }
-
-      .footer-links a {
+      .vurgulu-servis-yazi {
+        font-size: 11px;
+        font-weight: 500;
+        background: #fff;
+        border-radius: 16px;
+        padding: 16px 14px 14px;
+        box-shadow: 0 2px 12px #0001;
+        letter-spacing: 0.01em;
+        line-height: 1.6;
         color: #1976d2;
+        margin-bottom: 12px;
+        min-height: 60px;
+      }
+      
+      .footer-tel-btn-cta {
+        display: inline-block;
+        background: #064d1a;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 36px;
+        font-size: 20px;
+        box-shadow: 0 2px 12px #0002;
+        margin: 0;
         text-decoration: none;
-        font-weight: normal;
       }
-
-      .footer-links a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 800px) {
-        .menu-list {
-          display: none;
-        }
-        .menu-list.open {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0;
-          padding: 0;
-        }
-        .footer-links {
-          flex-direction: column;
-          gap: 4px;
-        }
-        .footer-links li:not(:last-child)::after {
-          display: none;
-        }
+      
+      .phone-icon-cta {
+        vertical-align: middle;
+        margin-right: 8px;
+        font-size: 24px;
       }
     </style>
     <!-- Preload critical CSS file to reduce render delay -->
@@ -610,21 +327,21 @@
           <span class="vurgulu-span">HER MARKA VE MODEL BEYAZ EŞYA İÇİN HIZLI ve GÜVENİLİR PROFESYONEL SERVİS HİZMETİ</span>
         </div>
         <a href="tel:05551234567" class="footer-tel-btn-cta">
-          <i class="fas fa-phone-alt phone-icon-cta"></i>
+          <span class="icon-phone-alt phone-icon-cta"></span>
           Şimdi Ara: 0555 123 45 67
         </a>
       </div>
       <section class="hizmetler-ikon-ozet">
         <div class="hizmet-ikon-kutu">
           <div class="hizmet-ikon-wrapper ikon-sari">
-            <i class="fas fa-star"></i>
+            <span class="icon-star"></span>
           </div>
           <div class="hizmet-ikon-title">Müşteri Memnuniyeti</div>
           <div class="hizmet-ikon-desc">Her zaman müşteri odaklı, güler yüzlü ve çözüm odaklı hizmet sunuyoruz.</div>
         </div>
         <div class="hizmet-ikon-kutu">
           <div class="hizmet-ikon-wrapper ikon-mavi">
-            <i class="fas fa-phone-alt"></i>
+            <span class="icon-phone-alt"></span>
           </div>
           <div class="hizmet-ikon-title">7/24 İletişim</div>
           <div class="hizmet-ikon-desc">Günün her saati bize ulaşabilir, hızlıca destek alabilirsiniz.</div>
@@ -845,7 +562,7 @@
       </div>
     </section>
     <a id="floating-search-btn" href="tel:05551234567" class="floating-btn">
-      <i class="fas fa-phone-alt floating-icon"></i>
+      <span class="icon-phone-alt floating-icon"></span>
       <span class="floating-text">Şimdi Ara</span>
     </a>
 
