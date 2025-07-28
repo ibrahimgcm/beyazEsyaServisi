@@ -232,6 +232,150 @@
         contain: layout style paint;
         text-rendering: optimizeSpeed;
       }
+      
+      /* Optimized service icons - prevent forced reflow */
+      .hizmetler-ikon-ozet {
+        max-width: 600px;
+        margin: 0 auto 32px auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 18px;
+        justify-items: center;
+        align-items: start;
+        contain: layout style paint;
+      }
+      
+      .hizmet-ikon-kutu {
+        text-align: center;
+        contain: layout style paint;
+      }
+      
+      .hizmet-ikon-wrapper {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        contain: strict;
+      }
+      
+      .hizmet-ikon-title {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-top: 8px;
+        contain: layout style paint;
+      }
+      
+      .hizmet-ikon-desc {
+        font-size: 0.98em;
+        color: #444;
+        margin-top: 4px;
+        contain: layout style paint;
+      }
+      
+      .vurgulu-span {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      
+      .footer-tel-btn-cta {
+        display: inline-block;
+        background: #064d1a;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 16px;
+        padding: 18px 36px;
+        font-size: 20px;
+        box-shadow: 0 2px 12px #0002;
+        margin: 0;
+        text-decoration: none;
+        contain: layout style paint;
+      }
+      
+      .phone-icon-cta {
+        vertical-align: middle;
+        margin-right: 8px;
+        font-size: 24px;
+      }
+      
+      /* Article section optimization */
+      .makale-section {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px #0001;
+        padding: 24px 18px;
+        margin: 24px 0;
+        contain: layout style paint;
+      }
+      
+      /* FAQ Section optimization */
+      .faq-section {
+        max-width: 900px;
+        margin: 32px auto;
+        padding: 0 16px;
+        contain: layout style;
+      }
+      
+      .faq-title {
+        margin-bottom: 24px;
+        contain: layout style paint;
+      }
+      
+      .faq-item-title {
+        font-size: 1.1em;
+        color: #1976d2;
+        margin-bottom: 8px;
+        contain: layout style paint;
+      }
+      
+      .faq-item-content {
+        margin-top: 0;
+        margin-bottom: 16px;
+        line-height: 1.6;
+        contain: layout style paint;
+      }
+      
+      /* Floating button optimization */
+      .floating-btn {
+        color: #fff;
+        contain: layout style paint;
+      }
+      
+      .floating-icon {
+        font-size: 24px;
+      }
+      
+      .floating-text {
+        color: #fff;
+      }
+      
+      /* Breadcrumb optimization */
+      .breadcrumb-bottom {
+        display: none;
+      }
+      
+      .breadcrumb-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        font-size: 0.9em;
+        color: #555;
+        contain: layout style paint;
+      }
+      
+      .breadcrumb-separator {
+        margin: 0 8px;
+      }
+      
+      /* Reviews slider optimization */
+      .reviews-track-flex {
+        display: flex;
+        contain: layout style paint;
+      }
       /* Remove duplicate hero-section styles - already defined above */
       @media (max-width: 800px) {
         .header-bar { height: 48px; padding: 0 10px; }
@@ -345,7 +489,7 @@
     <header>
       <nav class="modern-header">
         <div class="header-bar">
-          <a href="/index.html" style="text-decoration:none;color:inherit;"><span class="site-title">Beyaz Esya Servisi</span></a>
+          <a href="/index.html" class="site-title-link"><span class="site-title">Beyaz Esya Servisi</span></a>
           <div id="mobile-menu-toggle" class="hamburger" aria-label="Menüyü Aç/Kapat" tabindex="0">☰</div>
         </div>
         <div id="mobile-menu-overlay" class="menu-overlay"></div>
@@ -400,14 +544,14 @@
       </div>
       <section class="hizmetler-ikon-ozet">
         <div class="hizmet-ikon-kutu">
-          <div class="hizmet-ikon-wrapper" style="font-size: 28px; color: #ffc107;">
+          <div class="hizmet-ikon-wrapper ikon-sari">
             <i class="fas fa-star"></i>
           </div>
           <div class="hizmet-ikon-title">Müşteri Memnuniyeti</div>
           <div class="hizmet-ikon-desc">Her zaman müşteri odaklı, güler yüzlü ve çözüm odaklı hizmet sunuyoruz.</div>
         </div>
         <div class="hizmet-ikon-kutu">
-          <div class="hizmet-ikon-wrapper" style="font-size: 28px; color: #1976d2;">
+          <div class="hizmet-ikon-wrapper ikon-mavi">
             <i class="fas fa-phone-alt"></i>
           </div>
           <div class="hizmet-ikon-title">7/24 İletişim</div>
@@ -415,29 +559,20 @@
         </div>
         <div class="hizmet-ikon-kutu">
           <div class="hizmet-ikon-wrapper">
-            <img src="assets/img/favicon-tamir-32x32.png" alt="Uzman Teknik Ekip" width="32" height="32" style="display: block;">
+            <img src="assets/img/favicon-tamir-32x32.png" alt="Uzman Teknik Ekip" width="32" height="32" class="block-image">
           </div>
           <div class="hizmet-ikon-title">Uzman Teknik Ekip</div>
           <div class="hizmet-ikon-desc">Deneyimli ve eğitimli teknik ekibimizle güvenilir servis hizmeti.</div>
         </div>
         <div class="hizmet-ikon-kutu">
           <div class="hizmet-ikon-wrapper">
-            <img src="assets/img/favicon-house-32x32.png" alt="Hızlı Servis" width="32" height="32" style="display: block;">
+            <img src="assets/img/favicon-house-32x32.png" alt="Hızlı Servis" width="32" height="32" class="block-image">
           </div>
           <div class="hizmet-ikon-title">Hızlı Servis</div>
           <div class="hizmet-ikon-desc">Arızalara en kısa sürede müdahale, hızlı ve etkili çözüm.</div>
         </div>
       </section>
-      <section
-        id="makale"
-        style="
-          background: #fff;
-          border-radius: 12px;
-          box-shadow: 0 2px 12px #0001;
-          padding: 24px 18px;
-          margin: 24px 0;
-        "
-      >
+      <section id="makale" class="makale-section">
         <h2>Beyaz Eşya Servisi, Buzdolabı, Çamaşır Makinesi, Bulaşık Makinesi, Fırın, Klima, Kombi Ve Televizyon</h2>
 <p>Beyaz eşya servisi, evdeki en önemli ihtiyaçlar arasında yer alır. Bu hizmet, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon gibi cihazların çalışmasını sağlar. Kullanıcılar, bu ürünlerin bakıma ve onarıma ihtiyaç duyduğunda profesyonel yardıma başvurur. Bu şekilde, cihazlar daha uzun ömürlü olur ve enerji verimliliği artar. Beyaz eşyaların doğru bakımı, ev ekonomisi açısından da önem taşır. Örneğin, düzenli bakım yapılan bir buzdolabı, gıdaların daha uzun süre taze kalmasını sağlar. Ayrıca, bakımsız bir çamaşır makinesi daha fazla enerji tüketebilir. Bu nedenle, beyaz eşya servisinin önemi büyüktür.</p>
 <p>Beyaz eşyaların onarımı sırasında dikkate almanız gereken birçok detay vardır. İlk olarak, belirtilen servisin deneyimli ve sertifikalı olması önemlidir. Bu özellik, size kaliteli bir hizmet sunar. Ayrıca, yedek parça teminatı da servisle anlaşırken göz önünde bulundurulmalı. Çünkü kaliteli yedek parçalar, cihazların ömrünü uzatır. İşte beyaz eşya servisinin avantajları:</p>
@@ -560,7 +695,7 @@
               <span aria-hidden="true">←</span>
             </button>
             <div class="reviews-slider">
-              <div class="reviews-track" style="display: flex;">
+              <div class="reviews-track reviews-track-flex">
                 <div class="review-card">
                   <blockquote>Çok hızlı ve güvenilir bir servis, teşekkürler!<footer>Ayşe K.</footer></blockquote>
                 </div>
@@ -610,50 +745,36 @@
             <button class="dot" data-slide="3" aria-label="4. yorum"></button>
           </div>
         </section>
-      <div id="breadcrumb-bottom" aria-label="breadcrumb" style="display:none;">
-        <ol
-          style="
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            font-size: 0.9em;
-            color: #555;
-          "
-        >
+      <div id="breadcrumb-bottom" class="breadcrumb-bottom" aria-label="breadcrumb">
+        <ol class="breadcrumb-list">
           <li>
             <a href="/index.html">
-              <span>Ana Sayfa</span></a
-            >
-            
+              <span>Ana Sayfa</span></a>
           </li>
-          <li style="margin: 0 8px">/</li>
+          <li class="breadcrumb-separator">/</li>
           <li id="breadcrumb-current-page">
             <a href="/hizmet.html">
-              <span>Beyaz Eşya Servisi</span></a
-            >
-            
+              <span>Beyaz Eşya Servisi</span></a>
           </li>
         </ol>
       </div>
     </main>
-    <section id="faq-section" style="max-width: 900px; margin: 32px auto; padding: 0 16px;">
-      <h2 style="margin-bottom: 24px;">Sıkça Sorulan Sorular</h2>
+    <section id="faq-section" class="faq-section">
+      <h2 class="faq-title">Sıkça Sorulan Sorular</h2>
       <div id="faq-container">
           <div class="faq-item">
-            <h3 style="font-size: 1.1em; color: #1976d2; margin-bottom: 8px;">Beyaz eşya servisi ne kadar sürede gelir?</h3>
-            <p style="margin-top: 0; margin-bottom: 16px; line-height: 1.6;">İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.</p>
+            <h3 class="faq-item-title">Beyaz eşya servisi ne kadar sürede gelir?</h3>
+            <p class="faq-item-content">İstanbul genelinde mobil ekiplerimiz sayesinde genellikle aynı gün içinde adresinize ulaşıyoruz. Yoğunluğa bağlı olarak en geç 24 saat içinde servis sağlıyoruz.</p>
           </div>
           <div class="faq-item">
-            <h3 style="font-size: 1.1em; color: #1976d2; margin-bottom: 8px;">Tamir edilen parçalar garantili mi?</h3>
-            <p style="margin-top: 0; margin-bottom: 16px; line-height: 1.6;">Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.</p>
+            <h3 class="faq-item-title">Tamir edilen parçalar garantili mi?</h3>
+            <p class="faq-item-content">Evet, değiştirdiğimiz tüm orijinal yedek parçalar için 1 yıl firma garantisi sunuyoruz. Güvenliğiniz ve memnuniyetiniz bizim için önemlidir.</p>
           </div>
       </div>
     </section>
-    <a id="floating-search-btn" href="tel:05551234567" style="color: #fff;">
-      <i class="fas fa-phone-alt" style="font-size: 24px;"></i>
-      <span style="color: #fff;">Şimdi Ara</span>
+    <a id="floating-search-btn" href="tel:05551234567" class="floating-btn">
+      <i class="fas fa-phone-alt floating-icon"></i>
+      <span class="floating-text">Şimdi Ara</span>
     </a>
 
     <!-- Footer (inlined) -->

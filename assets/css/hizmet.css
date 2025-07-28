@@ -136,7 +136,27 @@ a:focus {
   border-radius: 4px;
 }
 
-/* BUTON STILLER */
+/* Site Title Link */
+.site-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Icon Color Variations */
+.ikon-sari {
+  font-size: 28px;
+  color: #ffc107;
+}
+
+.ikon-mavi {
+  font-size: 28px;
+  color: #1976d2;
+}
+
+/* Block Images */
+.block-image {
+  display: block;
+}
 button,
 .btn {
   background: linear-gradient(135deg, #064d1a, #0a5d20);
