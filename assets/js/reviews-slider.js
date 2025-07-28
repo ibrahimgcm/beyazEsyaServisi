@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
   let isMoving = false;
   let resizeTimeout;
+  let isInitialized = false;
 
   const setupDots = () => {
     if (dotsNav) {
@@ -34,11 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const updateLayout = () => {
-    // Batch reads
     const containerWidth = sliderContainer.getBoundingClientRect().width;
     slideWidth = containerWidth;
 
-    // Batch writes
     requestAnimationFrame(() => {
       slides.forEach(slide => {
         slide.style.width = `${slideWidth}px`;
@@ -83,23 +82,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Event Listeners
-  nextButton.addEventListener('click', handleNext, { passive: true });
-  prevButton.addEventListener('click', handlePrev, { passive: true });
-  if (dotsNav) {
-    dotsNav.addEventListener('click', handleDotClick, { passive: true });
-  }
+  const initSlider = () => {
+    if (isInitialized) return;
+    isInitialized = true;
 
-  track.addEventListener('transitionend', () => {
-    isMoving = false;
-  }, { passive: true });
+    nextButton.addEventListener('click', handleNext, { passive: true });
+    prevButton.addEventListener('click', handlePrev, { passive: true });
+    if (dotsNav) {
+      dotsNav.addEventListener('click', handleDotClick, { passive: true });
+    }
 
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateLayout, 200);
-  }, { passive: true });
+    track.addEventListener('transitionend', () => {
+      isMoving = false;
+    }, { passive: true });
 
-  // Initial setup
-  setupDots();
-  updateLayout();
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateLayout, 200);
+    }, { passive: true });
+
+    setupDots();
+    updateLayout();
+  };
+
+  // Use Intersection Observer to initialize the slider only when it's visible
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initSlider();
+          observer.unobserve(sliderContainer); // Stop observing once initialized
+        }
+      });
+    },
+    { rootMargin: '0px 0px 50px 0px' } // Trigger when slider is 50px from viewport bottom
+  );
+
+  observer.observe(sliderContainer);
 });
