@@ -38,21 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const containerWidth = sliderContainer.getBoundingClientRect().width;
     slideWidth = containerWidth;
 
+    // Tüm stil değişikliklerini tek bir frame'de yap
     requestAnimationFrame(() => {
       slides.forEach(slide => {
         slide.style.width = `${slideWidth}px`;
       });
       track.style.width = `${slideWidth * slides.length}px`;
+      // updateTrackPosition fonksiyonunu doğrudan çağır, kendi içinde frame kullanmasın
       updateTrackPosition(false);
     });
   };
 
+  // updateTrackPosition fonksiyonundan requestAnimationFrame'i kaldır
   const updateTrackPosition = (useTransition = true) => {
     const newPosition = -currentIndex * slideWidth;
-    requestAnimationFrame(() => {
-      track.style.transition = useTransition ? 'transform 0.4s ease-in-out' : 'none';
-      track.style.transform = `translateX(${newPosition}px)`;
-    });
+    track.style.transition = useTransition ? 'transform 0.4s ease-in-out' : 'none';
+    track.style.transform = `translateX(${newPosition}px)`;
   };
 
   const updateDots = () => {
