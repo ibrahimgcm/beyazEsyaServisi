@@ -94,7 +94,7 @@
       .fa-phone-alt:before {content: "\f879";}
     </style>
     <style>
-      /* Critical CSS for above-the-fold content - LCP optimized */
+      /* Sadece kritik LCP ve başlık stilleri */
       :root { --primary-color: #1976d2; --text-color: #222; }
       body { 
         font-family: 'Roboto', Arial, Helvetica, sans-serif; 
@@ -104,6 +104,48 @@
         margin: 0; 
         font-display: swap;
         text-rendering: optimizeSpeed;
+      }
+      h1#heroTitle {
+        font-size: 2em;
+        line-height: 1.2;
+        color: #1976d2;
+        margin: 0;
+        font-weight: 700;
+        max-width: 800px;
+        min-height: 2.4em;
+        text-rendering: optimizeSpeed;
+      }
+      .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        background: #f8f8f8;
+        text-align: center;
+        padding: 16px;
+      }
+      #mainTitle, #serviceTitle {
+        min-height: 1.5em;
+        margin-bottom: 16px;
+        color: #111;
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        text-rendering: optimizeSpeed;
+      }
+      #mainDescription {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin: 0 0 24px;
+        color: #222;
+        max-width: 65ch;
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      }
+      main {
+        min-height: 500px;
+        max-width: 900px;
+        margin: 32px auto 0;
+        padding: 0 16px;
+        display: block;
       }
       * { box-sizing: border-box; }
       h1, h2, h3 { 
