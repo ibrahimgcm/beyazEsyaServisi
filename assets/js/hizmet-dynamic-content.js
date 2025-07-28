@@ -1,109 +1,106 @@
-function updateServiceContent() {
-    const params = new URLSearchParams(window.location.search);
-    const serviceName = params.get('service');
+document.addEventListener('DOMContentLoaded', () => {
+    // Use a flag to prevent multiple executions
+    let contentUpdated = false;
 
-    if (!serviceName || serviceName.trim() === '') {
-        // service parametresi yoksa hiçbir şey yapma
-        return;
-    }
+    const updateServiceContent = () => {
+        if (contentUpdated) return;
 
-    const trimmedServiceName = serviceName.trim();
-    const currentUrl = window.location.href;
+        const params = new URLSearchParams(window.location.search);
+        const serviceName = params.get('service');
 
-    // Basit bir title oluştur
-    const newTitle = `${trimmedServiceName} Servisi | İstanbul Teknik Servis`;
-    document.title = newTitle;
-
-    // Tüm DOM güncellemelerini tek bir fonksiyonda topla
-    const updateElement = (id, property, value) => {
-        const element = document.getElementById(id);
-        if (element) {
-            if (property === 'textContent') {
-                element.textContent = value;
-            } else {
-                element.setAttribute(property, value);
-            }
+        if (!serviceName || serviceName.trim() === '') {
+            return;
         }
-    };
 
-    // DOM güncellemelerini gruplayarak reflow'u azalt
-    requestAnimationFrame(() => {
-        document.title = newTitle;
-        updateElement('metaTitle', 'textContent', newTitle);
-        updateElement('ogTitle', 'content', newTitle);
-        updateElement('twitterTitle', 'content', newTitle);
-
+        contentUpdated = true;
+        const trimmedServiceName = serviceName.trim();
+        const newTitle = `${trimmedServiceName} Servisi | İstanbul Teknik Servis`;
         const newDescription = `İstanbul ${trimmedServiceName} servisi: Profesyonel, hızlı ve güvenilir teknik destek. Garantili tamir ve bakım hizmetleri.`;
-        updateElement('metaDescription', 'content', newDescription);
-        updateElement('ogDescription', 'content', newDescription);
-        updateElement('twitterDescription', 'content', newDescription);
-
         const newUrl = `https://beyaz-esya-servisi.vercel.app/hizmet.html?service=${encodeURIComponent(trimmedServiceName)}`;
-        updateElement('canonicalLink', 'href', newUrl);
-        updateElement('ogUrl', 'content', newUrl);
 
-        updateElement('heroTitle', 'textContent', `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`);
-        updateElement('mainTitle', 'textContent', `${trimmedServiceName} Servisi`);
-        updateElement('serviceTitle', 'textContent', `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`);
-        updateElement('mainDescription', 'textContent', `İstanbul'da ${trimmedServiceName} ve diğer tüm beyaz eşyalarınız için uzman teknik servis hizmeti. Hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`);
-
-        // Breadcrumb güncellemesi
-        const breadcrumbCurrent = document.getElementById('breadcrumb-current-page');
-        if (breadcrumbCurrent) {
-            const link = breadcrumbCurrent.querySelector('a');
-            const span = breadcrumbCurrent.querySelector('span');
-            if (link) link.href = newUrl;
-            if (span) span.textContent = `${trimmedServiceName} Servisi`;
-        }
-
-        // Schema.org JSON-LD güncellemesi
-        const updateJsonLd = (id, updater) => {
-            const script = document.getElementById(id);
-            if (script) {
-                try {
-                    const json = JSON.parse(script.textContent);
-                    updater(json);
-                    script.textContent = JSON.stringify(json, null, 2);
-                } catch (e) {
-                    console.error(`Error parsing or updating JSON-LD for ${id}:`, e);
-                }
-            }
+        // Batch DOM reads
+        const elements = {
+            metaTitle: document.getElementById('metaTitle'),
+            ogTitle: document.querySelector('meta[property="og:title"]'),
+            twitterTitle: document.querySelector('meta[name="twitter:title"]'),
+            metaDescription: document.querySelector('meta[name="description"]'),
+            ogDescription: document.querySelector('meta[property="og:description"]'),
+            twitterDescription: document.querySelector('meta[name="twitter:description"]'),
+            canonicalLink: document.getElementById('canonicalLink'),
+            ogUrl: document.querySelector('meta[property="og:url"]'),
+            heroTitle: document.getElementById('heroTitle'),
+            mainTitle: document.getElementById('mainTitle'),
+            serviceTitle: document.getElementById('serviceTitle'),
+            mainDescription: document.getElementById('mainDescription'),
+            breadcrumbCurrentLink: document.querySelector('#breadcrumb-current-page a'),
+            breadcrumbCurrentSpan: document.querySelector('#breadcrumb-current-page span'),
+            breadcrumbSchema: document.getElementById('breadcrumbSchema'),
+            serviceSchema: document.getElementById('serviceSchema'),
+            articleSchema: document.getElementById('articleSchema'),
+            facebookShare: document.getElementById('facebookShare'),
+            twitterShare: document.getElementById('twitterShare')
         };
 
-        updateJsonLd('breadcrumbSchema', json => {
-            if (json.itemListElement && json.itemListElement[1]) {
-                json.itemListElement[1].name = `${trimmedServiceName} Servisi`;
-                json.itemListElement[1].item = newUrl;
-            }
+        // Batch DOM writes in a single animation frame to avoid layout thrashing
+        requestAnimationFrame(() => {
+            document.title = newTitle;
+            if (elements.metaTitle) elements.metaTitle.textContent = newTitle;
+            if (elements.ogTitle) elements.ogTitle.content = newTitle;
+            if (elements.twitterTitle) elements.twitterTitle.content = newTitle;
+
+            if (elements.metaDescription) elements.metaDescription.content = newDescription;
+            if (elements.ogDescription) elements.ogDescription.content = newDescription;
+            if (elements.twitterDescription) elements.twitterDescription.content = newDescription;
+
+            if (elements.canonicalLink) elements.canonicalLink.href = newUrl;
+            if (elements.ogUrl) elements.ogUrl.content = newUrl;
+
+            if (elements.heroTitle) elements.heroTitle.textContent = `${trimmedServiceName} Servisi İstanbul - Hızlı ve Güvenilir Teknik Destek`;
+            if (elements.mainTitle) elements.mainTitle.textContent = `${trimmedServiceName} Servisi`;
+            if (elements.serviceTitle) elements.serviceTitle.textContent = `İstanbul Profesyonel ${trimmedServiceName} Tamir ve Bakım Hizmetleri`;
+            if (elements.mainDescription) elements.mainDescription.textContent = `İstanbul'da ${trimmedServiceName} ve diğer tüm beyaz eşyalarınız için uzman teknik servis hizmeti. Hızlı, güvenilir ve uygun fiyatlı çözümler için bize ulaşın.`;
+
+            if (elements.breadcrumbCurrentLink) elements.breadcrumbCurrentLink.href = newUrl;
+            if (elements.breadcrumbCurrentSpan) elements.breadcrumbCurrentSpan.textContent = `${trimmedServiceName} Servisi`;
+
+            const updateJsonLd = (script, updater) => {
+                if (script) {
+                    try {
+                        const json = JSON.parse(script.textContent);
+                        updater(json);
+                        script.textContent = JSON.stringify(json, null, 2);
+                    } catch (e) {
+                        console.error(`Error updating JSON-LD:`, e);
+                    }
+                }
+            };
+
+            updateJsonLd(elements.breadcrumbSchema, json => {
+                if (json.itemListElement && json.itemListElement[1]) {
+                    json.itemListElement[1].name = `${trimmedServiceName} Servisi`;
+                    json.itemListElement[1].item = newUrl;
+                }
+            });
+
+            updateJsonLd(elements.serviceSchema, json => {
+                json.serviceType = `${trimmedServiceName} Servisi`;
+                json.name = `${trimmedServiceName} Servisi`;
+                json.description = newDescription;
+            });
+
+            updateJsonLd(elements.articleSchema, json => {
+                json.headline = `${trimmedServiceName} Servisi`;
+                json.description = newDescription;
+                if (json.mainEntityOfPage) {
+                    json.mainEntityOfPage['@id'] = newUrl;
+                }
+            });
+
+            if (elements.facebookShare) elements.facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(newUrl)}`;
+            if (elements.twitterShare) elements.twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(newUrl)}&text=${encodeURIComponent(newTitle)}`;
         });
+    };
 
-        updateJsonLd('serviceSchema', json => {
-            json.serviceType = `${trimmedServiceName} Servisi`;
-            json.name = `${trimmedServiceName} Servisi`;
-            json.description = newDescription;
-        });
-
-        updateJsonLd('articleSchema', json => {
-            json.headline = `${trimmedServiceName} Servisi`;
-            json.description = newDescription;
-            if(json.mainEntityOfPage) {
-                json.mainEntityOfPage['@id'] = newUrl;
-            }
-        });
-
-        // Sosyal medya paylaşım linklerini güncelle
-        const facebookShare = document.getElementById('facebookShare');
-        if(facebookShare) facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(newUrl)}`;
-
-        const twitterShare = document.getElementById('twitterShare');
-        if(twitterShare) twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(newUrl)}&text=${encodeURIComponent(newTitle)}`;
-    });
-}
-
-// Script'in DOM tamamen yüklendikten sonra çalışmasını garantile
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateServiceContent);
-} else {
-    // DOM zaten hazırsa doğrudan çalıştır
+    // Run the update logic
     updateServiceContent();
-}
+});
